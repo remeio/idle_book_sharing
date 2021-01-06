@@ -38,7 +38,7 @@ public class VerificationCodeLogicImpl implements VerificationCodeLogic {
     }
 
     @Override
-    public String generateVerificationCode(String email) {
+    public void generateVerificationCode(String email) {
         String verificationCodeKey = verificationCodeConfig.getPrefix() + email;
         boolean isHasKey = redisUtils.hasKey(verificationCodeKey);
         //判断是否已经发送
@@ -57,7 +57,6 @@ public class VerificationCodeLogicImpl implements VerificationCodeLogic {
             BizException.error(ErrorCodeEnum.VERIFICATION_CODE_SEND_FAILURE);
         }
         redisUtils.set(verificationCodeKey, verificationCodeValue, verificationCodeConfig.getExpireTime() * 60);
-        return verificationCodeValue;
     }
 
     @Override

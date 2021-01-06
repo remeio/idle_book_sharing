@@ -23,8 +23,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     @Override
     public GetVerificationCodeResponse getVerificationCode(GetVerificationCodeRequest request) {
         GetVerificationCodeResponse response = new GetVerificationCodeResponse();
-        String verificationCode = verificationCodeLogic.generateVerificationCode(request.getEmail());
-        response.setVerificationCode(verificationCode);
+        verificationCodeLogic.generateVerificationCode(request.getEmail());
         response.success(ErrorCodeEnum.VERIFICATION_CODE_SEND_SUCCESS);
         return response;
     }
