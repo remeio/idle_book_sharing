@@ -48,7 +48,7 @@ public class VerificationCodeLogicImpl implements VerificationCodeLogic {
         // 生成验证码
         String verificationCodeValue = RandomStringUtils.random(verificationCodeConfig.getDigits(), false, true);
         try {
-            mailUtils.sendSimpleMail(email,
+            mailUtils.sendHtmlMail(email,
                     verificationCodeConfig.getMailSubject(),
                     String.format(verificationCodeConfig.getMailContent(),
                             verificationCodeValue,

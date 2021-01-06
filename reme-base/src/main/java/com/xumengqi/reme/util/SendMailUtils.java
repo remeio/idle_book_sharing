@@ -35,8 +35,8 @@ public class SendMailUtils {
         sender.send(message);
     }
 
-    public void sendHtmlMail(String to, String subject, String content) {
-        sendSimpleMail(sender.getUsername(), to, subject, content);
+    public void sendHtmlMail(String to, String subject, String content) throws MessagingException {
+        sendHtmlMail(sender.getUsername(), to, subject, content);
     }
 
     public void sendHtmlMail(String from, String to, String subject, String content) throws MessagingException {
@@ -44,6 +44,7 @@ public class SendMailUtils {
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
         helper.setFrom(from);
         helper.setTo(to);
+        message.setSubject(subject);
         helper.setText(content, true);
         sender.send(message);
     }
