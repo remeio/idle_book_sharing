@@ -1,6 +1,7 @@
 package com.xumengqi.reme.request;
 
 import com.xumengqi.reme.base.BaseRequest;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Email;
 
@@ -10,14 +11,15 @@ import javax.validation.constraints.Email;
  */
 public class GetVerificationCodeRequest extends BaseRequest {
 
+    @ApiModelProperty("邮箱")
     @Email(message = "{GetVerificationCodeRequest.email}")
     private String email;
 
-    public @Email(message = "{GetVerificationCodeRequest.email}") String getEmail() {
+    public String getEmail() {
         return this.email;
     }
 
-    public void setEmail(@Email(message = "{GetVerificationCodeRequest.email}") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 }

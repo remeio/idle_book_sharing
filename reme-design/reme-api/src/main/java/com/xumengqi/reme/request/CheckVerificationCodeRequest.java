@@ -2,6 +2,7 @@ package com.xumengqi.reme.request;
 
 import com.xumengqi.reme.base.BaseRequest;
 import com.xumengqi.reme.validation.ChineseLength;
+import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Email;
 
@@ -10,25 +11,27 @@ import javax.validation.constraints.Email;
  * @date 2020/12/29 19:43
  */
 public class CheckVerificationCodeRequest extends BaseRequest {
+    @ApiModelProperty("邮箱")
     @Email(message = "{CheckVerificationCodeRequest.email}")
     private String email;
 
+    @ApiModelProperty("验证码")
     @ChineseLength(min = 6, max = 6, message = "{CheckVerificationCodeRequest.verificationCode}")
     private String verificationCode;
 
-    public @Email(message = "{CheckVerificationCodeRequest.email}") String getEmail() {
+    public String getEmail() {
         return this.email;
     }
 
-    public @ChineseLength(min = 6, max = 6, message = "{CheckVerificationCodeRequest.verificationCode}") String getVerificationCode() {
+    public String getVerificationCode() {
         return this.verificationCode;
     }
 
-    public void setEmail(@Email(message = "{CheckVerificationCodeRequest.email}") String email) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
-    public void setVerificationCode(@ChineseLength(min = 6, max = 6, message = "{CheckVerificationCodeRequest.verificationCode}") String verificationCode) {
+    public void setVerificationCode(String verificationCode) {
         this.verificationCode = verificationCode;
     }
 }

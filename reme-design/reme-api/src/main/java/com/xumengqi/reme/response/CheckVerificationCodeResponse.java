@@ -1,6 +1,7 @@
 package com.xumengqi.reme.response;
 
 import com.xumengqi.reme.base.BaseResponse;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @author xumengqi
@@ -8,6 +9,7 @@ import com.xumengqi.reme.base.BaseResponse;
  */
 public class CheckVerificationCodeResponse extends BaseResponse {
 
+    @ApiModelProperty("是否通过验证")
     private Boolean isPass;
 
     public Boolean getIsPass() {

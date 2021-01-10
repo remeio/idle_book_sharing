@@ -2,17 +2,20 @@ package com.xumengqi.reme.base;
 
 import com.google.gson.Gson;
 import com.xumengqi.reme.enums.ErrorCodeEnum;
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * @author xumengqi
  * @date 2020/12/28 19:26
  */
 public class BaseResponse {
-
+    @ApiModelProperty("错误码")
     private Integer errorNo;
 
+    @ApiModelProperty("错误信息")
     private String errorInfo;
 
+    @ApiModelProperty("成功与否")
     private boolean success;
 
     public Integer getErrorNo() {
