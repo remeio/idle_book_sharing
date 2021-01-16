@@ -33,11 +33,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         CheckVerificationCodeResponse response = new CheckVerificationCodeResponse();
         boolean isPass = verificationCodeLogic.checkVerificationCode(request.getEmail(), request.getVerificationCode());
         response.setIsPass(isPass);
-        if (isPass) {
-            response.success(ErrorCodeEnum.VERIFICATION_CODE_PASS);
-            return response;
-        }
-        response.success(ErrorCodeEnum.VERIFICATION_CODE_NOT_PASS);
+        response.success(isPass ? ErrorCodeEnum.VERIFICATION_CODE_PASS : ErrorCodeEnum.VERIFICATION_CODE_NOT_PASS);
         return response;
     }
 }
