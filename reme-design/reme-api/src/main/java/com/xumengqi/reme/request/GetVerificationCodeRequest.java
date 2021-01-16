@@ -4,6 +4,7 @@ import com.xumengqi.reme.base.BaseRequest;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 /**
  * @author xumengqi
@@ -12,6 +13,7 @@ import javax.validation.constraints.Email;
 public class GetVerificationCodeRequest extends BaseRequest {
 
     @ApiModelProperty("邮箱")
+    @NotBlank(message = "{GetVerificationCodeRequest.email}")
     @Email(message = "{GetVerificationCodeRequest.email}")
     private String email;
 
