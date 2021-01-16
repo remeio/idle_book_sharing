@@ -27,6 +27,11 @@ public class BizException extends RuntimeException {
         return errorInfo;
     }
 
+    /**
+     * 抛出异常
+     * @param errorCodeEnum 错误码
+     * @param args 内嵌参数
+     */
     public static void error(ErrorCodeEnum errorCodeEnum, Object... args) {
         throw new BizException(errorCodeEnum.getCode(), String.format(errorCodeEnum.getMessage(), args));
     }

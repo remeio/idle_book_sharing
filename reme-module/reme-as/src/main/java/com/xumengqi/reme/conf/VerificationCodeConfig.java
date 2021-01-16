@@ -5,6 +5,7 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 /**
+ * 验证码配置类
  * @author xumengqis
  * @date 2021/1/4 11:42
  */

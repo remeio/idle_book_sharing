@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
+ * Redis 操作工具类
  * @author xumengqi
  * @date 2021/1/3 22:53
  */

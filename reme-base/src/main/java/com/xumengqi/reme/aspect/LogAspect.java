@@ -3,6 +3,7 @@ package com.xumengqi.reme.aspect;
 import java.lang.annotation.*;
 
 /**
+ * 日志切面注解
  * @author xumengqi
  * @date 2021/1/3 19:11
  */

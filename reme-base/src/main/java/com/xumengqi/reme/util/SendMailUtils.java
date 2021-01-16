@@ -10,6 +10,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 /**
+ * 邮件发送工具类
  * @author xumengqi
  * @date 2021/1/4 15:14
  */

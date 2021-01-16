@@ -39,11 +39,21 @@ public class BaseResponse {
         this.errorInfo = errorInfo;
     }
 
+    /**
+     * 视为成功
+     * @param errorCodeEnum 错误码
+     * @param args 内嵌参数
+     */
     public void success(ErrorCodeEnum errorCodeEnum, Object... args) {
         setErrorNo(ErrorCodeEnum.SUCCESS.getCode());
         setErrorInfo(String.format(errorCodeEnum.getMessage(), args));
     }
 
+    /**
+     * 视为失败
+     * @param errorCodeEnum 错误码
+     * @param args 内嵌参数
+     */
     public void failure(ErrorCodeEnum errorCodeEnum, Object... args) {
         setErrorNo(errorCodeEnum.getCode());
         setErrorInfo(String.format(errorCodeEnum.getMessage(), args));

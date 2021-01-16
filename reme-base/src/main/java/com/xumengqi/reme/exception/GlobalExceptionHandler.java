@@ -4,7 +4,6 @@ import com.xumengqi.reme.base.BaseResponse;
 import com.xumengqi.reme.enums.ErrorCodeEnum;
 import org.apache.log4j.Logger;
 import org.springframework.validation.BindException;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -14,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Optional;
 
 /**
+ * 统一异常处理
  * @author xumengqi
  * @date 2020/12/31 17:27
  */
@@ -21,6 +21,12 @@ import java.util.Optional;
 public class GlobalExceptionHandler {
     private static final Logger log = Logger.getLogger(GlobalExceptionHandler.class);
 
+    /**
+     * 业务异常
+     * @param req /
+     * @param e /
+     * @return 响应
+     */
     @ExceptionHandler(value = BizException.class)
     @ResponseBody
     public BaseResponse bizExceptionHandler(HttpServletRequest req, BizException e) {
@@ -31,6 +37,12 @@ public class GlobalExceptionHandler {
         return baseResponse;
     }
 
+    /**
+     * 参数校验异常
+     * @param req /
+     * @param e /
+     * @return 响应
+     */
     @ExceptionHandler(value = BindException.class)
     @ResponseBody
     public BaseResponse bizExceptionHandler(HttpServletRequest req, BindException e) {
@@ -53,6 +65,12 @@ public class GlobalExceptionHandler {
         return baseResponse;
     }
 
+    /**
+     * 通用异常
+     * @param req /
+     * @param e /
+     * @return 响应
+     */
     @ExceptionHandler(value = Exception.class)
     @ResponseBody
     public BaseResponse exceptionHandler(HttpServletRequest req, Exception e) {
