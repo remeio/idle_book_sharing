@@ -31,15 +31,15 @@ public class LogAspectHandler {
     @Around("logAspectType() || logAspectMethod()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] objects = joinPoint.getArgs();
-        log.info("Request->: " + Optional.ofNullable(objects[0]).map(Object::toString).orElse("no args"));
+        log.debug("Request->: " + Optional.ofNullable(objects[0]).map(Object::toString).orElse("no args"));
         Object result;
         try {
             result = joinPoint.proceed();
         } catch (Throwable throwable) {
-            log.info("Throw by \"" + throwable.getMessage() + "\"");
+            log.debug("Throw by \"" + throwable.getMessage() + "\"");
             throw throwable;
         }
-        log.info("Response<-: " + result.toString());
+        log.debug("Response<-: " + result.toString());
         return result;
     }
 }
