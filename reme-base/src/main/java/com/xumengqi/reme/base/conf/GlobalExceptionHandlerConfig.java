@@ -1,6 +1,7 @@
-package com.xumengqi.reme.base.exception;
+package com.xumengqi.reme.base.conf;
 
-import com.xumengqi.reme.base.base.BaseResponse;
+import com.xumengqi.reme.base.BaseResponse;
+import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import org.apache.log4j.Logger;
 import org.springframework.validation.BindException;
@@ -18,8 +19,8 @@ import java.util.Optional;
  * @date 2020/12/31 17:27
  */
 @ControllerAdvice
-public class GlobalExceptionHandler {
-    private static final Logger log = Logger.getLogger(GlobalExceptionHandler.class);
+public class GlobalExceptionHandlerConfig {
+    private static final Logger log = Logger.getLogger(GlobalExceptionHandlerConfig.class);
 
     /**
      * 业务异常

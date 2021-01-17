@@ -3,7 +3,7 @@ package com.xumengqi.reme.as.logic.impl;
 import com.xumengqi.reme.as.conf.VerificationCodeConfig;
 import com.xumengqi.reme.as.logic.VerificationCodeLogic;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
-import com.xumengqi.reme.base.exception.BizException;
+import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.base.util.SendMailUtils;
 import org.apache.commons.lang3.RandomStringUtils;

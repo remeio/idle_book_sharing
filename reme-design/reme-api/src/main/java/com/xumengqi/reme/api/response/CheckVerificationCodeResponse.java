@@ -1,6 +1,6 @@
 package com.xumengqi.reme.api.response;
 
-import com.xumengqi.reme.base.base.BaseResponse;
+import com.xumengqi.reme.base.BaseResponse;
 import io.swagger.annotations.ApiModelProperty;
 
 /**

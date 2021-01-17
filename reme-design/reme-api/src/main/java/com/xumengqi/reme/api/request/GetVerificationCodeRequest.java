@@ -1,6 +1,6 @@
 package com.xumengqi.reme.api.request;
 
-import com.xumengqi.reme.base.base.BaseRequest;
+import com.xumengqi.reme.base.BaseRequest;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.Email;

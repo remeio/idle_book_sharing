@@ -1,4 +1,4 @@
-package com.xumengqi.reme.base.base;
+package com.xumengqi.reme.base;
 
 import com.google.gson.Gson;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;

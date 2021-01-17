@@ -1,4 +1,4 @@
-package com.xumengqi.reme.base.util;
+package com.xumengqi.reme.base.conf;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -19,7 +19,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @date 2021/1/4 00:03
  */
 @Configuration
-public class RedisConfiguration {
+public class RedisConfig {
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory connectionFactory) {
         return RedisCacheManager.create(connectionFactory);

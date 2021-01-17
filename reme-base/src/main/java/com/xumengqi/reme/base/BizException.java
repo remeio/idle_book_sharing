@@ -1,4 +1,4 @@
-package com.xumengqi.reme.base.exception;
+package com.xumengqi.reme.base;
 
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 
