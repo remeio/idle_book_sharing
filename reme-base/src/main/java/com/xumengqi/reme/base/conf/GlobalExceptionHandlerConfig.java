@@ -31,7 +31,7 @@ public class GlobalExceptionHandlerConfig {
     @ExceptionHandler(value = BizException.class)
     @ResponseBody
     public BaseResponse bizExceptionHandler(HttpServletRequest req, BizException e) {
-        log.error("BizException: " + e.getMessage(), e);
+        log.info("BizException: " + e.getMessage(), e);
         BaseResponse baseResponse = new BaseResponse();
         baseResponse.setErrorNo(e.getErrorNo());
         baseResponse.setErrorInfo(e.getErrorInfo());
@@ -54,7 +54,7 @@ public class GlobalExceptionHandlerConfig {
             baseResponse.failure(ErrorCodeEnum.ILLEGAL_PARAMETER);
             return baseResponse;
         }
-        log.error(String.format("BindException: [Field error in object '%s' on field '%s': rejected value [%s]",
+        log.info(String.format("BindException: '%s'.'%s': [%s]",
                 fieldError.getObjectName(),
                 fieldError.getField(),
                 fieldError.getRejectedValue()));
@@ -76,7 +76,7 @@ public class GlobalExceptionHandlerConfig {
     @ResponseBody
     public BaseResponse exceptionHandler(HttpServletRequest req, Exception e) {
         BaseResponse baseResponse = new BaseResponse();
-        log.error("Exception: " + e.getMessage(), e);
+        log.warn("Exception: " + e.getMessage(), e);
         baseResponse.failure(ErrorCodeEnum.SYSTEM_ERROR);
         return baseResponse;
     }
