@@ -54,7 +54,8 @@ public class GlobalExceptionHandlerConfig {
             baseResponse.failure(ErrorCodeEnum.ILLEGAL_PARAMETER);
             return baseResponse;
         }
-        log.info(String.format("BindException: '%s'.'%s': [%s]",
+        log.info(String.format("BindException: %s with '%s'.'%s': [%s]",
+                fieldError.getDefaultMessage(),
                 fieldError.getObjectName(),
                 fieldError.getField(),
                 fieldError.getRejectedValue()));
