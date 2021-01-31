@@ -9,6 +9,7 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <property name="javaFileEncoding" value="UTF-8"/>
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
         <!-- 为模型生成序列化方法-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!-- 为生成的Java模型创建一个toString方法 -->
@@ -36,7 +37,7 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.xumengqi.reme.dao.mapper"
                              targetProject="reme-design\reme-dao\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="user">
+        <table tableName="%">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>

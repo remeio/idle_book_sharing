@@ -26,7 +26,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
     public GetVerificationCodeResponse getVerificationCode(GetVerificationCodeRequest request) {
         GetVerificationCodeResponse response = new GetVerificationCodeResponse();
         verificationCodeLogic.generateVerificationCode(request.getEmail());
-        response.success(ErrorCodeEnum.VERIFICATION_CODE_SEND_SUCCESS);
+        response.error(ErrorCodeEnum.VERIFICATION_CODE_SEND_SUCCESS);
         return response;
     }
 
@@ -35,7 +35,7 @@ public class VerificationCodeServiceImpl implements VerificationCodeService {
         CheckVerificationCodeResponse response = new CheckVerificationCodeResponse();
         boolean isPass = verificationCodeLogic.checkVerificationCode(request.getEmail(), request.getVerificationCode());
         response.setIsPass(isPass);
-        response.success(isPass ? ErrorCodeEnum.VERIFICATION_CODE_PASS : ErrorCodeEnum.VERIFICATION_CODE_NOT_PASS);
+        response.error(isPass ? ErrorCodeEnum.VERIFICATION_CODE_PASS : ErrorCodeEnum.VERIFICATION_CODE_NOT_PASS);
         return response;
     }
 }

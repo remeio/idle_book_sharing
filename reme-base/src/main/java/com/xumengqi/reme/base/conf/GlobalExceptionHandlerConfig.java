@@ -51,7 +51,7 @@ public class GlobalExceptionHandlerConfig {
         if (fieldError == null) {
             log.error("BindException: " + e.getMessage(), e);
             BaseResponse baseResponse = new BaseResponse();
-            baseResponse.failure(ErrorCodeEnum.ILLEGAL_PARAMETER);
+            baseResponse.error(ErrorCodeEnum.ILLEGAL_PARAMETER);
             return baseResponse;
         }
         log.info(String.format("BindException: %s with '%s'.'%s': [%s]",
@@ -78,7 +78,7 @@ public class GlobalExceptionHandlerConfig {
     public BaseResponse exceptionHandler(HttpServletRequest req, Exception e) {
         BaseResponse baseResponse = new BaseResponse();
         log.warn("Exception: " + e.getMessage(), e);
-        baseResponse.failure(ErrorCodeEnum.SYSTEM_ERROR);
+        baseResponse.error(ErrorCodeEnum.SYSTEM_ERROR);
         return baseResponse;
     }
 }

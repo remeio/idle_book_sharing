@@ -18,13 +18,18 @@ public class BaseResponse {
     @ApiModelProperty("成功与否")
     private boolean success;
 
+    public BaseResponse() {
+        // 创建即代表成功
+        error(ErrorCodeEnum.SUCCESS);
+    }
+
     public Integer getErrorNo() {
         return errorNo;
     }
 
     public void setErrorNo(Integer errorNo) {
         this.errorNo = errorNo;
-        this.success =  ErrorCodeEnum.SUCCESS.getCode().equals(errorNo);
+        this.success =  errorNo >= 10000 && errorNo <= 20000;
     }
 
     public String getErrorInfo() {
@@ -40,21 +45,11 @@ public class BaseResponse {
     }
 
     /**
-     * 视为成功
+     *
      * @param errorCodeEnum 错误码
      * @param args 内嵌参数
      */
-    public void success(ErrorCodeEnum errorCodeEnum, Object... args) {
-        setErrorNo(ErrorCodeEnum.SUCCESS.getCode());
-        setErrorInfo(String.format(errorCodeEnum.getMessage(), args));
-    }
-
-    /**
-     * 视为失败
-     * @param errorCodeEnum 错误码
-     * @param args 内嵌参数
-     */
-    public void failure(ErrorCodeEnum errorCodeEnum, Object... args) {
+    public void error(ErrorCodeEnum errorCodeEnum, Object... args) {
         setErrorNo(errorCodeEnum.getCode());
         setErrorInfo(String.format(errorCodeEnum.getMessage(), args));
     }

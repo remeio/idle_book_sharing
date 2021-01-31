@@ -6,12 +6,11 @@ package com.xumengqi.reme.common.enums;
  * @date 2020/12/29 18:34
  */
 public enum ErrorCodeEnum {
-    SUCCESS(0, "操作成功"),
+    SUCCESS(10000, "操作成功"),
 
-    VERIFICATION_CODE_SEND_SUCCESS(1, "验证码发送成功"),
+    VERIFICATION_CODE_SEND_SUCCESS(10001, "验证码发送成功"),
 
-    VERIFICATION_CODE_PASS(2, "验证通过"),
-
+    VERIFICATION_CODE_PASS(10002, "验证通过"),
 
 
     SYSTEM_ERROR(-6, "系统异常"),
