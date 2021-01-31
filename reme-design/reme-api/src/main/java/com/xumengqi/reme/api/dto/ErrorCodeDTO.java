@@ -1,4 +1,4 @@
-package com.xumengqi.reme.dao.dto;
+package com.xumengqi.reme.api.dto;
 
 import com.xumengqi.reme.dao.entity.ErrorCode;
 

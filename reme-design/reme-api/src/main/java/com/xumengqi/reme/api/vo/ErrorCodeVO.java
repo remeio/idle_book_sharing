@@ -1,4 +1,4 @@
-package com.xumengqi.reme.dao.vo;
+package com.xumengqi.reme.api.vo;
 
 import com.xumengqi.reme.dao.entity.ErrorCode;
 

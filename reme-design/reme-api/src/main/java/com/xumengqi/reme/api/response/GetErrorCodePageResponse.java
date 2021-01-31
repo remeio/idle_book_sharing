@@ -1,7 +1,7 @@
 package com.xumengqi.reme.api.response;
 
 import com.xumengqi.reme.base.PageResponse;
-import com.xumengqi.reme.dao.vo.ErrorCodeVO;
+import com.xumengqi.reme.api.vo.ErrorCodeVO;
 
 import java.util.List;
 

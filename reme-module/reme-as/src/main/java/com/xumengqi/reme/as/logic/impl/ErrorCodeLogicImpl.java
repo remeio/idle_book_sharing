@@ -2,11 +2,11 @@ package com.xumengqi.reme.as.logic.impl;
 
 import com.xumengqi.reme.as.logic.ErrorCodeLogic;
 import com.xumengqi.reme.base.util.ConvertUtils;
-import com.xumengqi.reme.dao.dto.ErrorCodeDTO;
+import com.xumengqi.reme.api.dto.ErrorCodeDTO;
 import com.xumengqi.reme.dao.entity.ErrorCode;
 import com.xumengqi.reme.dao.entity.ErrorCodeExample;
 import com.xumengqi.reme.dao.mapper.ErrorCodeMapper;
-import com.xumengqi.reme.dao.vo.ErrorCodeVO;
+import com.xumengqi.reme.api.vo.ErrorCodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,8 +1,8 @@
 package com.xumengqi.reme.as.logic;
 
 
-import com.xumengqi.reme.dao.dto.ErrorCodeDTO;
-import com.xumengqi.reme.dao.vo.ErrorCodeVO;
+import com.xumengqi.reme.api.dto.ErrorCodeDTO;
+import com.xumengqi.reme.api.vo.ErrorCodeVO;
 
 import java.util.List;
 
