@@ -1,5 +1,9 @@
 package com.xumengqi.reme.base.aspect;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
@@ -31,7 +35,7 @@ public class LogAspectHandler {
     @Around("logAspectType() || logAspectMethod()")
     public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] objects = joinPoint.getArgs();
-        log.debug("Request->: " + Optional.ofNullable(objects[0]).map(Object::toString).orElse("no args"));
+        log.debug((Optional.ofNullable(objects[0]).map(Object::getClass).map(Class::getName).orElse("Request") + "->: \n" + toJsonPretty(Optional.ofNullable(objects[0]).map(Object::toString).orElse("no args"))));
         Object result;
         try {
             result = joinPoint.proceed();
@@ -39,7 +43,16 @@ public class LogAspectHandler {
             log.debug("Throw by \"" + throwable.getMessage() + "\"");
             throw throwable;
         }
-        log.debug("Response<-: " + result.toString());
+        log.debug(result.getClass().getName() + "<-: \n" + toJsonPretty(result.toString()));
         return result;
+    }
+
+    public String toJsonPretty(String jsonString) {
+        try {
+            Gson gson = new GsonBuilder().setPrettyPrinting().create();
+            return gson.toJson(JsonParser.parseString(jsonString));
+        } catch (Exception e) {
+            return jsonString;
+        }
     }
 }
