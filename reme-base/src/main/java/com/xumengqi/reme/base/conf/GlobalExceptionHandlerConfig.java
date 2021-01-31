@@ -78,7 +78,7 @@ public class GlobalExceptionHandlerConfig {
     public BaseResponse exceptionHandler(HttpServletRequest req, Exception e) {
         BaseResponse baseResponse = new BaseResponse();
         log.warn("Exception: " + e.getMessage(), e);
-        baseResponse.error(ErrorCodeEnum.SYSTEM_ERROR);
+        baseResponse.error(ErrorCodeEnum.SYSTEM_ERROR, "["+ e.getMessage() + "]");
         return baseResponse;
     }
 }
