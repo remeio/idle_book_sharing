@@ -10,7 +10,6 @@ import com.xumengqi.reme.dao.vo.ErrorCodeVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -35,8 +34,6 @@ public class ErrorCodeLogicImpl implements ErrorCodeLogic {
                 .map(e -> "%" + e + "%")
                 .ifPresent(criteria::andMessageLike);
         List<ErrorCode> errorCodeList = errorCodeMapper.selectByExample(example);
-        List<ErrorCodeVO> errorCodeVOList = new ArrayList<>();
-        errorCodeList.forEach(errorCode -> errorCodeVOList.add(ConvertUtils.convertTo(errorCode, ErrorCodeVO.class)));
-        return errorCodeVOList;
+        return ConvertUtils.toList(errorCodeList, ErrorCodeVO.class);
     }
 }

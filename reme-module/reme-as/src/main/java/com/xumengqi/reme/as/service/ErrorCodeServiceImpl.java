@@ -28,10 +28,10 @@ public class ErrorCodeServiceImpl implements ErrorCodeService {
     @Override
     public GetErrorCodePageResponse getErrorCodePage(GetErrorCodePageRequest request) {
         PageInfo<ErrorCodeVO> pageInfo = new PageUtils<ErrorCodeDTO, ErrorCodeVO>()
-                .page(ConvertUtils.convertTo(request, PageUtils.PageParam.class),
-                        ConvertUtils.convertTo(request, ErrorCodeDTO.class),
+                .page(ConvertUtils.toObj(request, PageUtils.PageParam.class),
+                        ConvertUtils.toObj(request, ErrorCodeDTO.class),
                         errorCodeLogic::listForPage);
-        GetErrorCodePageResponse response = ConvertUtils.convertTo(pageInfo, GetErrorCodePageResponse.class);
+        GetErrorCodePageResponse response = ConvertUtils.toObj(pageInfo, GetErrorCodePageResponse.class);
         response.setItems(pageInfo.getList());
         return response;
     }
