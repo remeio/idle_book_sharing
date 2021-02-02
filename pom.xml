@@ -20,6 +20,9 @@
         <module>reme-module</module>
         <module>reme-design</module>
     </modules>
+    <build>
+        <defaultGoal>compile</defaultGoal>
+    </build>
     <dependencyManagement>
         <dependencies>
             <dependency>
