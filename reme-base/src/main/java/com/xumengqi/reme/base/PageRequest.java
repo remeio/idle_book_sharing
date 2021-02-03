@@ -1,29 +1,41 @@
 package com.xumengqi.reme.base;
 
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 /**
  * @author xumengqi
  * @date 2021/1/31 13:56
  */
 public class PageRequest extends BaseRequest {
-    private int pageSize;
+    @ApiModelProperty("显示条数")
+    @Min(value = 1, message = "{PageRequest.pageSize.min}")
+    @Max(value = Integer.MAX_VALUE, message = "{PageRequest.pageSize.max}")
+    private Integer pageSize;
 
-    private int pageNum;
+    @ApiModelProperty("当前页")
+    @Min(value = 1, message = "{PageRequest.pageNum.min}")
+    @Max(value = Integer.MAX_VALUE, message = "{PageRequest.pageNum.max}")
+    private Integer pageNum;
 
+    @ApiModelProperty("排序")
     private String orderBy;
 
-    public int getPageSize() {
+    public Integer getPageSize() {
         return pageSize;
     }
 
-    public void setPageSize(int pageSize) {
+    public void setPageSize(Integer pageSize) {
         this.pageSize = pageSize;
     }
 
-    public int getPageNum() {
+    public Integer getPageNum() {
         return pageNum;
     }
 
-    public void setPageNum(int pageNum) {
+    public void setPageNum(Integer pageNum) {
         this.pageNum = pageNum;
     }
 
