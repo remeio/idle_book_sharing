@@ -4,6 +4,7 @@ import com.xumengqi.reme.base.BaseResponse;
 import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -68,7 +69,7 @@ public class GlobalExceptionHandlerConfig {
         return baseResponse;
     }
 
-    @ExceptionHandler(value = SQLException.class)
+    @ExceptionHandler({SQLException.class, DataAccessException.class})
     @ResponseBody
     public BaseResponse sqlExceptionHandler(HttpServletRequest req, SQLException e) {
         BaseResponse baseResponse = new BaseResponse();
