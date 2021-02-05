@@ -13,7 +13,9 @@ public enum ErrorCodeEnum {
     VERIFICATION_CODE_PASS(10002, "验证通过"),
 
 
-    SYSTEM_ERROR(-6, "系统异常%s"),
+    SQL_ERROR(-7, "数据库访问异常"),
+
+    SYSTEM_ERROR(-6, "系统异常"),
 
     ILLEGAL_PARAMETER(-1, "参数错误"),
 

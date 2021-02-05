@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 import java.util.Optional;
 
 /**
@@ -67,6 +68,15 @@ public class GlobalExceptionHandlerConfig {
         return baseResponse;
     }
 
+    @ExceptionHandler(value = SQLException.class)
+    @ResponseBody
+    public BaseResponse sqlExceptionHandler(HttpServletRequest req, SQLException e) {
+        BaseResponse baseResponse = new BaseResponse();
+        log.info("SQLException: " + e.getMessage(), e);
+        baseResponse.error(ErrorCodeEnum.SQL_ERROR);
+        return baseResponse;
+    }
+
     /**
      * 通用异常
      * @param req /
@@ -78,7 +88,7 @@ public class GlobalExceptionHandlerConfig {
     public BaseResponse exceptionHandler(HttpServletRequest req, Exception e) {
         BaseResponse baseResponse = new BaseResponse();
         log.warn("Exception: " + e.getMessage(), e);
-        baseResponse.error(ErrorCodeEnum.SYSTEM_ERROR, "["+ e.getMessage() + "]");
+        baseResponse.error(ErrorCodeEnum.SYSTEM_ERROR);
         return baseResponse;
     }
 }
