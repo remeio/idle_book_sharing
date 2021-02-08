@@ -6,6 +6,7 @@ import com.xumengqi.reme.api.response.GetErrorCodePageResponse;
 import com.xumengqi.reme.api.service.ErrorCodeService;
 import com.xumengqi.reme.as.logic.ErrorCodeLogic;
 import com.xumengqi.reme.base.aspect.LogAspect;
+import com.xumengqi.reme.base.aspect.TokenAspect;
 import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.base.util.PageUtils;
 import com.xumengqi.reme.api.dto.ErrorCodeDTO;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Component;
  * @author xumengqi
  * @date 2021/1/30 22:31
  */
+@TokenAspect
 @LogAspect
 @Component
 public class ErrorCodeServiceImpl implements ErrorCodeService {

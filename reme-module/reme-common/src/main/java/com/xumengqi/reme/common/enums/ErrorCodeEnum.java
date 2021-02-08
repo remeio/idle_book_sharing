@@ -26,6 +26,12 @@ public enum ErrorCodeEnum {
     VERIFICATION_CODE_SEND_FAILURE(-4, "验证码发送失败"),
 
     VERIFICATION_CODE_NOT_PASS(-5, "验证码错误"),
+
+    INCORRECT_USERNAME_OR_PASSWORD(-6, "用户名或密码不正确"),
+
+    NO_TOKEN(-7, "未携带token"),
+
+    INVALID_TOKEN(-8, "无效的token或token已过期")
     ;
     /**
      * 状态码

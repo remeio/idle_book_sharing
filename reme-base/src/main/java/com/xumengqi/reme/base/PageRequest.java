@@ -11,13 +11,13 @@ import javax.validation.constraints.Min;
  */
 public class PageRequest extends BaseRequest {
     @ApiModelProperty("显示条数")
-    @Min(value = 1, message = "{PageRequest.pageSize.min}")
-    @Max(value = Integer.MAX_VALUE, message = "{PageRequest.pageSize.max}")
+    @Min(value = 1, message = "{PageRequest.pageSize.Min}")
+    @Max(value = Integer.MAX_VALUE, message = "{PageRequest.pageSize.Max}")
     private Integer pageSize;
 
     @ApiModelProperty("当前页")
-    @Min(value = 1, message = "{PageRequest.pageNum.min}")
-    @Max(value = Integer.MAX_VALUE, message = "{PageRequest.pageNum.max}")
+    @Min(value = 1, message = "{PageRequest.pageNum.Min}")
+    @Max(value = Integer.MAX_VALUE, message = "{PageRequest.pageNum.Max}")
     private Integer pageNum;
 
     @ApiModelProperty("排序")

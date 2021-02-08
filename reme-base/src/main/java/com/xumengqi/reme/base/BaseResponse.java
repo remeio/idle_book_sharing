@@ -18,6 +18,21 @@ public class BaseResponse {
     @ApiModelProperty("成功与否")
     private boolean success;
 
+    @ApiModelProperty("token")
+    private String token;
+
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public BaseResponse() {
         // 创建即代表成功
         error(ErrorCodeEnum.SUCCESS);
