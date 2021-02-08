@@ -7,6 +7,7 @@ import com.google.gson.JsonParser;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -16,6 +17,7 @@ import java.util.Optional;
  * @author xumengqi
  * @date 2021/1/3 19:14
  */
+@Order(2)
 @Aspect
 @Component
 public class LogAspectHandler {

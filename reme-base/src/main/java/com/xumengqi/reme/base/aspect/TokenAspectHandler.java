@@ -11,6 +11,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -19,6 +20,7 @@ import java.util.Arrays;
  * @author xumengqi
  * @date 2021/2/8 11:18
  */
+@Order(1)
 @Aspect
 @Component
 public class TokenAspectHandler {
