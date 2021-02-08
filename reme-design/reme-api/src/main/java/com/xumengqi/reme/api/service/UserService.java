@@ -16,7 +16,7 @@ import javax.validation.Valid;
  * @author xumengqi
  * @date 2021/2/8 09:14
  */
-@Api(tags = "LoginService", description = "登录服务")
+@Api(tags = "UserService", description = "用户服务")
 @RequestMapping("/user")
 @RestController
 public interface UserService {
