@@ -1,6 +1,7 @@
 package com.xumengqi.reme.base.conf;
 
 import com.xumengqi.reme.base.interceptor.GlobalRequestInterceptor;
+import com.xumengqi.reme.base.interceptor.TokenRequestInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistration;
@@ -16,9 +17,14 @@ public class GlobalRequestConfig implements WebMvcConfigurer {
     @Autowired
     private GlobalRequestInterceptor globalRequestInterceptor;
 
+    @Autowired
+    private TokenRequestInterceptor tokenRequestInterceptor;
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        InterceptorRegistration registration = registry.addInterceptor(globalRequestInterceptor);
-        registration.addPathPatterns("/**");
+        registry.addInterceptor(globalRequestInterceptor)
+                .addPathPatterns("/**");
+        registry.addInterceptor(tokenRequestInterceptor)
+                .addPathPatterns("/**");
     }
 }
