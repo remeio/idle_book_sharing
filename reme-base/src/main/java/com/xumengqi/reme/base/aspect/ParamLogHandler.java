@@ -2,7 +2,6 @@ package com.xumengqi.reme.base.aspect;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -20,22 +19,22 @@ import java.util.Optional;
 @Order(2)
 @Aspect
 @Component
-public class LogAspectHandler {
+public class ParamLogHandler {
 
-    private static final Logger log = Logger.getLogger(LogAspectHandler.class);
+    private static final Logger log = Logger.getLogger(ParamLogHandler.class);
 
-    @Pointcut("@annotation(com.xumengqi.reme.base.aspect.LogAspect)")
-    public void logAspectMethod() {
-
-    }
-
-    @Pointcut("@within(com.xumengqi.reme.base.aspect.LogAspect)")
-    public void logAspectType() {
+    @Pointcut("@annotation(com.xumengqi.reme.base.annotations.ParamLog)")
+    public void method() {
 
     }
 
-    @Around("logAspectType() || logAspectMethod()")
-    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+    @Pointcut("@within(com.xumengqi.reme.base.annotations.ParamLog)")
+    public void type() {
+
+    }
+
+    @Around("type() || method()")
+    public Object around(ProceedingJoinPoint joinPoint) throws Throwable {
         Object[] objects = joinPoint.getArgs();
         log.debug((Optional.ofNullable(objects[0]).map(Object::getClass).map(Class::getName).orElse("Request") + "->: \n" + toJsonPretty(Optional.ofNullable(objects[0]).map(Object::toString).orElse("no args"))));
         Object result;

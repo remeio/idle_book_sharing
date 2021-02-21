@@ -4,8 +4,7 @@ import com.xumengqi.reme.api.request.LoginRequest;
 import com.xumengqi.reme.api.response.LoginResponse;
 import com.xumengqi.reme.api.service.UserService;
 import com.xumengqi.reme.as.logic.UserLogic;
-import com.xumengqi.reme.base.BaseResponse;
-import com.xumengqi.reme.base.aspect.LogAspect;
+import com.xumengqi.reme.base.annotations.ParamLog;
 import com.xumengqi.reme.base.util.JwtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ import org.springframework.stereotype.Component;
  * @author xumengqi
  * @date 2021/2/8 09:18
  */
-@LogAspect
+@ParamLog
 @Component
 public class UserServiceImpl implements UserService {
     @Autowired

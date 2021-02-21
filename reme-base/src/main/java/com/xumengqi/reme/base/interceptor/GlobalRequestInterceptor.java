@@ -1,6 +1,7 @@
 package com.xumengqi.reme.base.interceptor;
 
 import org.apache.log4j.Logger;
+import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author xumengqi
  * @date 2021/1/3 18:00
  */
+@Order(1)
 @Component
 public class GlobalRequestInterceptor implements HandlerInterceptor {
 

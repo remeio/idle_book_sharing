@@ -2,12 +2,13 @@ package com.xumengqi.reme.base.interceptor;
 
 import com.google.gson.Gson;
 import com.xumengqi.reme.base.BaseResponse;
-import com.xumengqi.reme.base.aspect.TokenAspect;
+import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.util.JwtUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -22,6 +23,7 @@ import java.util.Objects;
  * @author xumengqi
  * @date 2021/2/21 10:15
  */
+@Order(2)
 @Component
 public class TokenRequestInterceptor  implements HandlerInterceptor {
     private static final Logger log = Logger.getLogger(TokenRequestInterceptor.class);
@@ -37,8 +39,8 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
         }
         // 拦截携带 TokenAspect 注解的
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        boolean isHasAnnotationOnClass = handlerMethod.getBeanType().getAnnotation(TokenAspect.class) != null;
-        boolean isHasAnnotationOnMethod = handlerMethod.getMethod().getAnnotation(TokenAspect.class) != null;
+        boolean isHasAnnotationOnClass = handlerMethod.getBeanType().getAnnotation(AccessToken.class) != null;
+        boolean isHasAnnotationOnMethod = handlerMethod.getMethod().getAnnotation(AccessToken.class) != null;
         if (!(isHasAnnotationOnClass || isHasAnnotationOnMethod)) {
             return true;
         }
@@ -48,6 +50,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             BaseResponse baseResponse = new BaseResponse();
             baseResponse.error(ErrorCodeEnum.NO_TOKEN);
             returnJson(response, baseResponse);
+            log.info("认证失败：" + ErrorCodeEnum.NO_TOKEN.getMessage());
             return false;
         }
         if (!jwtUtils.validateToken(token)) {
@@ -55,6 +58,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             BaseResponse baseResponse = new BaseResponse();
             baseResponse.error(ErrorCodeEnum.INVALID_TOKEN);
             returnJson(response, baseResponse);
+            log.info("认证失败：" + ErrorCodeEnum.INVALID_TOKEN.getMessage());
             return false;
         }
         return true;

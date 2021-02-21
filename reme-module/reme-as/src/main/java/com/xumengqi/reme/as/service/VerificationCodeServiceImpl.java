@@ -6,7 +6,7 @@ import com.xumengqi.reme.api.response.CheckVerificationCodeResponse;
 import com.xumengqi.reme.api.response.GetVerificationCodeResponse;
 import com.xumengqi.reme.api.service.VerificationCodeService;
 import com.xumengqi.reme.as.logic.VerificationCodeLogic;
-import com.xumengqi.reme.base.aspect.LogAspect;
+import com.xumengqi.reme.base.annotations.ParamLog;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @author xumengqi
  * @date 2020/12/28 19:29
  */
-@LogAspect
+@ParamLog
 @Component
 public class VerificationCodeServiceImpl implements VerificationCodeService {
     @Autowired
