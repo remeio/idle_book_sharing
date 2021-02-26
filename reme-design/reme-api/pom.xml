@@ -25,9 +25,5 @@
             <groupId>com.xumengqi</groupId>
             <artifactId>reme-base</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.xumengqi</groupId>
-            <artifactId>reme-dao</artifactId>
-        </dependency>
     </dependencies>
 </project>

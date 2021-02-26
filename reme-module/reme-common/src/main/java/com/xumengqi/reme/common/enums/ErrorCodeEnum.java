@@ -8,26 +8,11 @@ package com.xumengqi.reme.common.enums;
 public enum ErrorCodeEnum {
     SUCCESS(10000, "操作成功"),
 
-    VERIFICATION_CODE_SEND_SUCCESS(10001, "验证码发送成功"),
-
-    VERIFICATION_CODE_PASS(10002, "验证通过"),
-
-
     SQL_ERROR(-7, "数据库访问异常"),
 
     SYSTEM_ERROR(-6, "系统异常"),
 
     ILLEGAL_PARAMETER(-1, "参数错误"),
-
-    VERIFICATION_CODE_HAD_SENT(-2, "验证码已发送，请稍后重试"),
-
-    VERIFICATION_CODE_HAD_EXPIRED(-3, "验证码已过期"),
-
-    VERIFICATION_CODE_SEND_FAILURE(-4, "验证码发送失败"),
-
-    VERIFICATION_CODE_NOT_PASS(-5, "验证码错误"),
-
-    INCORRECT_USERNAME_OR_PASSWORD(-6, "用户名或密码不正确"),
 
     NO_TOKEN(-7, "未携带token"),
 
