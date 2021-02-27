@@ -1,8 +1,8 @@
 package com.xumengqi.reme.as.service.verificationcode;
 
-import com.xumengqi.reme.api.biz.verificationcode.request.GetVerificationCodeRequest;
-import com.xumengqi.reme.api.biz.verificationcode.response.GetVerificationCodeResponse;
-import com.xumengqi.reme.api.biz.verificationcode.service.VerificationCodeService;
+import com.xumengqi.reme.api.verificationcode.request.GetVerificationCodeRequest;
+import com.xumengqi.reme.api.verificationcode.response.GetVerificationCodeResponse;
+import com.xumengqi.reme.api.verificationcode.service.VerificationCodeService;
 import com.xumengqi.reme.as.logic.verificationcode.VerificationCodeLogic;
 import com.xumengqi.reme.base.annotations.ParamLog;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,11 +1,11 @@
-package com.xumengqi.reme.api.biz.user.service;
+package com.xumengqi.reme.api.user.service;
 
-import com.xumengqi.reme.api.biz.user.request.ResetPasswordRequest;
-import com.xumengqi.reme.api.biz.user.request.SignInRequest;
-import com.xumengqi.reme.api.biz.user.request.SignUpRequest;
-import com.xumengqi.reme.api.biz.user.response.ResetPasswordResponse;
-import com.xumengqi.reme.api.biz.user.response.SignInResponse;
-import com.xumengqi.reme.api.biz.user.response.SignUpResponse;
+import com.xumengqi.reme.api.user.request.ResetPasswordRequest;
+import com.xumengqi.reme.api.user.request.SignInRequest;
+import com.xumengqi.reme.api.user.request.SignUpRequest;
+import com.xumengqi.reme.api.user.response.ResetPasswordResponse;
+import com.xumengqi.reme.api.user.response.SignInResponse;
+import com.xumengqi.reme.api.user.response.SignUpResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

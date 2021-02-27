@@ -1,4 +1,4 @@
-package com.xumengqi.reme.api.biz.verificationcode.response;
+package com.xumengqi.reme.api.verificationcode.response;
 
 import com.xumengqi.reme.base.BaseResponse;
 import io.swagger.annotations.ApiModelProperty;

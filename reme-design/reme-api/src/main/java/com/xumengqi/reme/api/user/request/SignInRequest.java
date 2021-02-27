@@ -1,4 +1,4 @@
-package com.xumengqi.reme.api.biz.user.request;
+package com.xumengqi.reme.api.user.request;
 
 import com.xumengqi.reme.base.BaseRequest;
 import io.swagger.annotations.ApiModelProperty;

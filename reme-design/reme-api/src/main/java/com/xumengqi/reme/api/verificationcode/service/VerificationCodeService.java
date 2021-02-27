@@ -1,7 +1,7 @@
-package com.xumengqi.reme.api.biz.verificationcode.service;
+package com.xumengqi.reme.api.verificationcode.service;
 
-import com.xumengqi.reme.api.biz.verificationcode.request.GetVerificationCodeRequest;
-import com.xumengqi.reme.api.biz.verificationcode.response.GetVerificationCodeResponse;
+import com.xumengqi.reme.api.verificationcode.request.GetVerificationCodeRequest;
+import com.xumengqi.reme.api.verificationcode.response.GetVerificationCodeResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;

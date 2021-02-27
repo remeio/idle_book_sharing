@@ -1,16 +1,15 @@
 package com.xumengqi.reme.as.service.user;
 
-import com.xumengqi.reme.api.biz.user.request.ResetPasswordRequest;
-import com.xumengqi.reme.api.biz.user.request.SignInRequest;
-import com.xumengqi.reme.api.biz.user.request.SignUpRequest;
-import com.xumengqi.reme.api.biz.user.response.ResetPasswordResponse;
-import com.xumengqi.reme.api.biz.user.response.SignInResponse;
-import com.xumengqi.reme.api.biz.user.response.SignUpResponse;
-import com.xumengqi.reme.api.biz.user.service.UserService;
+import com.xumengqi.reme.api.user.request.ResetPasswordRequest;
+import com.xumengqi.reme.api.user.request.SignInRequest;
+import com.xumengqi.reme.api.user.request.SignUpRequest;
+import com.xumengqi.reme.api.user.response.ResetPasswordResponse;
+import com.xumengqi.reme.api.user.response.SignInResponse;
+import com.xumengqi.reme.api.user.response.SignUpResponse;
+import com.xumengqi.reme.api.user.service.UserService;
 import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.annotations.ParamLog;
 import com.xumengqi.reme.base.util.ConvertUtils;
-import com.xumengqi.reme.base.util.JwtUtils;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
 import com.xumengqi.reme.dao.entity.User;

@@ -1,4 +1,4 @@
-package com.xumengqi.reme.api.biz.user.response;
+package com.xumengqi.reme.api.user.response;
 
 import com.xumengqi.reme.base.BaseResponse;
 import lombok.Getter;
