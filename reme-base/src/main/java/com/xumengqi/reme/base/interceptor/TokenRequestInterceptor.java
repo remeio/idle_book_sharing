@@ -6,6 +6,7 @@ import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.util.JwtUtils;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
+import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,7 +58,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             return false;
         }
         // 将 token 与缓存中的进行对比
-        String key = "loginToken:" + token;
+        String key = RedisKeyPrefixEnum.ACCESS_TOKEN.getPrefix() + token;
         String userId = redisUtils.get(key);
         if (userId == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
