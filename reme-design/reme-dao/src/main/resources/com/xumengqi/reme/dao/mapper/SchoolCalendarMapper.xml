@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xumengqi.reme.dao.mapper.SchoolCalendarMapper">
+  <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.SchoolCalendar">
+    <id column="school_calendar_id" jdbcType="BIGINT" property="schoolCalendarId" />
+    <result column="year" jdbcType="INTEGER" property="year" />
+    <result column="calendar_attach_id" jdbcType="BIGINT" property="calendarAttachId" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    school_calendar_id, year, calendar_attach_id
+  </sql>
+  <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.SchoolCalendarExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from school_calendar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from school_calendar
+    where school_calendar_id = #{schoolCalendarId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from school_calendar
+    where school_calendar_id = #{schoolCalendarId,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.xumengqi.reme.dao.entity.SchoolCalendarExample">
+    delete from school_calendar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.xumengqi.reme.dao.entity.SchoolCalendar">
+    <selectKey keyProperty="schoolCalendarId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into school_calendar (year, calendar_attach_id)
+    values (#{year,jdbcType=INTEGER}, #{calendarAttachId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.SchoolCalendar">
+    <selectKey keyProperty="schoolCalendarId" order="AFTER" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into school_calendar
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="year != null">
+        year,
+      </if>
+      <if test="calendarAttachId != null">
+        calendar_attach_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="year != null">
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="calendarAttachId != null">
+        #{calendarAttachId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.SchoolCalendarExample" resultType="java.lang.Long">
+    select count(*) from school_calendar
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update school_calendar
+    <set>
+      <if test="record.schoolCalendarId != null">
+        school_calendar_id = #{record.schoolCalendarId,jdbcType=BIGINT},
+      </if>
+      <if test="record.year != null">
+        year = #{record.year,jdbcType=INTEGER},
+      </if>
+      <if test="record.calendarAttachId != null">
+        calendar_attach_id = #{record.calendarAttachId,jdbcType=BIGINT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update school_calendar
+    set school_calendar_id = #{record.schoolCalendarId,jdbcType=BIGINT},
+      year = #{record.year,jdbcType=INTEGER},
+      calendar_attach_id = #{record.calendarAttachId,jdbcType=BIGINT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xumengqi.reme.dao.entity.SchoolCalendar">
+    update school_calendar
+    <set>
+      <if test="year != null">
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="calendarAttachId != null">
+        calendar_attach_id = #{calendarAttachId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where school_calendar_id = #{schoolCalendarId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.SchoolCalendar">
+    update school_calendar
+    set year = #{year,jdbcType=INTEGER},
+      calendar_attach_id = #{calendarAttachId,jdbcType=BIGINT}
+    where school_calendar_id = #{schoolCalendarId,jdbcType=BIGINT}
+  </update>
+</mapper>

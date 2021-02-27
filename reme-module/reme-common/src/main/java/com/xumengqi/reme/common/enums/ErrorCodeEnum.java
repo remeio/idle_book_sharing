@@ -16,7 +16,7 @@ public enum ErrorCodeEnum {
 
     NO_TOKEN(-7, "未携带token"),
 
-    INVALID_TOKEN(-8, "无效的token或token已过期")
+    INVALID_TOKEN(-8, "无效的token或token已过期"),
     ;
     /**
      * 状态码
@@ -29,6 +29,11 @@ public enum ErrorCodeEnum {
     private final String message;
 
     ErrorCodeEnum(Integer code, String message) {
+        this.code = code;
+        this.message = message;
+    }
+
+    ErrorCodeEnum(Integer code, String message, String messagea) {
         this.code = code;
         this.message = message;
     }

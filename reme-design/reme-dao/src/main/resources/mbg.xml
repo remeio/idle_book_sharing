@@ -47,7 +47,7 @@
             <generatedKey column="school_id" sqlStatement="MySql" identity="true"/>
         </table>
         <table tableName="user">
-            <generatedKey column="attach_id" sqlStatement="MySql" identity="true"/>
+            <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>
         </table>
         <table tableName="attach">
             <generatedKey column="attach_id" sqlStatement="MySql" identity="true"/>
@@ -56,7 +56,6 @@
             <generatedKey column="confession_tag_id" sqlStatement="MySql" identity="true"/>
         </table>
         <table tableName="confession_attach">
-            <generatedKey column="confession_attach_id" sqlStatement="MySql" identity="true"/>
         </table>
         <table tableName="confession">
             <generatedKey column="confession_id" sqlStatement="MySql" identity="true"/>
@@ -72,6 +71,18 @@
         </table>
         <table tableName="browse">
             <generatedKey column="browse_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="contact">
+            <generatedKey column="contact_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="message">
+            <generatedKey column="message_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="school_map">
+            <generatedKey column="school_map_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="school_calendar">
+            <generatedKey column="school_calendar_id" sqlStatement="MySql" identity="true"/>
         </table>
     </context>
 </generatorConfiguration>
