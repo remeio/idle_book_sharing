@@ -79,7 +79,7 @@ public class VerificationCodeLogicImpl implements VerificationCodeLogic {
                     .replaceAll("expireTimeInMinute", String.valueOf(verificationCode.getExpireTimeInMinute()));
             log.info("phone verification code: " + content);
         } catch (Exception e) {
-            log.info(String.format("验证码发送异常，发送方：%s，验证码：%s，验证码配置：%s", to, verificationCodeStr, verificationCode), e);
+            log.info(String.format("验证码发送异常，接收方：%s，验证码：%s，验证码配置：%s", to, verificationCodeStr, verificationCode), e);
             return false;
         }
         return true;
@@ -91,7 +91,7 @@ public class VerificationCodeLogicImpl implements VerificationCodeLogic {
                     .replaceAll("expireTimeInMinute", String.valueOf(verificationCode.getExpireTimeInMinute()));
             sendMailUtils.sendSimpleMail(to, verificationCode.getTitle(), content);
         } catch (Exception e) {
-            log.info(String.format("验证码发送异常，发送方：%s，验证码：%s，验证码配置：%s", to, verificationCodeStr, verificationCode), e);
+            log.info(String.format("验证码发送异常，接收方：%s，验证码：%s，验证码配置：%s", to, verificationCodeStr, verificationCode), e);
             return false;
         }
         return true;
