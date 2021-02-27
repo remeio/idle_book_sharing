@@ -44,7 +44,7 @@ public class BaseResponse {
 
     public void setErrorNo(Integer errorNo) {
         this.errorNo = errorNo;
-        this.success =  errorNo >= 10000 && errorNo <= 20000;
+        this.success =  ErrorCodeEnum.isSuccessFor(errorNo);
     }
 
     public String getErrorInfo() {
@@ -65,7 +65,7 @@ public class BaseResponse {
      * @param args 内嵌参数
      */
     public void error(ErrorCodeEnum errorCodeEnum, Object... args) {
-        setErrorNo(errorCodeEnum.getCode());
+        setErrorNo(errorCodeEnum.getFullCode());
         setErrorInfo(String.format(errorCodeEnum.getMessage(), args));
     }
 

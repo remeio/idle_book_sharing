@@ -62,7 +62,7 @@ public class GlobalExceptionHandlerConfig {
                 fieldError.getField(),
                 fieldError.getRejectedValue()));
         BaseResponse baseResponse = new BaseResponse();
-        baseResponse.setErrorNo(ErrorCodeEnum.ILLEGAL_PARAMETER.getCode());
+        baseResponse.setErrorNo(ErrorCodeEnum.ILLEGAL_PARAMETER.getFullCode());
         baseResponse.setErrorInfo(Optional.of(fieldError)
                 .map(FieldError::getDefaultMessage)
                 .orElse(ErrorCodeEnum.ILLEGAL_PARAMETER.getMessage()));

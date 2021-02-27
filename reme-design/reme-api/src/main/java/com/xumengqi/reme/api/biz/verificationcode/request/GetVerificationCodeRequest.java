@@ -12,9 +12,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class GetVerificationCodeRequest extends BaseRequest {
-    @ApiModelProperty("用户手机号")
-    private String userInput;
+    @ApiModelProperty("用户参数")
+    private String userParameter;
 
-    @ApiModelProperty("验证码类型编码")
-    private String verificationCodeTypeCode;
+    @ApiModelProperty("验证码类型")
+    private String verificationCodeTypeName;
 }

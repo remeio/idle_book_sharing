@@ -4,6 +4,7 @@ import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
+import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
 import com.xumengqi.reme.dao.entity.User;
 import com.xumengqi.reme.dao.entity.UserExample;
 import com.xumengqi.reme.dao.mapper.SchoolMapper;
@@ -11,9 +12,7 @@ import com.xumengqi.reme.dao.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
 import java.util.Date;
-import java.util.Optional;
 
 /**
  * @author xumengqi
@@ -35,12 +34,16 @@ public class UserLogicImpl implements UserLogic {
         final String userPhone = user.getUserPhone();
         final String userPassword = user.getUserPassword();
         final Long schoolId = user.getSchoolId();
-        AssertUtils.isTrue(verificationCode.equals(redisUtils.get("signUp:" + userPhone)), ErrorCodeEnum.SQL_ERROR);
+        String verificationCodeInCache = redisUtils.get(RedisKeyPrefixEnum.SIGN_UP_VERIFICATION_CODE + userPhone);
+        // 判断验证码是否正确
+        AssertUtils.isTrue(verificationCode.equals(verificationCodeInCache), ErrorCodeEnum.VERIFICATION_CODE_ERROR_OR_EXPIRED);
         UserExample userExample = new UserExample();
         userExample.createCriteria()
                 .andUserPhoneEqualTo(userPhone);
-        AssertUtils.isEqualZero(userMapper.countByExample(userExample), ErrorCodeEnum.SQL_ERROR);
-        AssertUtils.isNotNull(schoolMapper.selectByPrimaryKey(schoolId), ErrorCodeEnum.SQL_ERROR);
+        // 判断用户是否已注册
+        AssertUtils.isEqualZero(userMapper.countByExample(userExample), ErrorCodeEnum.THE_PHONE_NUMBER_HAS_BEEN_REGISTERED);
+        // 判断学校是否存在
+        AssertUtils.isNotNull(schoolMapper.selectByPrimaryKey(schoolId), ErrorCodeEnum.SCHOOL_NOT_EXIST);
         User record = new User();
         record.setUserPhone(userPhone);
         record.setUserPassword(userPassword);
@@ -57,7 +60,8 @@ public class UserLogicImpl implements UserLogic {
                 .andUserPhoneEqualTo(userPhone)
                 .andUserPasswordEqualTo(userPassword);
         User user = userMapper.selectByExample(userExample).stream().findFirst().orElse(null);
-        AssertUtils.isNotNull(user, ErrorCodeEnum.SQL_ERROR);
+        // 判断用户是否存在
+        AssertUtils.isNotNull(user, ErrorCodeEnum.WRONG_PASSWORD);
         return user.getUserId();
     }
 }

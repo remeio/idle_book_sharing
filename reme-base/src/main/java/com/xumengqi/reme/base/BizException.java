@@ -33,6 +33,6 @@ public class BizException extends RuntimeException {
      * @param args 内嵌参数
      */
     public static void error(ErrorCodeEnum errorCodeEnum, Object... args) {
-        throw new BizException(errorCodeEnum.getCode(), String.format(errorCodeEnum.getMessage(), args));
+        throw new BizException(errorCodeEnum.getFullCode(), String.format(errorCodeEnum.getMessage(), args));
     }
 }

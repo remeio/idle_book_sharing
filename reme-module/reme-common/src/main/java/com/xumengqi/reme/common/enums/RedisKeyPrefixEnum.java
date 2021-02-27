@@ -8,6 +8,10 @@ package com.xumengqi.reme.common.enums;
  */
 public enum RedisKeyPrefixEnum {
     /**
+     * 重置密码验证码
+     */
+    RESET_PASSWORD_VERIFICATION_CODE("rpvc", "重置密码验证码"),
+    /**
      * 注册验证码
      */
     SIGN_UP_VERIFICATION_CODE("suvc", "注册验证码"),
