@@ -1,6 +1,7 @@
 package com.xumengqi.reme.api.user.request;
 
 import com.xumengqi.reme.base.BaseRequest;
+import com.xumengqi.reme.base.validation.Phone;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,7 +23,7 @@ public class SignUpRequest extends BaseRequest {
     private Long schoolId;
 
     @ApiModelProperty("用户手机号")
-    @Length(min = 11, max = 11, message = "手机号必须为 11 位")
+    @Phone
     private String userPhone;
 
     @ApiModelProperty("用户密码")
