@@ -3,6 +3,7 @@ package com.xumengqi.reme.base.annotations;
 import java.lang.annotation.*;
 
 /**
+ * 访问注解
  * @author xumengqi
  * @date 2021/2/8 11:17
  */

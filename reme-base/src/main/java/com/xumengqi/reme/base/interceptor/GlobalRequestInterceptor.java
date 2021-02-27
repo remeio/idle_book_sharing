@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * 全局请求拦截器
  * @author xumengqi
  * @date 2021/1/3 18:00
  */

@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.xumengqi.reme.base.BaseResponse;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.util.JwtUtils;
+import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -20,6 +21,7 @@ import java.io.PrintWriter;
 import java.util.Objects;
 
 /**
+ * Token 拦截器，进行用户认证
  * @author xumengqi
  * @date 2021/2/21 10:15
  */
@@ -29,7 +31,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
     private static final Logger log = Logger.getLogger(TokenRequestInterceptor.class);
 
     @Autowired
-    private JwtUtils jwtUtils;
+    private RedisUtils<String> redisUtils;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -37,7 +39,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
         if (!HandlerMethod.class.equals(handler.getClass())) {
             return true;
         }
-        // 拦截携带 TokenAspect 注解的
+        // 拦截携带 AccessToken 注解的
         HandlerMethod handlerMethod = (HandlerMethod) handler;
         boolean isHasAnnotationOnClass = handlerMethod.getBeanType().getAnnotation(AccessToken.class) != null;
         boolean isHasAnnotationOnMethod = handlerMethod.getMethod().getAnnotation(AccessToken.class) != null;
@@ -53,7 +55,9 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             log.info("认证失败：" + ErrorCodeEnum.NO_TOKEN.getMessage());
             return false;
         }
-        if (!jwtUtils.validateToken(token)) {
+        // 将 token 与缓存中的进行对比
+        String userId = redisUtils.get("loginToken:" + token);
+        if (userId == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             BaseResponse baseResponse = new BaseResponse();
             baseResponse.error(ErrorCodeEnum.INVALID_TOKEN);

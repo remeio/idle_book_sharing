@@ -11,9 +11,12 @@ import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.annotations.ParamLog;
 import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.base.util.JwtUtils;
+import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.dao.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.UUID;
 
 /**
  * @author xumengqi
@@ -26,7 +29,7 @@ public class UserServiceImpl implements UserService {
     private UserLogic userLogic;
 
     @Autowired
-    private JwtUtils jwtUtils;
+    private RedisUtils<String> redisUtils;
 
     @Override
     public SignUpResponse signUp(SignUpRequest request) {
@@ -38,7 +41,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public SignInResponse signIn(SignInRequest request) {
         Long userId = userLogic.validateUser(request.getUserPhone(), request.getUserPassword());
-        String token = jwtUtils.generateToken(userId.toString());
+        String token = UUID.randomUUID().toString();
+        redisUtils.set("loginToken:" + token, String.valueOf(userId), 60 * 100);
         SignInResponse signInResponse = new SignInResponse();
         signInResponse.setToken(token);
         return signInResponse;
