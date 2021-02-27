@@ -17,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @author xumengqi
@@ -42,7 +43,7 @@ public class UserServiceImpl implements UserService {
     public SignInResponse signIn(SignInRequest request) {
         Long userId = userLogic.validateUser(request.getUserPhone(), request.getUserPassword());
         String token = UUID.randomUUID().toString();
-        redisUtils.set("loginToken:" + token, String.valueOf(userId), 60 * 100);
+        redisUtils.set("loginToken:" + token, String.valueOf(userId), TimeUnit.DAYS.toSeconds(7));
         SignInResponse signInResponse = new SignInResponse();
         signInResponse.setToken(token);
         return signInResponse;

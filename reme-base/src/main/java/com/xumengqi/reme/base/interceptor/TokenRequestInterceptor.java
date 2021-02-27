@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Token 拦截器，进行用户认证
@@ -56,7 +57,8 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             return false;
         }
         // 将 token 与缓存中的进行对比
-        String userId = redisUtils.get("loginToken:" + token);
+        String key = "loginToken:" + token;
+        String userId = redisUtils.get(key);
         if (userId == null) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             BaseResponse baseResponse = new BaseResponse();
@@ -64,6 +66,10 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             returnJson(response, baseResponse);
             log.info("认证失败：" + ErrorCodeEnum.INVALID_TOKEN.getMessage());
             return false;
+        }
+        // 更新 token 的过期时间
+        if (redisUtils.getExpire(key) < TimeUnit.DAYS.toSeconds(2)) {
+            redisUtils.expire(key, TimeUnit.DAYS.toSeconds(7));
         }
         return true;
     }
