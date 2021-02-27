@@ -34,7 +34,7 @@ public class UserLogicImpl implements UserLogic {
         final String userPhone = user.getUserPhone();
         final String userPassword = user.getUserPassword();
         final Long schoolId = user.getSchoolId();
-        String verificationCodeInCache = redisUtils.get(RedisKeyPrefixEnum.SIGN_UP_VERIFICATION_CODE + userPhone);
+        String verificationCodeInCache = redisUtils.get(RedisKeyPrefixEnum.SIGN_UP_VERIFICATION_CODE.getPrefix() + userPhone);
         // 判断验证码是否正确
         AssertUtils.isTrue(verificationCode.equals(verificationCodeInCache), ErrorCodeEnum.VERIFICATION_CODE_ERROR_OR_EXPIRED);
         UserExample userExample = new UserExample();
