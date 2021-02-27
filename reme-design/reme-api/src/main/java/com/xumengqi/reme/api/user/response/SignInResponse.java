@@ -1,6 +1,7 @@
 package com.xumengqi.reme.api.user.response;
 
 import com.xumengqi.reme.base.BaseResponse;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,4 +12,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SignInResponse extends BaseResponse {
+
+    @ApiModelProperty("token")
+    private String token;
+
 }

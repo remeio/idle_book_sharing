@@ -18,19 +18,8 @@ public class BaseResponse {
     @ApiModelProperty("成功与否")
     private boolean success;
 
-    @ApiModelProperty("token")
-    private String token;
-
     public void setSuccess(boolean success) {
         this.success = success;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 
     public BaseResponse() {
@@ -44,7 +33,7 @@ public class BaseResponse {
 
     public void setErrorNo(Integer errorNo) {
         this.errorNo = errorNo;
-        this.success =  ErrorCodeEnum.isSuccessFor(errorNo);
+        this.success = ErrorCodeEnum.isSuccessFor(errorNo);
     }
 
     public String getErrorInfo() {
@@ -60,9 +49,8 @@ public class BaseResponse {
     }
 
     /**
-     *
      * @param errorCodeEnum 错误码
-     * @param args 内嵌参数
+     * @param args          内嵌参数
      */
     public void error(ErrorCodeEnum errorCodeEnum, Object... args) {
         setErrorNo(errorCodeEnum.getFullCode());
