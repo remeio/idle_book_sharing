@@ -3,6 +3,7 @@ package com.xumengqi.reme.base.interceptor;
 import com.google.gson.Gson;
 import com.xumengqi.reme.base.BaseResponse;
 import com.xumengqi.reme.base.annotations.AccessToken;
+import com.xumengqi.reme.base.conf.SystemConfig;
 import com.xumengqi.reme.base.util.JwtUtils;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
@@ -34,6 +35,9 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
 
     @Autowired
     private RedisUtils<String> redisUtils;
+
+    @Autowired
+    private SystemConfig systemConfig;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -69,8 +73,8 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             return false;
         }
         // 更新 token 的过期时间
-        if (redisUtils.getExpire(key) < TimeUnit.DAYS.toSeconds(2)) {
-            redisUtils.expire(key, TimeUnit.DAYS.toSeconds(7));
+        if (redisUtils.getExpire(key) < TimeUnit.DAYS.toSeconds(systemConfig.getAccessTokenCheckTimeInDay())) {
+            redisUtils.expire(key, TimeUnit.DAYS.toSeconds(systemConfig.getAccessTokenExpireTimeInDay()));
         }
         return true;
     }
