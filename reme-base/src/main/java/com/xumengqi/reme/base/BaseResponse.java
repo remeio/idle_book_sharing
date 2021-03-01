@@ -9,13 +9,13 @@ import io.swagger.annotations.ApiModelProperty;
  * @date 2020/12/28 19:26
  */
 public class BaseResponse {
-    @ApiModelProperty("错误码")
+    @ApiModelProperty(value = "错误码", hidden = true)
     private Integer errorNo;
 
-    @ApiModelProperty("错误信息")
+    @ApiModelProperty(value = "错误信息", hidden = true)
     private String errorInfo;
 
-    @ApiModelProperty("成功与否")
+    @ApiModelProperty(value = "成功与否", hidden = true)
     private boolean success;
 
     public void setSuccess(boolean success) {
