@@ -38,8 +38,6 @@ public enum ErrorCodeEnum {
      */
     INVALID_TOKEN(ModuleEnum.SYSTEM, 504, "无效的token或token已过期"),
 
-    VERIFICATION_CODE_ERROR_OR_EXPIRED(ModuleEnum.SYSTEM, 505, "验证码错误或已过期"),
-
     // USER
     /**
      * 该手机号已被注册
@@ -67,7 +65,16 @@ public enum ErrorCodeEnum {
      */
     VERIFICATION_CODE_SEND_FAIL(ModuleEnum.VERIFICATION_CODE, 502, "验证码发送失败"),
 
-    VERIFICATION_CODE_HAD_SENT(ModuleEnum.VERIFICATION_CODE, 503, "验证码已发送，请稍后重试")
+    /**
+     * 验证码已发送
+     */
+    VERIFICATION_CODE_HAD_SENT(ModuleEnum.VERIFICATION_CODE, 503, "验证码已发送，请稍后重试"),
+
+    /**
+     * 验证码错误或已过期
+     */
+    VERIFICATION_CODE_ERROR_OR_EXPIRED(ModuleEnum.VERIFICATION_CODE, 504, "验证码错误或已过期"),
+
     ;
 
 
