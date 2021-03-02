@@ -45,7 +45,7 @@ public interface UserService {
 
 
     /**
-     * 重置用户密码
+     * 重置用户密码，忘记密码时使用
      * @param request /
      * @return /
      */

@@ -64,4 +64,22 @@ public class UserLogicImpl implements UserLogic {
         AssertUtils.isNotNull(user, ErrorCodeEnum.WRONG_PASSWORD);
         return user.getUserId();
     }
+
+    @Override
+    public void resetPassword(String userPhone, String newPassword) {
+        // 判断用户是否存在
+        UserExample userExample = new UserExample();
+        userExample.createCriteria()
+                .andUserPhoneEqualTo(userPhone);
+        User record = userMapper.selectByExample(userExample).stream().findFirst().orElse(null);
+        AssertUtils.isNotNull(record, ErrorCodeEnum.USER_NOT_EXISTS);
+        // 修改密码
+        Long recordId = record.getUserId();
+        User newRecord = new User();
+        newRecord.setUserId(recordId);
+        newRecord.setUserPassword(newPassword);
+        userMapper.updateByPrimaryKeySelective(newRecord);
+    }
+
+
 }

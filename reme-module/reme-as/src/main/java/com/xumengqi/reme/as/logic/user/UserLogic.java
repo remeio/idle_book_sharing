@@ -23,4 +23,13 @@ public interface UserLogic {
      * @return 用户ID
      */
     Long validateUser(String userPhone, String userPassword);
+
+
+    /**
+     * 重置密码
+     * @param userPhone /
+     * @param verificationCode /
+     * @param newPassword /
+     */
+    void resetPassword(String userPhone, String newPassword);
 }

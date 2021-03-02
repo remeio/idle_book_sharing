@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
+ * 重置密码
  * @author xumengqi
  * @date 2021/2/27 12:02
  */

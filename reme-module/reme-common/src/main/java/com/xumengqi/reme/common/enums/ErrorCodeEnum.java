@@ -1,5 +1,7 @@
 package com.xumengqi.reme.common.enums;
 
+import com.sun.org.apache.xpath.internal.operations.Mod;
+
 /**
  * 通用错误码
  *
@@ -49,6 +51,11 @@ public enum ErrorCodeEnum {
      */
     WRONG_PASSWORD(ModuleEnum.USER, 502, "密码错误"),
 
+    /**
+     * 该用户不存在
+     */
+    USER_NOT_EXISTS(ModuleEnum.USER, 503, "该用户不存在"),
+
     // SCHOOL
     /**
      * 学校不存在
@@ -64,7 +71,6 @@ public enum ErrorCodeEnum {
      * 验证码发送失败
      */
     VERIFICATION_CODE_SEND_FAIL(ModuleEnum.VERIFICATION_CODE, 502, "验证码发送失败"),
-
     /**
      * 验证码已发送
      */
@@ -74,6 +80,11 @@ public enum ErrorCodeEnum {
      * 验证码错误或已过期
      */
     VERIFICATION_CODE_ERROR_OR_EXPIRED(ModuleEnum.VERIFICATION_CODE, 504, "验证码错误或已过期"),
+
+    /**
+     * 验证码错误
+     */
+    VERIFICATION_CODE_INVALID(ModuleEnum.VERIFICATION_CODE, 505, "验证码错误"),
 
     ;
 
