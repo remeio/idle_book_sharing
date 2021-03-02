@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.xumengqi.reme.base.BaseResponse;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.conf.SystemConfig;
+import com.xumengqi.reme.base.util.HttpServletRequestUtils;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
@@ -52,8 +53,8 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
         boolean isHasAnnotationOnMethod = handlerMethod.getMethod().getAnnotation(AccessToken.class) != null;
         if (!(isHasAnnotationOnClass || isHasAnnotationOnMethod)) {
             // 安全处理
-            reflectPutHeader(request, "Authorization", null);
-            reflectPutHeader(request, "operatorCode", null);
+            HttpServletRequestUtils.reflectPutHeader(request, "Authorization", null);
+            HttpServletRequestUtils.reflectPutHeader(request, "operatorId", null);
             return true;
         }
         String token = request.getHeader("Authorization");
@@ -81,7 +82,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             redisUtils.expire(key, TimeUnit.DAYS.toSeconds(systemConfig.getAccessTokenExpireTimeInDay()));
         }
         // 将 userId 放到 headers 中
-        reflectPutHeader(request, "operatorId", userId);
+        HttpServletRequestUtils.reflectPutHeader(request, "operatorId", userId);
         return true;
     }
 
@@ -91,30 +92,6 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
         response.setContentType("application/json");
         try (PrintWriter writer = response.getWriter()) {
             writer.print(new Gson().toJson(baseResponse));
-        }
-    }
-
-    /**
-     * 修改 header 信息
-     * @param request /
-     * @param key /
-     * @param value /
-     */
-    private void reflectPutHeader(HttpServletRequest request, String key, String value){
-        Class<? extends HttpServletRequest> requestClass = request.getClass();
-        try {
-            Field request1 = requestClass.getDeclaredField("request");
-            request1.setAccessible(true);
-            Object o = request1.get(request);
-            Field coyoteRequest = o.getClass().getDeclaredField("coyoteRequest");
-            coyoteRequest.setAccessible(true);
-            Object o1 = coyoteRequest.get(o);
-            Field headers = o1.getClass().getDeclaredField("headers");
-            headers.setAccessible(true);
-            MimeHeaders o2 = (MimeHeaders) headers.get(o1);
-            o2.addValue(key).setString(value);
-        } catch (Exception e) {
-            log.error("修改 header 失败", e);
         }
     }
 }

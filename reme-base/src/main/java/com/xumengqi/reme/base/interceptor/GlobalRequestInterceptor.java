@@ -1,8 +1,10 @@
 package com.xumengqi.reme.base.interceptor;
 
+import com.xumengqi.reme.base.util.HttpServletRequestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +23,11 @@ public class GlobalRequestInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info("ip: " + getIpAddr(request));
+        // 不拦截非 controller
+        if (!HandlerMethod.class.equals(handler.getClass())) {
+            return true;
+        }
+        HttpServletRequestUtils.reflectPutHeader(request, "ipAddress", getIpAddr(request));
         return true;
     }
 

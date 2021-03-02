@@ -38,6 +38,7 @@ public class GlobalRequestBodyAdviceConfig implements RequestBodyAdvice {
             Optional.ofNullable(inputMessage.getHeaders().get("operatorId")).map(e -> e.get(0)).ifPresent(e -> {
                 baseRequest.setOperatorId(Long.parseLong(e));
             });
+            Optional.ofNullable(inputMessage.getHeaders().get("ipAddress")).map(e -> e.get(0)).ifPresent(baseRequest::setIpAddress);
         }
         return body;
     }
