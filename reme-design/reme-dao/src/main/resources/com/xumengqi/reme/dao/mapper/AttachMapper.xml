@@ -4,6 +4,9 @@
   <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.Attach">
     <id column="attach_id" jdbcType="BIGINT" property="attachId" />
     <result column="attach_full_path" jdbcType="VARCHAR" property="attachFullPath" />
+    <result column="attach_name" jdbcType="VARCHAR" property="attachName" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -64,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    attach_id, attach_full_path
+    attach_id, attach_full_path, attach_name, user_id, gmt_create
   </sql>
   <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.AttachExample" resultMap="BaseResultMap">
     select
@@ -100,8 +103,10 @@
     <selectKey keyProperty="attachId" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into attach (attach_full_path)
-    values (#{attachFullPath,jdbcType=VARCHAR})
+    insert into attach (attach_full_path, attach_name, user_id, 
+      gmt_create)
+    values (#{attachFullPath,jdbcType=VARCHAR}, #{attachName,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
+      #{gmtCreate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Attach">
     <selectKey keyProperty="attachId" order="AFTER" resultType="java.lang.Long">
@@ -112,10 +117,28 @@
       <if test="attachFullPath != null">
         attach_full_path,
       </if>
+      <if test="attachName != null">
+        attach_name,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="attachFullPath != null">
         #{attachFullPath,jdbcType=VARCHAR},
+      </if>
+      <if test="attachName != null">
+        #{attachName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -134,6 +157,15 @@
       <if test="record.attachFullPath != null">
         attach_full_path = #{record.attachFullPath,jdbcType=VARCHAR},
       </if>
+      <if test="record.attachName != null">
+        attach_name = #{record.attachName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -142,7 +174,10 @@
   <update id="updateByExample" parameterType="map">
     update attach
     set attach_id = #{record.attachId,jdbcType=BIGINT},
-      attach_full_path = #{record.attachFullPath,jdbcType=VARCHAR}
+      attach_full_path = #{record.attachFullPath,jdbcType=VARCHAR},
+      attach_name = #{record.attachName,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -153,12 +188,24 @@
       <if test="attachFullPath != null">
         attach_full_path = #{attachFullPath,jdbcType=VARCHAR},
       </if>
+      <if test="attachName != null">
+        attach_name = #{attachName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
     </set>
     where attach_id = #{attachId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.Attach">
     update attach
-    set attach_full_path = #{attachFullPath,jdbcType=VARCHAR}
+    set attach_full_path = #{attachFullPath,jdbcType=VARCHAR},
+      attach_name = #{attachName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=BIGINT},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
     where attach_id = #{attachId,jdbcType=BIGINT}
   </update>
 </mapper>

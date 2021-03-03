@@ -1,6 +1,7 @@
 package com.xumengqi.reme.dao.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AttachExample {
@@ -231,6 +232,196 @@ public class AttachExample {
 
         public Criteria andAttachFullPathNotBetween(String value1, String value2) {
             addCriterion("attach_full_path not between", value1, value2, "attachFullPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameIsNull() {
+            addCriterion("attach_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameIsNotNull() {
+            addCriterion("attach_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameEqualTo(String value) {
+            addCriterion("attach_name =", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameNotEqualTo(String value) {
+            addCriterion("attach_name <>", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameGreaterThan(String value) {
+            addCriterion("attach_name >", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameGreaterThanOrEqualTo(String value) {
+            addCriterion("attach_name >=", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameLessThan(String value) {
+            addCriterion("attach_name <", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameLessThanOrEqualTo(String value) {
+            addCriterion("attach_name <=", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameLike(String value) {
+            addCriterion("attach_name like", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameNotLike(String value) {
+            addCriterion("attach_name not like", value, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameIn(List<String> values) {
+            addCriterion("attach_name in", values, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameNotIn(List<String> values) {
+            addCriterion("attach_name not in", values, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameBetween(String value1, String value2) {
+            addCriterion("attach_name between", value1, value2, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachNameNotBetween(String value1, String value2) {
+            addCriterion("attach_name not between", value1, value2, "attachName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNull() {
+            addCriterion("user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIsNotNull() {
+            addCriterion("user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdEqualTo(Long value) {
+            addCriterion("user_id =", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotEqualTo(Long value) {
+            addCriterion("user_id <>", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThan(Long value) {
+            addCriterion("user_id >", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("user_id >=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThan(Long value) {
+            addCriterion("user_id <", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("user_id <=", value, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdIn(List<Long> values) {
+            addCriterion("user_id in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotIn(List<Long> values) {
+            addCriterion("user_id not in", values, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdBetween(Long value1, Long value2) {
+            addCriterion("user_id between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("user_id not between", value1, value2, "userId");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNull() {
+            addCriterion("gmt_create is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNotNull() {
+            addCriterion("gmt_create is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateEqualTo(Date value) {
+            addCriterion("gmt_create =", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotEqualTo(Date value) {
+            addCriterion("gmt_create <>", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThan(Date value) {
+            addCriterion("gmt_create >", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThanOrEqualTo(Date value) {
+            addCriterion("gmt_create >=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThan(Date value) {
+            addCriterion("gmt_create <", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThanOrEqualTo(Date value) {
+            addCriterion("gmt_create <=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIn(List<Date> values) {
+            addCriterion("gmt_create in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotIn(List<Date> values) {
+            addCriterion("gmt_create not in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateBetween(Date value1, Date value2) {
+            addCriterion("gmt_create between", value1, value2, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotBetween(Date value1, Date value2) {
+            addCriterion("gmt_create not between", value1, value2, "gmtCreate");
             return (Criteria) this;
         }
     }
