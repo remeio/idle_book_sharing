@@ -4,8 +4,6 @@
   <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.School">
     <id column="school_id" jdbcType="BIGINT" property="schoolId" />
     <result column="school_name" jdbcType="VARCHAR" property="schoolName" />
-    <result column="school_level" jdbcType="TINYINT" property="schoolLevel" />
-    <result column="city_id" jdbcType="BIGINT" property="cityId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +64,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    school_id, school_name, school_level, city_id
+    school_id, school_name
   </sql>
   <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.SchoolExample" resultMap="BaseResultMap">
     select
@@ -102,10 +100,8 @@
     <selectKey keyProperty="schoolId" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into school (school_name, school_level, city_id
-      )
-    values (#{schoolName,jdbcType=VARCHAR}, #{schoolLevel,jdbcType=TINYINT}, #{cityId,jdbcType=BIGINT}
-      )
+    insert into school (school_name)
+    values (#{schoolName,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.School">
     <selectKey keyProperty="schoolId" order="AFTER" resultType="java.lang.Long">
@@ -116,22 +112,10 @@
       <if test="schoolName != null">
         school_name,
       </if>
-      <if test="schoolLevel != null">
-        school_level,
-      </if>
-      <if test="cityId != null">
-        city_id,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="schoolName != null">
         #{schoolName,jdbcType=VARCHAR},
-      </if>
-      <if test="schoolLevel != null">
-        #{schoolLevel,jdbcType=TINYINT},
-      </if>
-      <if test="cityId != null">
-        #{cityId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -150,12 +134,6 @@
       <if test="record.schoolName != null">
         school_name = #{record.schoolName,jdbcType=VARCHAR},
       </if>
-      <if test="record.schoolLevel != null">
-        school_level = #{record.schoolLevel,jdbcType=TINYINT},
-      </if>
-      <if test="record.cityId != null">
-        city_id = #{record.cityId,jdbcType=BIGINT},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -164,9 +142,7 @@
   <update id="updateByExample" parameterType="map">
     update school
     set school_id = #{record.schoolId,jdbcType=BIGINT},
-      school_name = #{record.schoolName,jdbcType=VARCHAR},
-      school_level = #{record.schoolLevel,jdbcType=TINYINT},
-      city_id = #{record.cityId,jdbcType=BIGINT}
+      school_name = #{record.schoolName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -177,20 +153,12 @@
       <if test="schoolName != null">
         school_name = #{schoolName,jdbcType=VARCHAR},
       </if>
-      <if test="schoolLevel != null">
-        school_level = #{schoolLevel,jdbcType=TINYINT},
-      </if>
-      <if test="cityId != null">
-        city_id = #{cityId,jdbcType=BIGINT},
-      </if>
     </set>
     where school_id = #{schoolId,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.School">
     update school
-    set school_name = #{schoolName,jdbcType=VARCHAR},
-      school_level = #{schoolLevel,jdbcType=TINYINT},
-      city_id = #{cityId,jdbcType=BIGINT}
+    set school_name = #{schoolName,jdbcType=VARCHAR}
     where school_id = #{schoolId,jdbcType=BIGINT}
   </update>
 </mapper>
