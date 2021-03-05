@@ -8,7 +8,7 @@ import com.xumengqi.reme.api.user.response.SignInResponse;
 import com.xumengqi.reme.api.user.response.SignUpResponse;
 import com.xumengqi.reme.api.user.service.UserService;
 import com.xumengqi.reme.as.logic.user.UserLogic;
-import com.xumengqi.reme.base.annotations.ParamLog;
+import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.conf.SystemConfig;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.ConvertUtils;
@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  * @author xumengqi
  * @date 2021/2/27 13:08
  */
-@ParamLog
+@SystemLog
 @Component
 public class UserServiceImpl implements UserService {
     @Autowired

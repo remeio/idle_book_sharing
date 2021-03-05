@@ -19,16 +19,16 @@ import java.util.Optional;
 @Order(2)
 @Aspect
 @Component
-public class ParamLogHandler {
+public class SystemLogHandler {
 
-    private static final Logger log = Logger.getLogger(ParamLogHandler.class);
+    private static final Logger log = Logger.getLogger(SystemLogHandler.class);
 
-    @Pointcut("@annotation(com.xumengqi.reme.base.annotations.ParamLog)")
+    @Pointcut("@annotation(com.xumengqi.reme.base.annotations.SystemLog)")
     public void method() {
 
     }
 
-    @Pointcut("@within(com.xumengqi.reme.base.annotations.ParamLog)")
+    @Pointcut("@within(com.xumengqi.reme.base.annotations.SystemLog)")
     public void type() {
 
     }
