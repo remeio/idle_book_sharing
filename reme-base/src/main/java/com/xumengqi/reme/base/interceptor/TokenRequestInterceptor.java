@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.xumengqi.reme.base.BaseResponse;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.conf.SystemConfig;
+import com.xumengqi.reme.base.constant.HeaderConstant;
 import com.xumengqi.reme.base.util.HttpServletRequestUtils;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
@@ -19,9 +20,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.apache.tomcat.util.http.MimeHeaders;
 import java.io.PrintWriter;
-import java.lang.reflect.Field;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -53,11 +52,11 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
         boolean isHasAnnotationOnMethod = handlerMethod.getMethod().getAnnotation(AccessToken.class) != null;
         if (!(isHasAnnotationOnClass || isHasAnnotationOnMethod)) {
             // 安全处理
-            HttpServletRequestUtils.reflectPutHeader(request, "Authorization", null);
-            HttpServletRequestUtils.reflectPutHeader(request, "operatorId", null);
+            HttpServletRequestUtils.reflectPutHeader(request, HeaderConstant.AUTHORIZATION, null);
+            HttpServletRequestUtils.reflectPutHeader(request, HeaderConstant.OPERATOR_ID, null);
             return true;
         }
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader(HeaderConstant.AUTHORIZATION);
         if (StringUtils.isBlank(token)) {
             response.setStatus(HttpStatus.UNAUTHORIZED.value());
             BaseResponse baseResponse = new BaseResponse();
@@ -82,7 +81,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
             redisUtils.expire(key, TimeUnit.DAYS.toSeconds(systemConfig.getAccessTokenExpireTimeInDay()));
         }
         // 将 userId 放到 headers 中
-        HttpServletRequestUtils.reflectPutHeader(request, "operatorId", userId);
+        HttpServletRequestUtils.reflectPutHeader(request, HeaderConstant.OPERATOR_ID, userId);
         return true;
     }
 

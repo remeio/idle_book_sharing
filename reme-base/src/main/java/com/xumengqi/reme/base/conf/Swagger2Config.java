@@ -1,5 +1,6 @@
 package com.xumengqi.reme.base.conf;
 
+import com.xumengqi.reme.base.constant.HeaderConstant;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -31,7 +32,7 @@ public class Swagger2Config {
     public Docket customDocket(){
         ParameterBuilder ticketPar = new ParameterBuilder();
         List<Parameter> pars = new ArrayList<Parameter>();
-        ticketPar.name("Authorization").description("认证")
+        ticketPar.name(HeaderConstant.AUTHORIZATION).description("认证")
                 .modelRef(new ModelRef("string")).parameterType("header")
                 .required(false).build();
         pars.add(ticketPar.build());

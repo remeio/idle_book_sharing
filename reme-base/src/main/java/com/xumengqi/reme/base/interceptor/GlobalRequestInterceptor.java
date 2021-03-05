@@ -1,5 +1,6 @@
 package com.xumengqi.reme.base.interceptor;
 
+import com.xumengqi.reme.base.constant.HeaderConstant;
 import com.xumengqi.reme.base.util.HttpServletRequestUtils;
 import org.apache.log4j.Logger;
 import org.springframework.core.annotation.Order;
@@ -27,7 +28,7 @@ public class GlobalRequestInterceptor implements HandlerInterceptor {
         if (!HandlerMethod.class.equals(handler.getClass())) {
             return true;
         }
-        HttpServletRequestUtils.reflectPutHeader(request, "ipAddress", getIpAddr(request));
+        HttpServletRequestUtils.reflectPutHeader(request, HeaderConstant.IP_ADDRESS, getIpAddr(request));
         return true;
     }
 
