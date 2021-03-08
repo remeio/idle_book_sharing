@@ -305,6 +305,66 @@ public class AttachExample {
             return (Criteria) this;
         }
 
+        public Criteria andAttachSizeIsNull() {
+            addCriterion("attach_size is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeIsNotNull() {
+            addCriterion("attach_size is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeEqualTo(Long value) {
+            addCriterion("attach_size =", value, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeNotEqualTo(Long value) {
+            addCriterion("attach_size <>", value, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeGreaterThan(Long value) {
+            addCriterion("attach_size >", value, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeGreaterThanOrEqualTo(Long value) {
+            addCriterion("attach_size >=", value, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeLessThan(Long value) {
+            addCriterion("attach_size <", value, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeLessThanOrEqualTo(Long value) {
+            addCriterion("attach_size <=", value, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeIn(List<Long> values) {
+            addCriterion("attach_size in", values, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeNotIn(List<Long> values) {
+            addCriterion("attach_size not in", values, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeBetween(Long value1, Long value2) {
+            addCriterion("attach_size between", value1, value2, "attachSize");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttachSizeNotBetween(Long value1, Long value2) {
+            addCriterion("attach_size not between", value1, value2, "attachSize");
+            return (Criteria) this;
+        }
+
         public Criteria andUserIdIsNull() {
             addCriterion("user_id is null");
             return (Criteria) this;

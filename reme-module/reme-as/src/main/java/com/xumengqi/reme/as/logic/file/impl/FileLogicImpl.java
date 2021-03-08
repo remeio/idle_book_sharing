@@ -51,10 +51,12 @@ public class FileLogicImpl implements FileLogic {
                 log.info("上传文件失败 with originalFileName: " + originalFileName, e);
                 BizException.error(ErrorCodeEnum.FILE_UPLOAD_FAIL);
             }
+            long fileSize = file.getSize();
             // 数据库插入记录
             Attach attach = new Attach();
             attach.setAttachName(originalFileName);
             attach.setAttachFullPath("/" + BUCKET_NAME + "/" + fileName);
+            attach.setAttachSize(fileSize);
             attach.setUserId(Long.parseLong(userId));
             attach.setGmtCreate(new Date());
             attachMapper.insertSelective(attach);

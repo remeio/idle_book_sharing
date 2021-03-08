@@ -27,62 +27,64 @@
                         userId="${jdbc.username}"
                         password="${jdbc.password}">
             <!--解决mysql驱动升级到8.0后不生成指定数据库代码的问题-->
-            <property name="nullCatalogMeansCurrent" value="true" />
+            <property name="nullCatalogMeansCurrent" value="true"/>
         </jdbcConnection>
         <!--指定生成model的路径-->
-        <javaModelGenerator targetPackage="com.xumengqi.reme.dao.entity" targetProject="reme-design\reme-dao\src\main\java"/>
+        <javaModelGenerator targetPackage="com.xumengqi.reme.dao.entity"
+                            targetProject="reme-design\reme-dao\src\main\java"/>
         <!--指定生成mapper.xml的路径-->
-        <sqlMapGenerator targetPackage="com.xumengqi.reme.dao.mapper" targetProject="reme-design\reme-dao\src\main\resources"/>
+        <sqlMapGenerator targetPackage="com.xumengqi.reme.dao.mapper"
+                         targetProject="reme-design\reme-dao\src\main\resources"/>
         <!--指定生成mapper接口的的路径-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.xumengqi.reme.dao.mapper"
                              targetProject="reme-design\reme-dao\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <table tableName="city">
-            <generatedKey column="city_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="province">
-            <generatedKey column="province_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="school">
-            <generatedKey column="school_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="user">
-            <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>
-        </table>
+        <!--        <table tableName="city">-->
+        <!--            <generatedKey column="city_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="province">-->
+        <!--            <generatedKey column="province_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="school">-->
+        <!--            <generatedKey column="school_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="user">-->
+        <!--            <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
         <table tableName="attach">
             <generatedKey column="attach_id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="confession_tag">
-            <generatedKey column="confession_tag_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="confession_attach">
-        </table>
-        <table tableName="confession">
-            <generatedKey column="confession_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="comment">
-            <generatedKey column="comment_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="reply">
-            <generatedKey column="reply_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="favor">
-            <generatedKey column="favor_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="browse">
-            <generatedKey column="browse_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="contact">
-            <generatedKey column="contact_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="message">
-            <generatedKey column="message_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="school_map">
-            <generatedKey column="school_map_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="school_calendar">
-            <generatedKey column="school_calendar_id" sqlStatement="MySql" identity="true"/>
-        </table>
+        <!--        <table tableName="confession_tag">-->
+        <!--            <generatedKey column="confession_tag_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="confession_attach">-->
+        <!--        </table>-->
+        <!--        <table tableName="confession">-->
+        <!--            <generatedKey column="confession_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="comment">-->
+        <!--            <generatedKey column="comment_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="reply">-->
+        <!--            <generatedKey column="reply_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="favor">-->
+        <!--            <generatedKey column="favor_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="browse">-->
+        <!--            <generatedKey column="browse_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="contact">-->
+        <!--            <generatedKey column="contact_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="message">-->
+        <!--            <generatedKey column="message_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="school_map">-->
+        <!--            <generatedKey column="school_map_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
+        <!--        <table tableName="school_calendar">-->
+        <!--            <generatedKey column="school_calendar_id" sqlStatement="MySql" identity="true"/>-->
+        <!--        </table>-->
     </context>
 </generatorConfiguration>

@@ -26,6 +26,13 @@ public class Attach implements Serializable {
     private String attachName;
 
     /**
+     * 附件尺寸
+     *
+     * @mbg.generated
+     */
+    private Long attachSize;
+
+    /**
      * 用户ID
      *
      * @mbg.generated
@@ -65,6 +72,14 @@ public class Attach implements Serializable {
         this.attachName = attachName;
     }
 
+    public Long getAttachSize() {
+        return attachSize;
+    }
+
+    public void setAttachSize(Long attachSize) {
+        this.attachSize = attachSize;
+    }
+
     public Long getUserId() {
         return userId;
     }
@@ -90,6 +105,7 @@ public class Attach implements Serializable {
         sb.append(", attachId=").append(attachId);
         sb.append(", attachFullPath=").append(attachFullPath);
         sb.append(", attachName=").append(attachName);
+        sb.append(", attachSize=").append(attachSize);
         sb.append(", userId=").append(userId);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
