@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 /**
  * 文件上传服务实现类
  *
@@ -33,7 +35,9 @@ public class FileServiceImpl implements FileService {
             response.error(ErrorCodeEnum.INVALID_TOKEN);
             return response;
         }
-        fileLogic.uploadFiles(files, userId);
-        return new UploadFileResponse();
+        List<Long> fileIds = fileLogic.uploadFiles(files, userId);
+        UploadFileResponse response = new UploadFileResponse();
+        response.setFileIds(fileIds);
+        return response;
     }
 }

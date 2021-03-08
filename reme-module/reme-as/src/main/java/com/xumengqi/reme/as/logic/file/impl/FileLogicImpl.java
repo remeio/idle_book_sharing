@@ -13,7 +13,9 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -34,8 +36,9 @@ public class FileLogicImpl implements FileLogic {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void uploadFiles(MultipartFile[] files, String userId) {
+    public List<Long> uploadFiles(MultipartFile[] files, String userId) {
         assert files != null && StringUtils.isNotBlank(userId);
+        List<Long> attachIds = new ArrayList<>();
         for (MultipartFile file : files) {
             // 生成文件名
             String originalFileName = file.getOriginalFilename();
@@ -62,6 +65,8 @@ public class FileLogicImpl implements FileLogic {
             attach.setUserId(Long.parseLong(userId));
             attach.setGmtCreate(new Date());
             attachMapper.insertSelective(attach);
+            attachIds.add(attach.getAttachId());
         }
+        return attachIds;
     }
 }
