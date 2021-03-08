@@ -21,11 +21,12 @@ public interface FileService {
     /**
      * 上传文件，可上传多个文件
      *
-     * @param request /
+     * @param files /
+     * @param token /
      * @return /
      */
     @ApiOperation("上传文件")
     @PostMapping("/upload")
-    UploadFileResponse upload(@RequestParam(name = "files") MultipartFile[] files);
+    UploadFileResponse upload(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "token") String token);
 
 }

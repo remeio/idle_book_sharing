@@ -42,16 +42,15 @@ public class MinioUtils {
         return minioClient;
     }
 
-    public void upload(String bucketName, MultipartFile multipartFile) throws Exception {
+    public void upload(String bucketName, MultipartFile multipartFile, String fileName) throws Exception {
         MinioClient minioClient = getInstance();
         final InputStream inputStream = multipartFile.getInputStream();
-        final String fileName = multipartFile.getOriginalFilename();
         if (!minioClient.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build())) {
             minioClient.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
         }
         PutObjectArgs putObjectArgs = PutObjectArgs.builder()
                 .bucket(bucketName)
-                .object(fileName)
+                .object(fileName == null ? multipartFile.getOriginalFilename() : fileName)
                 .stream(inputStream, inputStream.available(), Math.max(inputStream.available(), 5 * 1024 * 1024))
                 .build();
         getInstance().putObject(putObjectArgs);

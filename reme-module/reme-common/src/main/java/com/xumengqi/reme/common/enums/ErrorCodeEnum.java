@@ -1,7 +1,5 @@
 package com.xumengqi.reme.common.enums;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
-
 /**
  * 通用错误码
  *
@@ -86,7 +84,11 @@ public enum ErrorCodeEnum {
      */
     VERIFICATION_CODE_INVALID(ModuleEnum.VERIFICATION_CODE, 505, "验证码错误"),
 
-    ;
+    // FILE
+    /**
+     * 文件上传失败
+     */
+    FILE_UPLOAD_FAIL(ModuleEnum.FILE, 101, "文件上传失败");;
 
 
     /**

@@ -21,7 +21,11 @@ public enum ModuleEnum {
      * 验证码
      */
     VERIFICATION_CODE(103),
-    ;
+
+    /**
+     * 文件
+     */
+    FILE(104);
     /**
      * 模块编码
      */
