@@ -10,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
@@ -31,6 +32,7 @@ public class FileLogicImpl implements FileLogic {
 
     final static String BUCKET_NAME = "attach";
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public void uploadFiles(MultipartFile[] files, String userId) {
         assert files != null && StringUtils.isNotBlank(userId);
