@@ -25,7 +25,7 @@ public @interface ChineseLength {
 
     int max() default 2147483647;
 
-    String message() default "长度错误";
+    String message() default "长度不在有效范围内";
 
     Class<?>[] groups() default { };
 
