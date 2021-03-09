@@ -44,7 +44,7 @@ public class Reply implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte isAnonymous;
+    private Integer isAnonymous;
 
     /**
      * 创建时间
@@ -102,11 +102,11 @@ public class Reply implements Serializable {
         this.toUserId = toUserId;
     }
 
-    public Byte getIsAnonymous() {
+    public Integer getIsAnonymous() {
         return isAnonymous;
     }
 
-    public void setIsAnonymous(Byte isAnonymous) {
+    public void setIsAnonymous(Integer isAnonymous) {
         this.isAnonymous = isAnonymous;
     }
 

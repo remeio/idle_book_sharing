@@ -7,7 +7,7 @@
     <result column="reply_content" jdbcType="VARCHAR" property="replyContent" />
     <result column="from_user_id" jdbcType="BIGINT" property="fromUserId" />
     <result column="to_user_id" jdbcType="BIGINT" property="toUserId" />
-    <result column="is_anonymous" jdbcType="TINYINT" property="isAnonymous" />
+    <result column="is_anonymous" jdbcType="INTEGER" property="isAnonymous" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
   </resultMap>
@@ -111,7 +111,7 @@
       to_user_id, is_anonymous, gmt_create, 
       gmt_modified)
     values (#{commentId,jdbcType=BIGINT}, #{replyContent,jdbcType=VARCHAR}, #{fromUserId,jdbcType=BIGINT}, 
-      #{toUserId,jdbcType=BIGINT}, #{isAnonymous,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{toUserId,jdbcType=BIGINT}, #{isAnonymous,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, 
       #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Reply">
@@ -156,7 +156,7 @@
         #{toUserId,jdbcType=BIGINT},
       </if>
       <if test="isAnonymous != null">
-        #{isAnonymous,jdbcType=TINYINT},
+        #{isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
@@ -191,7 +191,7 @@
         to_user_id = #{record.toUserId,jdbcType=BIGINT},
       </if>
       <if test="record.isAnonymous != null">
-        is_anonymous = #{record.isAnonymous,jdbcType=TINYINT},
+        is_anonymous = #{record.isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -211,7 +211,7 @@
       reply_content = #{record.replyContent,jdbcType=VARCHAR},
       from_user_id = #{record.fromUserId,jdbcType=BIGINT},
       to_user_id = #{record.toUserId,jdbcType=BIGINT},
-      is_anonymous = #{record.isAnonymous,jdbcType=TINYINT},
+      is_anonymous = #{record.isAnonymous,jdbcType=INTEGER},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -234,7 +234,7 @@
         to_user_id = #{toUserId,jdbcType=BIGINT},
       </if>
       <if test="isAnonymous != null">
-        is_anonymous = #{isAnonymous,jdbcType=TINYINT},
+        is_anonymous = #{isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -251,7 +251,7 @@
       reply_content = #{replyContent,jdbcType=VARCHAR},
       from_user_id = #{fromUserId,jdbcType=BIGINT},
       to_user_id = #{toUserId,jdbcType=BIGINT},
-      is_anonymous = #{isAnonymous,jdbcType=TINYINT},
+      is_anonymous = #{isAnonymous,jdbcType=INTEGER},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
     where reply_id = #{replyId,jdbcType=BIGINT}

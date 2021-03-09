@@ -9,12 +9,12 @@
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
         <property name="javaFileEncoding" value="UTF-8"/>
-        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin" />
+        <plugin type="org.mybatis.generator.plugins.UnmergeableXmlMappersPlugin"/>
         <!-- 为模型生成序列化方法-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
         <!-- 为生成的Java模型创建一个toString方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
-<!--        可以自定义生成model的代码注释-->
+        <!--        可以自定义生成model的代码注释-->
         <commentGenerator type="com.xumengqi.reme.dao.CommentGenerator">
             <!-- 是否去除自动生成的注释 true：是 ： false:否 -->
             <property name="suppressAllComments" value="true"/>
@@ -39,52 +39,52 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.xumengqi.reme.dao.mapper"
                              targetProject="reme-design\reme-dao\src\main\java"/>
         <!--生成全部表tableName设为%-->
-        <!--        <table tableName="city">-->
-        <!--            <generatedKey column="city_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="province">-->
-        <!--            <generatedKey column="province_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="school">-->
-        <!--            <generatedKey column="school_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="user">-->
-        <!--            <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
+        <table tableName="city">
+            <generatedKey column="city_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="province">
+            <generatedKey column="province_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="school">
+            <generatedKey column="school_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="user">
+            <generatedKey column="user_id" sqlStatement="MySql" identity="true"/>
+        </table>
         <table tableName="attach">
             <generatedKey column="attach_id" sqlStatement="MySql" identity="true"/>
         </table>
-        <!--        <table tableName="confession_tag">-->
-        <!--            <generatedKey column="confession_tag_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="confession_attach">-->
-        <!--        </table>-->
-        <!--        <table tableName="confession">-->
-        <!--            <generatedKey column="confession_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="comment">-->
-        <!--            <generatedKey column="comment_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="reply">-->
-        <!--            <generatedKey column="reply_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="favor">-->
-        <!--            <generatedKey column="favor_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="browse">-->
-        <!--            <generatedKey column="browse_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="contact">-->
-        <!--            <generatedKey column="contact_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="message">-->
-        <!--            <generatedKey column="message_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="school_map">-->
-        <!--            <generatedKey column="school_map_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
-        <!--        <table tableName="school_calendar">-->
-        <!--            <generatedKey column="school_calendar_id" sqlStatement="MySql" identity="true"/>-->
-        <!--        </table>-->
+        <table tableName="confession_tag">
+            <generatedKey column="confession_tag_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="confession_attach">
+        </table>
+        <table tableName="confession">
+            <generatedKey column="confession_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="comment">
+            <generatedKey column="comment_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="reply">
+            <generatedKey column="reply_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="favor">
+            <generatedKey column="favor_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="browse">
+            <generatedKey column="browse_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="contact">
+            <generatedKey column="contact_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="message">
+            <generatedKey column="message_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="school_map">
+            <generatedKey column="school_map_id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="school_calendar">
+            <generatedKey column="school_calendar_id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>

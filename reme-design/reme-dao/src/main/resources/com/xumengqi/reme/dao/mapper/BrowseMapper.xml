@@ -3,7 +3,7 @@
 <mapper namespace="com.xumengqi.reme.dao.mapper.BrowseMapper">
   <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.Browse">
     <id column="browse_id" jdbcType="BIGINT" property="browseId" />
-    <result column="target_type" jdbcType="TINYINT" property="targetType" />
+    <result column="target_type" jdbcType="INTEGER" property="targetType" />
     <result column="target_id" jdbcType="BIGINT" property="targetId" />
     <result column="browse_user_id" jdbcType="BIGINT" property="browseUserId" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
@@ -106,7 +106,7 @@
     </selectKey>
     insert into browse (target_type, target_id, browse_user_id, 
       gmt_create, gmt_modified)
-    values (#{targetType,jdbcType=TINYINT}, #{targetId,jdbcType=BIGINT}, #{browseUserId,jdbcType=BIGINT}, 
+    values (#{targetType,jdbcType=INTEGER}, #{targetId,jdbcType=BIGINT}, #{browseUserId,jdbcType=BIGINT}, 
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Browse">
@@ -133,7 +133,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="targetType != null">
-        #{targetType,jdbcType=TINYINT},
+        #{targetType,jdbcType=INTEGER},
       </if>
       <if test="targetId != null">
         #{targetId,jdbcType=BIGINT},
@@ -162,7 +162,7 @@
         browse_id = #{record.browseId,jdbcType=BIGINT},
       </if>
       <if test="record.targetType != null">
-        target_type = #{record.targetType,jdbcType=TINYINT},
+        target_type = #{record.targetType,jdbcType=INTEGER},
       </if>
       <if test="record.targetId != null">
         target_id = #{record.targetId,jdbcType=BIGINT},
@@ -184,7 +184,7 @@
   <update id="updateByExample" parameterType="map">
     update browse
     set browse_id = #{record.browseId,jdbcType=BIGINT},
-      target_type = #{record.targetType,jdbcType=TINYINT},
+      target_type = #{record.targetType,jdbcType=INTEGER},
       target_id = #{record.targetId,jdbcType=BIGINT},
       browse_user_id = #{record.browseUserId,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -197,7 +197,7 @@
     update browse
     <set>
       <if test="targetType != null">
-        target_type = #{targetType,jdbcType=TINYINT},
+        target_type = #{targetType,jdbcType=INTEGER},
       </if>
       <if test="targetId != null">
         target_id = #{targetId,jdbcType=BIGINT},
@@ -216,7 +216,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.Browse">
     update browse
-    set target_type = #{targetType,jdbcType=TINYINT},
+    set target_type = #{targetType,jdbcType=INTEGER},
       target_id = #{targetId,jdbcType=BIGINT},
       browse_user_id = #{browseUserId,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},

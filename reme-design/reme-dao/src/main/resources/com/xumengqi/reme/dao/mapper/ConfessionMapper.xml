@@ -5,9 +5,10 @@
     <id column="confession_id" jdbcType="BIGINT" property="confessionId" />
     <result column="confession_title" jdbcType="VARCHAR" property="confessionTitle" />
     <result column="confession_detail" jdbcType="VARCHAR" property="confessionDetail" />
-    <result column="is_anonymous" jdbcType="TINYINT" property="isAnonymous" />
+    <result column="is_anonymous" jdbcType="INTEGER" property="isAnonymous" />
     <result column="confession_tag_id" jdbcType="BIGINT" property="confessionTagId" />
     <result column="confession_location" jdbcType="VARCHAR" property="confessionLocation" />
+    <result column="is_solved" jdbcType="INTEGER" property="isSolved" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
@@ -72,7 +73,7 @@
   </sql>
   <sql id="Base_Column_List">
     confession_id, confession_title, confession_detail, is_anonymous, confession_tag_id, 
-    confession_location, user_id, gmt_create, gmt_modified
+    confession_location, is_solved, user_id, gmt_create, gmt_modified
   </sql>
   <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.ConfessionExample" resultMap="BaseResultMap">
     select
@@ -110,12 +111,12 @@
     </selectKey>
     insert into confession (confession_title, confession_detail, 
       is_anonymous, confession_tag_id, confession_location, 
-      user_id, gmt_create, gmt_modified
-      )
+      is_solved, user_id, gmt_create, 
+      gmt_modified)
     values (#{confessionTitle,jdbcType=VARCHAR}, #{confessionDetail,jdbcType=VARCHAR}, 
-      #{isAnonymous,jdbcType=TINYINT}, #{confessionTagId,jdbcType=BIGINT}, #{confessionLocation,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
-      )
+      #{isAnonymous,jdbcType=INTEGER}, #{confessionTagId,jdbcType=BIGINT}, #{confessionLocation,jdbcType=VARCHAR}, 
+      #{isSolved,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}, 
+      #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Confession">
     <selectKey keyProperty="confessionId" order="AFTER" resultType="java.lang.Long">
@@ -138,6 +139,9 @@
       <if test="confessionLocation != null">
         confession_location,
       </if>
+      <if test="isSolved != null">
+        is_solved,
+      </if>
       <if test="userId != null">
         user_id,
       </if>
@@ -156,13 +160,16 @@
         #{confessionDetail,jdbcType=VARCHAR},
       </if>
       <if test="isAnonymous != null">
-        #{isAnonymous,jdbcType=TINYINT},
+        #{isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="confessionTagId != null">
         #{confessionTagId,jdbcType=BIGINT},
       </if>
       <if test="confessionLocation != null">
         #{confessionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="isSolved != null">
+        #{isSolved,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
         #{userId,jdbcType=BIGINT},
@@ -194,13 +201,16 @@
         confession_detail = #{record.confessionDetail,jdbcType=VARCHAR},
       </if>
       <if test="record.isAnonymous != null">
-        is_anonymous = #{record.isAnonymous,jdbcType=TINYINT},
+        is_anonymous = #{record.isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="record.confessionTagId != null">
         confession_tag_id = #{record.confessionTagId,jdbcType=BIGINT},
       </if>
       <if test="record.confessionLocation != null">
         confession_location = #{record.confessionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.isSolved != null">
+        is_solved = #{record.isSolved,jdbcType=INTEGER},
       </if>
       <if test="record.userId != null">
         user_id = #{record.userId,jdbcType=BIGINT},
@@ -221,9 +231,10 @@
     set confession_id = #{record.confessionId,jdbcType=BIGINT},
       confession_title = #{record.confessionTitle,jdbcType=VARCHAR},
       confession_detail = #{record.confessionDetail,jdbcType=VARCHAR},
-      is_anonymous = #{record.isAnonymous,jdbcType=TINYINT},
+      is_anonymous = #{record.isAnonymous,jdbcType=INTEGER},
       confession_tag_id = #{record.confessionTagId,jdbcType=BIGINT},
       confession_location = #{record.confessionLocation,jdbcType=VARCHAR},
+      is_solved = #{record.isSolved,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
@@ -241,13 +252,16 @@
         confession_detail = #{confessionDetail,jdbcType=VARCHAR},
       </if>
       <if test="isAnonymous != null">
-        is_anonymous = #{isAnonymous,jdbcType=TINYINT},
+        is_anonymous = #{isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="confessionTagId != null">
         confession_tag_id = #{confessionTagId,jdbcType=BIGINT},
       </if>
       <if test="confessionLocation != null">
         confession_location = #{confessionLocation,jdbcType=VARCHAR},
+      </if>
+      <if test="isSolved != null">
+        is_solved = #{isSolved,jdbcType=INTEGER},
       </if>
       <if test="userId != null">
         user_id = #{userId,jdbcType=BIGINT},
@@ -265,9 +279,10 @@
     update confession
     set confession_title = #{confessionTitle,jdbcType=VARCHAR},
       confession_detail = #{confessionDetail,jdbcType=VARCHAR},
-      is_anonymous = #{isAnonymous,jdbcType=TINYINT},
+      is_anonymous = #{isAnonymous,jdbcType=INTEGER},
       confession_tag_id = #{confessionTagId,jdbcType=BIGINT},
       confession_location = #{confessionLocation,jdbcType=VARCHAR},
+      is_solved = #{isSolved,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}

@@ -30,7 +30,7 @@ public class Confession implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte isAnonymous;
+    private Integer isAnonymous;
 
     /**
      * 表白标签ID
@@ -45,6 +45,13 @@ public class Confession implements Serializable {
      * @mbg.generated
      */
     private String confessionLocation;
+
+    /**
+     * 表白是否解决
+     *
+     * @mbg.generated
+     */
+    private Integer isSolved;
 
     /**
      * 用户ID
@@ -93,11 +100,11 @@ public class Confession implements Serializable {
         this.confessionDetail = confessionDetail;
     }
 
-    public Byte getIsAnonymous() {
+    public Integer getIsAnonymous() {
         return isAnonymous;
     }
 
-    public void setIsAnonymous(Byte isAnonymous) {
+    public void setIsAnonymous(Integer isAnonymous) {
         this.isAnonymous = isAnonymous;
     }
 
@@ -115,6 +122,14 @@ public class Confession implements Serializable {
 
     public void setConfessionLocation(String confessionLocation) {
         this.confessionLocation = confessionLocation;
+    }
+
+    public Integer getIsSolved() {
+        return isSolved;
+    }
+
+    public void setIsSolved(Integer isSolved) {
+        this.isSolved = isSolved;
     }
 
     public Long getUserId() {
@@ -153,6 +168,7 @@ public class Confession implements Serializable {
         sb.append(", isAnonymous=").append(isAnonymous);
         sb.append(", confessionTagId=").append(confessionTagId);
         sb.append(", confessionLocation=").append(confessionLocation);
+        sb.append(", isSolved=").append(isSolved);
         sb.append(", userId=").append(userId);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", gmtModified=").append(gmtModified);

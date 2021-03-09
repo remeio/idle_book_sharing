@@ -72,7 +72,7 @@ public class User implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte sex;
+    private Integer sex;
 
     /**
      * 创建时间
@@ -162,11 +162,11 @@ public class User implements Serializable {
         this.avatarAttachId = avatarAttachId;
     }
 
-    public Byte getSex() {
+    public Integer getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
 

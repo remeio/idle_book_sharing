@@ -425,52 +425,52 @@ public class ReplyExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousEqualTo(Byte value) {
+        public Criteria andIsAnonymousEqualTo(Integer value) {
             addCriterion("is_anonymous =", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotEqualTo(Byte value) {
+        public Criteria andIsAnonymousNotEqualTo(Integer value) {
             addCriterion("is_anonymous <>", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousGreaterThan(Byte value) {
+        public Criteria andIsAnonymousGreaterThan(Integer value) {
             addCriterion("is_anonymous >", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousGreaterThanOrEqualTo(Byte value) {
+        public Criteria andIsAnonymousGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_anonymous >=", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousLessThan(Byte value) {
+        public Criteria andIsAnonymousLessThan(Integer value) {
             addCriterion("is_anonymous <", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousLessThanOrEqualTo(Byte value) {
+        public Criteria andIsAnonymousLessThanOrEqualTo(Integer value) {
             addCriterion("is_anonymous <=", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousIn(List<Byte> values) {
+        public Criteria andIsAnonymousIn(List<Integer> values) {
             addCriterion("is_anonymous in", values, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotIn(List<Byte> values) {
+        public Criteria andIsAnonymousNotIn(List<Integer> values) {
             addCriterion("is_anonymous not in", values, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousBetween(Byte value1, Byte value2) {
+        public Criteria andIsAnonymousBetween(Integer value1, Integer value2) {
             addCriterion("is_anonymous between", value1, value2, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotBetween(Byte value1, Byte value2) {
+        public Criteria andIsAnonymousNotBetween(Integer value1, Integer value2) {
             addCriterion("is_anonymous not between", value1, value2, "isAnonymous");
             return (Criteria) this;
         }

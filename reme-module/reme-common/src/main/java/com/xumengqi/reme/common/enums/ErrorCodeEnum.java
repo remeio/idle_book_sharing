@@ -88,9 +88,27 @@ public enum ErrorCodeEnum {
     /**
      * 文件上传失败
      */
-    FILE_UPLOAD_FAIL(ModuleEnum.FILE, 101, "文件上传失败");;
+    FILE_UPLOAD_FAIL(ModuleEnum.FILE, 101, "文件上传失败"),
 
 
+    // ATTACH
+    /**
+     * 附件不存在
+     */
+    ATTACH_NOT_EXIST(ModuleEnum.ATTACH, 101, "附件不存在"),
+
+    /**
+     * 附件无权限
+     */
+    ATTACH_NO_PERMISSION(ModuleEnum.ATTACH, 102, "附件无权限"),
+
+    // 表白
+    /**
+     * 表白标签不存在
+     */
+    CONFESSION_TAG_NOT_EXIST(ModuleEnum.CONFESSION, 101, "表白标签不存在"),
+
+    ;
     /**
      * 状态码
      */

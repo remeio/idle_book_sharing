@@ -22,7 +22,7 @@ public class ConfessionAttach implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte attachOrder;
+    private Integer attachOrder;
 
     private static final long serialVersionUID = 1L;
 
@@ -42,11 +42,11 @@ public class ConfessionAttach implements Serializable {
         this.attachId = attachId;
     }
 
-    public Byte getAttachOrder() {
+    public Integer getAttachOrder() {
         return attachOrder;
     }
 
-    public void setAttachOrder(Byte attachOrder) {
+    public void setAttachOrder(Integer attachOrder) {
         this.attachOrder = attachOrder;
     }
 

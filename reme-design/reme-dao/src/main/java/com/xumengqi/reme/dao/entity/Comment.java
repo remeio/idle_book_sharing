@@ -16,7 +16,7 @@ public class Comment implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte targetType;
+    private Integer targetType;
 
     /**
      * 目标ID
@@ -37,7 +37,7 @@ public class Comment implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte isAnonymous;
+    private Integer isAnonymous;
 
     /**
      * 评论人ID
@@ -77,11 +77,11 @@ public class Comment implements Serializable {
         this.commentId = commentId;
     }
 
-    public Byte getTargetType() {
+    public Integer getTargetType() {
         return targetType;
     }
 
-    public void setTargetType(Byte targetType) {
+    public void setTargetType(Integer targetType) {
         this.targetType = targetType;
     }
 
@@ -101,11 +101,11 @@ public class Comment implements Serializable {
         this.commentContent = commentContent;
     }
 
-    public Byte getIsAnonymous() {
+    public Integer getIsAnonymous() {
         return isAnonymous;
     }
 
-    public void setIsAnonymous(Byte isAnonymous) {
+    public void setIsAnonymous(Integer isAnonymous) {
         this.isAnonymous = isAnonymous;
     }
 

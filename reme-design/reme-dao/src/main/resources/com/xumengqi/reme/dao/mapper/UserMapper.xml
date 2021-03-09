@@ -11,7 +11,7 @@
     <result column="grade" jdbcType="INTEGER" property="grade" />
     <result column="user_mail" jdbcType="VARCHAR" property="userMail" />
     <result column="avatar_attach_id" jdbcType="BIGINT" property="avatarAttachId" />
-    <result column="sex" jdbcType="TINYINT" property="sex" />
+    <result column="sex" jdbcType="INTEGER" property="sex" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
   </resultMap>
@@ -117,7 +117,7 @@
       gmt_create, gmt_modified)
     values (#{userPhone,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{schoolId,jdbcType=BIGINT}, 
       #{userName,jdbcType=VARCHAR}, #{major,jdbcType=VARCHAR}, #{grade,jdbcType=INTEGER}, 
-      #{userMail,jdbcType=VARCHAR}, #{avatarAttachId,jdbcType=BIGINT}, #{sex,jdbcType=TINYINT}, 
+      #{userMail,jdbcType=VARCHAR}, #{avatarAttachId,jdbcType=BIGINT}, #{sex,jdbcType=INTEGER}, 
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.User">
@@ -186,7 +186,7 @@
         #{avatarAttachId,jdbcType=BIGINT},
       </if>
       <if test="sex != null">
-        #{sex,jdbcType=TINYINT},
+        #{sex,jdbcType=INTEGER},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
@@ -233,7 +233,7 @@
         avatar_attach_id = #{record.avatarAttachId,jdbcType=BIGINT},
       </if>
       <if test="record.sex != null">
-        sex = #{record.sex,jdbcType=TINYINT},
+        sex = #{record.sex,jdbcType=INTEGER},
       </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -257,7 +257,7 @@
       grade = #{record.grade,jdbcType=INTEGER},
       user_mail = #{record.userMail,jdbcType=VARCHAR},
       avatar_attach_id = #{record.avatarAttachId,jdbcType=BIGINT},
-      sex = #{record.sex,jdbcType=TINYINT},
+      sex = #{record.sex,jdbcType=INTEGER},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -292,7 +292,7 @@
         avatar_attach_id = #{avatarAttachId,jdbcType=BIGINT},
       </if>
       <if test="sex != null">
-        sex = #{sex,jdbcType=TINYINT},
+        sex = #{sex,jdbcType=INTEGER},
       </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -313,7 +313,7 @@
       grade = #{grade,jdbcType=INTEGER},
       user_mail = #{userMail,jdbcType=VARCHAR},
       avatar_attach_id = #{avatarAttachId,jdbcType=BIGINT},
-      sex = #{sex,jdbcType=TINYINT},
+      sex = #{sex,jdbcType=INTEGER},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
     where user_id = #{userId,jdbcType=BIGINT}

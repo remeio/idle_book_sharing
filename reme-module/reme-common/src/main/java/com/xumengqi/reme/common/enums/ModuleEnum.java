@@ -25,7 +25,19 @@ public enum ModuleEnum {
     /**
      * 文件
      */
-    FILE(104);
+    FILE(104),
+
+    /**
+     * 附件
+     */
+    ATTACH(105),
+
+    /**
+     * 表白
+     */
+    CONFESSION(106),
+
+    ;
     /**
      * 模块编码
      */

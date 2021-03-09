@@ -16,7 +16,7 @@ public class Favor implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte targetType;
+    private Integer targetType;
 
     /**
      * 目标ID
@@ -37,7 +37,7 @@ public class Favor implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte status;
+    private Integer status;
 
     /**
      * 创建时间
@@ -63,11 +63,11 @@ public class Favor implements Serializable {
         this.favorId = favorId;
     }
 
-    public Byte getTargetType() {
+    public Integer getTargetType() {
         return targetType;
     }
 
-    public void setTargetType(Byte targetType) {
+    public void setTargetType(Integer targetType) {
         this.targetType = targetType;
     }
 
@@ -87,11 +87,11 @@ public class Favor implements Serializable {
         this.userId = userId;
     }
 
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 

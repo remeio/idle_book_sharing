@@ -2,7 +2,7 @@ package com.xumengqi.reme.as.logic.confession;
 
 import com.xumengqi.reme.dao.entity.Confession;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author xumengqi
@@ -15,5 +15,5 @@ public interface ConfessionLogic {
      * @param confession /
      * @param attachIds  /
      */
-    void addConfession(Confession confession, List<Long> attachIds);
+    void addConfession(Confession confession, Set<Long> attachIds);
 }

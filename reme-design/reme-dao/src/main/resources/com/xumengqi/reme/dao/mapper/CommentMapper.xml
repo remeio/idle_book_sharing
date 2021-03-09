@@ -3,10 +3,10 @@
 <mapper namespace="com.xumengqi.reme.dao.mapper.CommentMapper">
   <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.Comment">
     <id column="comment_id" jdbcType="BIGINT" property="commentId" />
-    <result column="target_type" jdbcType="TINYINT" property="targetType" />
+    <result column="target_type" jdbcType="INTEGER" property="targetType" />
     <result column="target_id" jdbcType="BIGINT" property="targetId" />
     <result column="comment_content" jdbcType="VARCHAR" property="commentContent" />
-    <result column="is_anonymous" jdbcType="TINYINT" property="isAnonymous" />
+    <result column="is_anonymous" jdbcType="INTEGER" property="isAnonymous" />
     <result column="from_user_id" jdbcType="BIGINT" property="fromUserId" />
     <result column="attach_id" jdbcType="BIGINT" property="attachId" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
@@ -111,8 +111,8 @@
     insert into comment (target_type, target_id, comment_content, 
       is_anonymous, from_user_id, attach_id, 
       gmt_create, gmt_modified)
-    values (#{targetType,jdbcType=TINYINT}, #{targetId,jdbcType=BIGINT}, #{commentContent,jdbcType=VARCHAR}, 
-      #{isAnonymous,jdbcType=TINYINT}, #{fromUserId,jdbcType=BIGINT}, #{attachId,jdbcType=BIGINT}, 
+    values (#{targetType,jdbcType=INTEGER}, #{targetId,jdbcType=BIGINT}, #{commentContent,jdbcType=VARCHAR}, 
+      #{isAnonymous,jdbcType=INTEGER}, #{fromUserId,jdbcType=BIGINT}, #{attachId,jdbcType=BIGINT}, 
       #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Comment">
@@ -148,7 +148,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="targetType != null">
-        #{targetType,jdbcType=TINYINT},
+        #{targetType,jdbcType=INTEGER},
       </if>
       <if test="targetId != null">
         #{targetId,jdbcType=BIGINT},
@@ -157,7 +157,7 @@
         #{commentContent,jdbcType=VARCHAR},
       </if>
       <if test="isAnonymous != null">
-        #{isAnonymous,jdbcType=TINYINT},
+        #{isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="fromUserId != null">
         #{fromUserId,jdbcType=BIGINT},
@@ -186,7 +186,7 @@
         comment_id = #{record.commentId,jdbcType=BIGINT},
       </if>
       <if test="record.targetType != null">
-        target_type = #{record.targetType,jdbcType=TINYINT},
+        target_type = #{record.targetType,jdbcType=INTEGER},
       </if>
       <if test="record.targetId != null">
         target_id = #{record.targetId,jdbcType=BIGINT},
@@ -195,7 +195,7 @@
         comment_content = #{record.commentContent,jdbcType=VARCHAR},
       </if>
       <if test="record.isAnonymous != null">
-        is_anonymous = #{record.isAnonymous,jdbcType=TINYINT},
+        is_anonymous = #{record.isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="record.fromUserId != null">
         from_user_id = #{record.fromUserId,jdbcType=BIGINT},
@@ -217,10 +217,10 @@
   <update id="updateByExample" parameterType="map">
     update comment
     set comment_id = #{record.commentId,jdbcType=BIGINT},
-      target_type = #{record.targetType,jdbcType=TINYINT},
+      target_type = #{record.targetType,jdbcType=INTEGER},
       target_id = #{record.targetId,jdbcType=BIGINT},
       comment_content = #{record.commentContent,jdbcType=VARCHAR},
-      is_anonymous = #{record.isAnonymous,jdbcType=TINYINT},
+      is_anonymous = #{record.isAnonymous,jdbcType=INTEGER},
       from_user_id = #{record.fromUserId,jdbcType=BIGINT},
       attach_id = #{record.attachId,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -233,7 +233,7 @@
     update comment
     <set>
       <if test="targetType != null">
-        target_type = #{targetType,jdbcType=TINYINT},
+        target_type = #{targetType,jdbcType=INTEGER},
       </if>
       <if test="targetId != null">
         target_id = #{targetId,jdbcType=BIGINT},
@@ -242,7 +242,7 @@
         comment_content = #{commentContent,jdbcType=VARCHAR},
       </if>
       <if test="isAnonymous != null">
-        is_anonymous = #{isAnonymous,jdbcType=TINYINT},
+        is_anonymous = #{isAnonymous,jdbcType=INTEGER},
       </if>
       <if test="fromUserId != null">
         from_user_id = #{fromUserId,jdbcType=BIGINT},
@@ -261,10 +261,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.Comment">
     update comment
-    set target_type = #{targetType,jdbcType=TINYINT},
+    set target_type = #{targetType,jdbcType=INTEGER},
       target_id = #{targetId,jdbcType=BIGINT},
       comment_content = #{commentContent,jdbcType=VARCHAR},
-      is_anonymous = #{isAnonymous,jdbcType=TINYINT},
+      is_anonymous = #{isAnonymous,jdbcType=INTEGER},
       from_user_id = #{fromUserId,jdbcType=BIGINT},
       attach_id = #{attachId,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},

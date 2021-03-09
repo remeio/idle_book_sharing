@@ -175,52 +175,52 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeEqualTo(Byte value) {
+        public Criteria andTargetTypeEqualTo(Integer value) {
             addCriterion("target_type =", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeNotEqualTo(Byte value) {
+        public Criteria andTargetTypeNotEqualTo(Integer value) {
             addCriterion("target_type <>", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeGreaterThan(Byte value) {
+        public Criteria andTargetTypeGreaterThan(Integer value) {
             addCriterion("target_type >", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeGreaterThanOrEqualTo(Byte value) {
+        public Criteria andTargetTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("target_type >=", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeLessThan(Byte value) {
+        public Criteria andTargetTypeLessThan(Integer value) {
             addCriterion("target_type <", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeLessThanOrEqualTo(Byte value) {
+        public Criteria andTargetTypeLessThanOrEqualTo(Integer value) {
             addCriterion("target_type <=", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeIn(List<Byte> values) {
+        public Criteria andTargetTypeIn(List<Integer> values) {
             addCriterion("target_type in", values, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeNotIn(List<Byte> values) {
+        public Criteria andTargetTypeNotIn(List<Integer> values) {
             addCriterion("target_type not in", values, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeBetween(Byte value1, Byte value2) {
+        public Criteria andTargetTypeBetween(Integer value1, Integer value2) {
             addCriterion("target_type between", value1, value2, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeNotBetween(Byte value1, Byte value2) {
+        public Criteria andTargetTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("target_type not between", value1, value2, "targetType");
             return (Criteria) this;
         }
@@ -365,52 +365,52 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousEqualTo(Byte value) {
+        public Criteria andIsAnonymousEqualTo(Integer value) {
             addCriterion("is_anonymous =", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotEqualTo(Byte value) {
+        public Criteria andIsAnonymousNotEqualTo(Integer value) {
             addCriterion("is_anonymous <>", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousGreaterThan(Byte value) {
+        public Criteria andIsAnonymousGreaterThan(Integer value) {
             addCriterion("is_anonymous >", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousGreaterThanOrEqualTo(Byte value) {
+        public Criteria andIsAnonymousGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_anonymous >=", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousLessThan(Byte value) {
+        public Criteria andIsAnonymousLessThan(Integer value) {
             addCriterion("is_anonymous <", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousLessThanOrEqualTo(Byte value) {
+        public Criteria andIsAnonymousLessThanOrEqualTo(Integer value) {
             addCriterion("is_anonymous <=", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousIn(List<Byte> values) {
+        public Criteria andIsAnonymousIn(List<Integer> values) {
             addCriterion("is_anonymous in", values, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotIn(List<Byte> values) {
+        public Criteria andIsAnonymousNotIn(List<Integer> values) {
             addCriterion("is_anonymous not in", values, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousBetween(Byte value1, Byte value2) {
+        public Criteria andIsAnonymousBetween(Integer value1, Integer value2) {
             addCriterion("is_anonymous between", value1, value2, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotBetween(Byte value1, Byte value2) {
+        public Criteria andIsAnonymousNotBetween(Integer value1, Integer value2) {
             addCriterion("is_anonymous not between", value1, value2, "isAnonymous");
             return (Criteria) this;
         }

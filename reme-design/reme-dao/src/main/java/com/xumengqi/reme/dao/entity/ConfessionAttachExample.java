@@ -234,52 +234,52 @@ public class ConfessionAttachExample {
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderEqualTo(Byte value) {
+        public Criteria andAttachOrderEqualTo(Integer value) {
             addCriterion("attach_order =", value, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderNotEqualTo(Byte value) {
+        public Criteria andAttachOrderNotEqualTo(Integer value) {
             addCriterion("attach_order <>", value, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderGreaterThan(Byte value) {
+        public Criteria andAttachOrderGreaterThan(Integer value) {
             addCriterion("attach_order >", value, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderGreaterThanOrEqualTo(Byte value) {
+        public Criteria andAttachOrderGreaterThanOrEqualTo(Integer value) {
             addCriterion("attach_order >=", value, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderLessThan(Byte value) {
+        public Criteria andAttachOrderLessThan(Integer value) {
             addCriterion("attach_order <", value, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderLessThanOrEqualTo(Byte value) {
+        public Criteria andAttachOrderLessThanOrEqualTo(Integer value) {
             addCriterion("attach_order <=", value, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderIn(List<Byte> values) {
+        public Criteria andAttachOrderIn(List<Integer> values) {
             addCriterion("attach_order in", values, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderNotIn(List<Byte> values) {
+        public Criteria andAttachOrderNotIn(List<Integer> values) {
             addCriterion("attach_order not in", values, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderBetween(Byte value1, Byte value2) {
+        public Criteria andAttachOrderBetween(Integer value1, Integer value2) {
             addCriterion("attach_order between", value1, value2, "attachOrder");
             return (Criteria) this;
         }
 
-        public Criteria andAttachOrderNotBetween(Byte value1, Byte value2) {
+        public Criteria andAttachOrderNotBetween(Integer value1, Integer value2) {
             addCriterion("attach_order not between", value1, value2, "attachOrder");
             return (Criteria) this;
         }

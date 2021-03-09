@@ -3,10 +3,10 @@
 <mapper namespace="com.xumengqi.reme.dao.mapper.FavorMapper">
   <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.Favor">
     <id column="favor_id" jdbcType="BIGINT" property="favorId" />
-    <result column="target_type" jdbcType="TINYINT" property="targetType" />
+    <result column="target_type" jdbcType="INTEGER" property="targetType" />
     <result column="target_id" jdbcType="BIGINT" property="targetId" />
     <result column="user_id" jdbcType="BIGINT" property="userId" />
-    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="status" jdbcType="INTEGER" property="status" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
   </resultMap>
@@ -108,8 +108,8 @@
     insert into favor (target_type, target_id, user_id, 
       status, gmt_create, gmt_modified
       )
-    values (#{targetType,jdbcType=TINYINT}, #{targetId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
-      #{status,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+    values (#{targetType,jdbcType=INTEGER}, #{targetId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, 
+      #{status,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Favor">
@@ -139,7 +139,7 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="targetType != null">
-        #{targetType,jdbcType=TINYINT},
+        #{targetType,jdbcType=INTEGER},
       </if>
       <if test="targetId != null">
         #{targetId,jdbcType=BIGINT},
@@ -148,7 +148,7 @@
         #{userId,jdbcType=BIGINT},
       </if>
       <if test="status != null">
-        #{status,jdbcType=TINYINT},
+        #{status,jdbcType=INTEGER},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
@@ -171,7 +171,7 @@
         favor_id = #{record.favorId,jdbcType=BIGINT},
       </if>
       <if test="record.targetType != null">
-        target_type = #{record.targetType,jdbcType=TINYINT},
+        target_type = #{record.targetType,jdbcType=INTEGER},
       </if>
       <if test="record.targetId != null">
         target_id = #{record.targetId,jdbcType=BIGINT},
@@ -180,7 +180,7 @@
         user_id = #{record.userId,jdbcType=BIGINT},
       </if>
       <if test="record.status != null">
-        status = #{record.status,jdbcType=TINYINT},
+        status = #{record.status,jdbcType=INTEGER},
       </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -196,10 +196,10 @@
   <update id="updateByExample" parameterType="map">
     update favor
     set favor_id = #{record.favorId,jdbcType=BIGINT},
-      target_type = #{record.targetType,jdbcType=TINYINT},
+      target_type = #{record.targetType,jdbcType=INTEGER},
       target_id = #{record.targetId,jdbcType=BIGINT},
       user_id = #{record.userId,jdbcType=BIGINT},
-      status = #{record.status,jdbcType=TINYINT},
+      status = #{record.status,jdbcType=INTEGER},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{record.gmtModified,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
@@ -210,7 +210,7 @@
     update favor
     <set>
       <if test="targetType != null">
-        target_type = #{targetType,jdbcType=TINYINT},
+        target_type = #{targetType,jdbcType=INTEGER},
       </if>
       <if test="targetId != null">
         target_id = #{targetId,jdbcType=BIGINT},
@@ -219,7 +219,7 @@
         user_id = #{userId,jdbcType=BIGINT},
       </if>
       <if test="status != null">
-        status = #{status,jdbcType=TINYINT},
+        status = #{status,jdbcType=INTEGER},
       </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -232,10 +232,10 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.Favor">
     update favor
-    set target_type = #{targetType,jdbcType=TINYINT},
+    set target_type = #{targetType,jdbcType=INTEGER},
       target_id = #{targetId,jdbcType=BIGINT},
       user_id = #{userId,jdbcType=BIGINT},
-      status = #{status,jdbcType=TINYINT},
+      status = #{status,jdbcType=INTEGER},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modified = #{gmtModified,jdbcType=TIMESTAMP}
     where favor_id = #{favorId,jdbcType=BIGINT}

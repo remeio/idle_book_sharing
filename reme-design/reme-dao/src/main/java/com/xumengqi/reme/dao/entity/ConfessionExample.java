@@ -315,52 +315,52 @@ public class ConfessionExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousEqualTo(Byte value) {
+        public Criteria andIsAnonymousEqualTo(Integer value) {
             addCriterion("is_anonymous =", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotEqualTo(Byte value) {
+        public Criteria andIsAnonymousNotEqualTo(Integer value) {
             addCriterion("is_anonymous <>", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousGreaterThan(Byte value) {
+        public Criteria andIsAnonymousGreaterThan(Integer value) {
             addCriterion("is_anonymous >", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousGreaterThanOrEqualTo(Byte value) {
+        public Criteria andIsAnonymousGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_anonymous >=", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousLessThan(Byte value) {
+        public Criteria andIsAnonymousLessThan(Integer value) {
             addCriterion("is_anonymous <", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousLessThanOrEqualTo(Byte value) {
+        public Criteria andIsAnonymousLessThanOrEqualTo(Integer value) {
             addCriterion("is_anonymous <=", value, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousIn(List<Byte> values) {
+        public Criteria andIsAnonymousIn(List<Integer> values) {
             addCriterion("is_anonymous in", values, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotIn(List<Byte> values) {
+        public Criteria andIsAnonymousNotIn(List<Integer> values) {
             addCriterion("is_anonymous not in", values, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousBetween(Byte value1, Byte value2) {
+        public Criteria andIsAnonymousBetween(Integer value1, Integer value2) {
             addCriterion("is_anonymous between", value1, value2, "isAnonymous");
             return (Criteria) this;
         }
 
-        public Criteria andIsAnonymousNotBetween(Byte value1, Byte value2) {
+        public Criteria andIsAnonymousNotBetween(Integer value1, Integer value2) {
             addCriterion("is_anonymous not between", value1, value2, "isAnonymous");
             return (Criteria) this;
         }
@@ -492,6 +492,66 @@ public class ConfessionExample {
 
         public Criteria andConfessionLocationNotBetween(String value1, String value2) {
             addCriterion("confession_location not between", value1, value2, "confessionLocation");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedIsNull() {
+            addCriterion("is_solved is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedIsNotNull() {
+            addCriterion("is_solved is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedEqualTo(Integer value) {
+            addCriterion("is_solved =", value, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedNotEqualTo(Integer value) {
+            addCriterion("is_solved <>", value, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedGreaterThan(Integer value) {
+            addCriterion("is_solved >", value, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedGreaterThanOrEqualTo(Integer value) {
+            addCriterion("is_solved >=", value, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedLessThan(Integer value) {
+            addCriterion("is_solved <", value, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedLessThanOrEqualTo(Integer value) {
+            addCriterion("is_solved <=", value, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedIn(List<Integer> values) {
+            addCriterion("is_solved in", values, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedNotIn(List<Integer> values) {
+            addCriterion("is_solved not in", values, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedBetween(Integer value1, Integer value2) {
+            addCriterion("is_solved between", value1, value2, "isSolved");
+            return (Criteria) this;
+        }
+
+        public Criteria andIsSolvedNotBetween(Integer value1, Integer value2) {
+            addCriterion("is_solved not between", value1, value2, "isSolved");
             return (Criteria) this;
         }
 

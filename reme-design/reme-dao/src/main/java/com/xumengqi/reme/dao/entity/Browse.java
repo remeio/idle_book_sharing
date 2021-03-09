@@ -16,7 +16,7 @@ public class Browse implements Serializable {
      *
      * @mbg.generated
      */
-    private Byte targetType;
+    private Integer targetType;
 
     /**
      * 目标ID
@@ -56,11 +56,11 @@ public class Browse implements Serializable {
         this.browseId = browseId;
     }
 
-    public Byte getTargetType() {
+    public Integer getTargetType() {
         return targetType;
     }
 
-    public void setTargetType(Byte targetType) {
+    public void setTargetType(Integer targetType) {
         this.targetType = targetType;
     }
 

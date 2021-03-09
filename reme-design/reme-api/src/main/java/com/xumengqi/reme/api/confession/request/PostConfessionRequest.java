@@ -2,13 +2,14 @@ package com.xumengqi.reme.api.confession.request;
 
 import com.xumengqi.reme.base.BaseRequest;
 import com.xumengqi.reme.base.validation.ChineseLength;
+import com.xumengqi.reme.base.validation.YesOrNo;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Size;
-import java.util.List;
+import java.util.Set;
 
 /**
  * 发布表白
@@ -20,7 +21,7 @@ import java.util.List;
 @Setter
 public class PostConfessionRequest extends BaseRequest {
     @ApiModelProperty("表白标题")
-    @ChineseLength(max = 2000)
+    @ChineseLength(min = 1, max = 2000)
     private String confessionTitle;
 
     @ApiModelProperty("表白详情")
@@ -28,8 +29,8 @@ public class PostConfessionRequest extends BaseRequest {
     private String confessionDetail;
 
     @ApiModelProperty("表白是否匿名")
-    @Min(1)
-    private Byte isAnonymous;
+    @YesOrNo
+    private Integer isAnonymous;
 
     @ApiModelProperty("表白标签ID")
     @Min(1)
@@ -41,5 +42,5 @@ public class PostConfessionRequest extends BaseRequest {
 
     @ApiModelProperty("附件ID列表")
     @Size(max = 9)
-    private List<Long> attachIds;
+    private Set<Long> attachIds;
 }

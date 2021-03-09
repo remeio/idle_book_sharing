@@ -175,52 +175,52 @@ public class BrowseExample {
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeEqualTo(Byte value) {
+        public Criteria andTargetTypeEqualTo(Integer value) {
             addCriterion("target_type =", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeNotEqualTo(Byte value) {
+        public Criteria andTargetTypeNotEqualTo(Integer value) {
             addCriterion("target_type <>", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeGreaterThan(Byte value) {
+        public Criteria andTargetTypeGreaterThan(Integer value) {
             addCriterion("target_type >", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeGreaterThanOrEqualTo(Byte value) {
+        public Criteria andTargetTypeGreaterThanOrEqualTo(Integer value) {
             addCriterion("target_type >=", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeLessThan(Byte value) {
+        public Criteria andTargetTypeLessThan(Integer value) {
             addCriterion("target_type <", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeLessThanOrEqualTo(Byte value) {
+        public Criteria andTargetTypeLessThanOrEqualTo(Integer value) {
             addCriterion("target_type <=", value, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeIn(List<Byte> values) {
+        public Criteria andTargetTypeIn(List<Integer> values) {
             addCriterion("target_type in", values, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeNotIn(List<Byte> values) {
+        public Criteria andTargetTypeNotIn(List<Integer> values) {
             addCriterion("target_type not in", values, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeBetween(Byte value1, Byte value2) {
+        public Criteria andTargetTypeBetween(Integer value1, Integer value2) {
             addCriterion("target_type between", value1, value2, "targetType");
             return (Criteria) this;
         }
 
-        public Criteria andTargetTypeNotBetween(Byte value1, Byte value2) {
+        public Criteria andTargetTypeNotBetween(Integer value1, Integer value2) {
             addCriterion("target_type not between", value1, value2, "targetType");
             return (Criteria) this;
         }
