@@ -42,15 +42,15 @@ public class VerificationCodeLogicImpl implements VerificationCodeLogic {
         }
         // 判断是否支持此验证码类型
         VerificationCodeConfig.VerificationCode verificationCode = verificationCodes.stream().filter(e -> e != null && e.getName().equals(verificationCodeTypeName)).findFirst().orElse(null);
-        AssertUtils.isNotNull(verificationCode, ErrorCodeEnum.UNSUPPORTED_VERIFICATION_CODE_TYPE);
+        AssertUtils.asserter().assertNull(verificationCode).elseThrow(ErrorCodeEnum.UNSUPPORTED_VERIFICATION_CODE_TYPE);
         // 枚举解析
         VerificationCodeSendModeEnum verificationCodeSendModeEnum = VerificationCodeSendModeEnum.valueOf(verificationCode.getSendMode());
-        AssertUtils.isNotNull(verificationCode, ErrorCodeEnum.UNSUPPORTED_VERIFICATION_CODE_TYPE);
+        AssertUtils.asserter().assertNull(verificationCode).elseThrow(ErrorCodeEnum.UNSUPPORTED_VERIFICATION_CODE_TYPE);
         RedisKeyPrefixEnum redisKeyPrefixEnum = RedisKeyPrefixEnum.valueOf(verificationCode.getKeyPrefix());
-        AssertUtils.isNotNull(verificationCode, ErrorCodeEnum.UNSUPPORTED_VERIFICATION_CODE_TYPE);
+        AssertUtils.asserter().assertNotNull(verificationCode).elseThrow(ErrorCodeEnum.UNSUPPORTED_VERIFICATION_CODE_TYPE);
         // 判断缓存中是否已有验证码
         String key = redisKeyPrefixEnum.getPrefix() + to;
-        AssertUtils.isNull(redisUtils.get(key), ErrorCodeEnum.VERIFICATION_CODE_HAD_SENT);
+        AssertUtils.asserter().assertNull(redisUtils.get(key)).elseThrow(ErrorCodeEnum.VERIFICATION_CODE_HAD_SENT);
         // 生成验证码，存入缓存
         String verificationCodeStr = RandomStringUtils.random(verificationCode.getDigits(), false, true);
         redisUtils.set(key, verificationCodeStr, TimeUnit.MINUTES.toSeconds(verificationCode.getExpireTimeInMinute()));

@@ -48,7 +48,7 @@ public class ConfessionLogicImpl implements ConfessionLogic {
         attachExample.createCriteria().andAttachIdIn(new ArrayList<>(attachIds));
         List<Attach> attachList = attachMapper.selectByExample(attachExample);
         // 上传附件均存在
-        AssertUtils.isTrue(attachList.size() == attachIds.size(), ErrorCodeEnum.ATTACH_NOT_EXIST);
+        AssertUtils.asserter().assertTrue(attachList.size() == attachIds.size()).elseThrow(ErrorCodeEnum.ATTACH_NOT_EXIST);
         // 上传附件必须都是来自此用户
         Long userId = confession.getUserId();
         attachList.stream()
@@ -57,7 +57,8 @@ public class ConfessionLogicImpl implements ConfessionLogic {
                 .filter(e -> !e.equals(userId)).findAny()
                 .ifPresent(aLong -> BizException.error(ErrorCodeEnum.ATTACH_NO_PERMISSION));
         // 表白标签必须存在
-        AssertUtils.isNotNull(confessionTagMapper.selectByPrimaryKey(confession.getConfessionTagId()), ErrorCodeEnum.CONFESSION_TAG_NOT_EXIST);
+        AssertUtils.asserter().assertNotNull(confessionTagMapper.selectByPrimaryKey(confession.getConfessionTagId()))
+                .elseThrow(ErrorCodeEnum.CONFESSION_TAG_NOT_EXIST);
         // 插入表白记录
         confession.setIsSolved(YesOrNoEnum.NO.getCode());
         Date now = new Date();

@@ -36,14 +36,14 @@ public class UserLogicImpl implements UserLogic {
         final Long schoolId = user.getSchoolId();
         String verificationCodeInCache = redisUtils.get(RedisKeyPrefixEnum.SIGN_UP_VERIFICATION_CODE.getPrefix() + userPhone);
         // 判断验证码是否正确
-        AssertUtils.isTrue(verificationCode.equals(verificationCodeInCache), ErrorCodeEnum.VERIFICATION_CODE_ERROR_OR_EXPIRED);
+        AssertUtils.asserter().assertTrue(verificationCode.equals(verificationCodeInCache)).elseThrow(ErrorCodeEnum.VERIFICATION_CODE_ERROR_OR_EXPIRED);
         UserExample userExample = new UserExample();
         userExample.createCriteria()
                 .andUserPhoneEqualTo(userPhone);
         // 判断用户是否已注册
-        AssertUtils.isEqualZero(userMapper.countByExample(userExample), ErrorCodeEnum.THE_PHONE_NUMBER_HAS_BEEN_REGISTERED);
+        AssertUtils.asserter().assertEqualOne(userMapper.countByExample(userExample)).elseThrow(ErrorCodeEnum.THE_PHONE_NUMBER_HAS_BEEN_REGISTERED);
         // 判断学校是否存在
-        AssertUtils.isNotNull(schoolMapper.selectByPrimaryKey(schoolId), ErrorCodeEnum.SCHOOL_NOT_EXIST);
+        AssertUtils.asserter().assertNotNull(schoolMapper.selectByPrimaryKey(schoolId)).elseThrow(ErrorCodeEnum.SCHOOL_NOT_EXIST);
         User record = new User();
         record.setUserPhone(userPhone);
         record.setUserPassword(userPassword);
@@ -61,7 +61,7 @@ public class UserLogicImpl implements UserLogic {
                 .andUserPasswordEqualTo(userPassword);
         User user = userMapper.selectByExample(userExample).stream().findFirst().orElse(null);
         // 判断用户是否存在
-        AssertUtils.isNotNull(user, ErrorCodeEnum.WRONG_PASSWORD);
+        AssertUtils.asserter().assertNotNull(user).elseThrow(ErrorCodeEnum.WRONG_PASSWORD);
         return user.getUserId();
     }
 
@@ -72,7 +72,7 @@ public class UserLogicImpl implements UserLogic {
         userExample.createCriteria()
                 .andUserPhoneEqualTo(userPhone);
         User record = userMapper.selectByExample(userExample).stream().findFirst().orElse(null);
-        AssertUtils.isNotNull(record, ErrorCodeEnum.USER_NOT_EXISTS);
+        AssertUtils.asserter().assertNotNull(record).elseThrow(ErrorCodeEnum.USER_NOT_EXISTS);
         // 修改密码
         Long recordId = record.getUserId();
         User newRecord = new User();

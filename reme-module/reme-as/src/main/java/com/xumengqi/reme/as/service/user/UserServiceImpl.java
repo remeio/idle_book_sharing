@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
         final String verificationCode = request.getVerificationCode();
         // 验证验证码是否正确
         String resetPasswordVerificationCodeInCache = redisUtils.get(RedisKeyPrefixEnum.RESET_PASSWORD_VERIFICATION_CODE.getPrefix() + userPhone);
-        AssertUtils.isTrue(verificationCode.equals(resetPasswordVerificationCodeInCache), ErrorCodeEnum.VERIFICATION_CODE_INVALID);
+        AssertUtils.asserter().assertTrue(verificationCode.equals(resetPasswordVerificationCodeInCache)).elseThrow(ErrorCodeEnum.VERIFICATION_CODE_INVALID);
         // 修改密码
         userLogic.resetPassword(userPhone, request.getNewPassword());
         return new ResetPasswordResponse();

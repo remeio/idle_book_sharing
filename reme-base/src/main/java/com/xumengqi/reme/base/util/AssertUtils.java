@@ -12,46 +12,60 @@ public class AssertUtils {
 
     }
 
-    public static void isTrue(boolean val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        if (val) {
-            return;
+    public static class Builder {
+        private boolean isTrue = true;
+
+        public Builder assertTrue(boolean val) {
+            isTrue = val && isTrue;
+            return this;
         }
-        BizException.error(errorCodeEnum, args);
+
+        public Builder assertFalse(boolean val) {
+            return assertTrue(!val);
+        }
+
+        public Builder assertNull(Object val) {
+            return assertTrue(val == null);
+        }
+
+        public Builder assertNotNull(Object val) {
+            return assertTrue(val != null);
+        }
+
+        public Builder assertGreaterThanZero(long val) {
+            return assertTrue(val > 0);
+        }
+
+        public Builder assertEqualZero(long val) {
+            return assertTrue(val == 0);
+        }
+
+        public Builder assertLessThanZero(long val) {
+            return assertTrue(val < 0);
+        }
+
+        public Builder assertEqualOne(long val) {
+            return assertTrue(val == 1);
+        }
+
+        public Builder assertGreaterThanOne(long val) {
+            return assertTrue(val > 1);
+        }
+
+        public Builder assertLessThanOne(long val) {
+            return assertTrue(val < 1);
+        }
+
+        public Builder elseThrow(ErrorCodeEnum errorCodeEnum, Object... args) {
+            if (isTrue) {
+                return this;
+            }
+            BizException.error(errorCodeEnum, args);
+            return null;
+        }
     }
 
-    public static void isFalse(boolean val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(!val, errorCodeEnum, args);
-    }
-
-    public static void isNotNull(Object val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val != null, errorCodeEnum, args);
-    }
-
-    public static void isNull(Object val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val == null, errorCodeEnum, args);
-    }
-
-    public static void isGreaterThanZero(long val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val > 0, errorCodeEnum, args);
-    }
-
-    public static void isEqualZero(long val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val == 0, errorCodeEnum, args);
-    }
-
-    public static void isLessThanZero(long val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val < 0, errorCodeEnum, args);
-    }
-
-    public static void isEqualOne(long val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val == 1, errorCodeEnum, args);
-    }
-
-    public static void isGreaterThanOne(long val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val > 1, errorCodeEnum, args);
-    }
-
-    public static void isLessThanOne(long val, ErrorCodeEnum errorCodeEnum, Object... args) {
-        isTrue(val < 1, errorCodeEnum, args);
+    public static AssertUtils.Builder asserter() {
+        return new AssertUtils.Builder();
     }
 }
