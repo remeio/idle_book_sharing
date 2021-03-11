@@ -8,7 +8,7 @@ import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.base.util.SendMailUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
-import com.xumengqi.reme.common.enums.VerificationCodeSendModeEnum;
+import com.xumengqi.reme.common.enums.biz.VerificationCodeSendModeEnum;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;

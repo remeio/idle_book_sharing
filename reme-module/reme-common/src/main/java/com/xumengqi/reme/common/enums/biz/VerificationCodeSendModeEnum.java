@@ -1,4 +1,4 @@
-package com.xumengqi.reme.common.enums;
+package com.xumengqi.reme.common.enums.biz;
 
 /**
  * 验证码发送方式
