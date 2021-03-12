@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xumengqi.reme.as.mapper.FavorExtMapper">
+    <select id="mapFavorOfConfession" resultType="com.xumengqi.reme.as.vo.FavorVO">
+        SELECT
+        con.confession_id AS confessionId,
+        count( fa.favor_id ) AS favorCount
+        FROM
+        ( SELECT * FROM confession c
+        <where>
+            <if test="confessionIdSet != null and confessionIdSet.size() > 0">
+                and c.confession_id in
+                <foreach collection="confessionIdSet" item="confessionId" open="(" separator="," close=")">
+                    #{confessionId}
+                </foreach>
+            </if>
+        </where>
+        ) con
+        LEFT JOIN favor fa ON con.confession_id = fa.target_id
+        AND fa.target_type = 1
+        AND fa.STATUS = 1
+        <if test="userId != null">
+            AND fa.user_id = #{userId}
+        </if>
+        GROUP BY
+        con.confession_id;
+    </select>
+
+</mapper>

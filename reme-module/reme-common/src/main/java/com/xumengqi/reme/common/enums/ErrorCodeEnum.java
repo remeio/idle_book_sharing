@@ -38,6 +38,11 @@ public enum ErrorCodeEnum {
      */
     INVALID_TOKEN(ModuleEnum.SYSTEM, 504, "无效的token或token已过期"),
 
+    /**
+     * 不是有效的是或否
+     */
+    NOT_YES_OR_NO(ModuleEnum.SYSTEM, 505, "不是有效的是或否"),
+
     // USER
     /**
      * 该手机号已被注册

@@ -19,7 +19,7 @@ public class YesOrNoValidator implements ConstraintValidator<YesOrNo, Integer> {
         if (value == null) {
             return false;
         }
-        return YesOrNoEnum.getByCode(value) != null;
+        return !YesOrNoEnum.isYesOrNo(value);
     }
 
 }

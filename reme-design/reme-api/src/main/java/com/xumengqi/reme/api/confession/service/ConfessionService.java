@@ -1,6 +1,8 @@
 package com.xumengqi.reme.api.confession.service;
 
+import com.xumengqi.reme.api.confession.request.GetConfessionPageBySchoolRequest;
 import com.xumengqi.reme.api.confession.request.PostConfessionRequest;
+import com.xumengqi.reme.api.confession.response.GetConfessionPageBySchoolResponse;
 import com.xumengqi.reme.api.confession.response.PostConfessionResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -31,4 +33,14 @@ public interface ConfessionService {
     @ApiOperation("发布表白信息")
     @PostMapping("/postConfession")
     PostConfessionResponse postConfession(@ApiParam @Valid @RequestBody PostConfessionRequest request);
+
+    /**
+     * 获取某学校的表白列表（分页）
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取某学校的表白列表（分页）")
+    @PostMapping("/getConfessionPageBySchool")
+    GetConfessionPageBySchoolResponse getConfessionPageBySchool(@ApiParam @Valid @RequestBody GetConfessionPageBySchoolRequest request);
 }

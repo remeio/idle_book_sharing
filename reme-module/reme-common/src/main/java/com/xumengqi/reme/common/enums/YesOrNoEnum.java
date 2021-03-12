@@ -41,6 +41,10 @@ public enum YesOrNoEnum {
         return NO.getCode().equals(code);
     }
 
+    public static boolean isYesOrNo(Integer code) {
+        return isYes(code) || isNo(code);
+    }
+
     public static YesOrNoEnum getByCode(Integer code) {
         return Arrays.stream(values()).filter(e -> e.getCode().equals(code)).findFirst().orElse(null);
     }

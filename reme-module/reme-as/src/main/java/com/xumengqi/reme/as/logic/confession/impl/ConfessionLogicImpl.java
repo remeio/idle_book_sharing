@@ -1,18 +1,14 @@
 package com.xumengqi.reme.as.logic.confession.impl;
 
 import com.xumengqi.reme.as.logic.confession.ConfessionLogic;
+import com.xumengqi.reme.as.mapper.ConfessionExtMapper;
+import com.xumengqi.reme.as.vo.ConfessionVO;
 import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.YesOrNoEnum;
-import com.xumengqi.reme.dao.entity.Attach;
-import com.xumengqi.reme.dao.entity.AttachExample;
-import com.xumengqi.reme.dao.entity.Confession;
-import com.xumengqi.reme.dao.entity.ConfessionAttach;
-import com.xumengqi.reme.dao.mapper.AttachMapper;
-import com.xumengqi.reme.dao.mapper.ConfessionAttachMapper;
-import com.xumengqi.reme.dao.mapper.ConfessionMapper;
-import com.xumengqi.reme.dao.mapper.ConfessionTagMapper;
+import com.xumengqi.reme.dao.entity.*;
+import com.xumengqi.reme.dao.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,6 +33,15 @@ public class ConfessionLogicImpl implements ConfessionLogic {
 
     @Autowired
     private ConfessionMapper confessionMapper;
+
+    @Autowired
+    private SchoolMapper schoolMapper;
+
+    @Autowired
+    private ConfessionExtMapper confessionExtMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -75,4 +80,44 @@ public class ConfessionLogicImpl implements ConfessionLogic {
             confessionAttachMapper.insertSelective(confessionAttach);
         });
     }
+
+    @Override
+    public List<ConfessionVO> listConfessionBySchoolId(Long schoolId, Set<Long> confessionTagIdSet, Integer isSolved) {
+        return confessionExtMapper.selectBySchoolId(schoolId, isSolved, confessionTagIdSet);
+    }
+
+    @Override
+    public List<Confession> listConfessionByUserId(Long userId, Set<Long> confessionTagIdSet, Integer isSolved) {
+        assert userId != null;
+        return confessionExtMapper.selectByUserId(userId, isSolved, confessionTagIdSet);
+    }
+
+
+    @Override
+    public void checkListConfessionParameter(Long schoolId, Long userId, Set<Long> confessionTagIdSet, Integer isSolved) {
+        ConfessionExample confessionExample = new ConfessionExample();
+        ConfessionExample.Criteria criteria = confessionExample.createCriteria();
+        if (schoolId != null) {
+            // 判断学校是否存在
+            AssertUtils.asserter().assertNotNull(schoolMapper.selectByPrimaryKey(schoolId)).elseThrow(ErrorCodeEnum.SCHOOL_NOT_EXIST);
+        }
+        if (isSolved != null) {
+            AssertUtils.asserter().assertTrue(YesOrNoEnum.isYesOrNo(isSolved)).elseThrow(ErrorCodeEnum.NOT_YES_OR_NO);
+        }
+        if (confessionTagIdSet.size() != 0) {
+            // 判断标签是否正确
+            ConfessionTagExample confessionTagExample = new ConfessionTagExample();
+            confessionTagExample.createCriteria()
+                    .andConfessionTagIdIn(new ArrayList<>(confessionTagIdSet));
+            AssertUtils.asserter().assertTrue(confessionTagMapper.countByExample(confessionTagExample) == confessionTagIdSet.size())
+                    .elseThrow(ErrorCodeEnum.CONFESSION_TAG_NOT_EXIST);
+            criteria.andConfessionTagIdIn(new ArrayList<>(confessionTagIdSet));
+        }
+        if (userId != null) {
+            // 判断用户是否存在
+            User user = userMapper.selectByPrimaryKey(userId);
+            AssertUtils.asserter().assertNotNull(user).elseThrow(ErrorCodeEnum.USER_NOT_EXISTS);
+        }
+    }
+
 }
