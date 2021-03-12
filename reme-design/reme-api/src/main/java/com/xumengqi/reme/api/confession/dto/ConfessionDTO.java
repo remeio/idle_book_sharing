@@ -97,4 +97,9 @@ public class ConfessionDTO extends BaseDTO {
      * 用户姓名
      */
     private String userName;
+
+    /**
+     * 用户头像路径
+     */
+    private String avatarFullPath;
 }

@@ -3,6 +3,8 @@ package com.xumengqi.reme.as.logic.file;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author xumengqi
@@ -17,4 +19,12 @@ public interface FileLogic {
      * @return ids
      */
     List<Long> uploadFiles(MultipartFile[] files, String userId);
+
+
+    /**
+     * 获取访问链接
+     * @param attachIdSet /
+     * @return /
+     */
+    Map<Long, String> getFileFullPaths(Set<Long> attachIdSet);
 }

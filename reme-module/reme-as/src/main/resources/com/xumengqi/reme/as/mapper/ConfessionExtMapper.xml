@@ -13,13 +13,13 @@
         <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
         <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified"/>
         <result column="user_name" jdbcType="VARCHAR" property="userName"/>
+        <result column="avatar_attach_id" jdbcType="BIGINT" property="avatarAttachId"/>
         <result column="confession_tag_name" jdbcType="VARCHAR" property="confessionTagName"/>
     </resultMap>
 
     <select id="selectBySchoolId" resultMap="BaseResultMap">
         select cc.*, ct.confession_tag_name from (
-
-        SELECT con.*, u.user_name FROM confession con, user u where con.user_id = u.user_id
+        SELECT con.*, u.user_name, u.avatar_attach_id FROM confession con, user u where con.user_id = u.user_id
         <if test="schoolId != null">
             and u.school_id = #{schoolId}
         </if>
@@ -31,7 +31,8 @@
             <foreach collection="confessionTagIdSet" item="confessionTagId" open="(" separator="," close=")">
                 #{confessionTagId}
             </foreach>
-        </if>) cc, confession_tag ct where cc.confession_tag_id = ct.confession_tag_id
+        </if>
+        ) cc, confession_tag ct where cc.confession_tag_id = ct.confession_tag_id
     </select>
     <select id="selectByUserId" resultType="com.xumengqi.reme.dao.entity.Confession">
         SELECT con.* FROM confession con where con.user_id = #{userId}

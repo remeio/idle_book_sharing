@@ -2,9 +2,11 @@ package com.xumengqi.reme.as.logic.file.impl;
 
 import com.xumengqi.reme.as.logic.file.FileLogic;
 import com.xumengqi.reme.base.BizException;
+import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.MinioUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.dao.entity.Attach;
+import com.xumengqi.reme.dao.entity.AttachExample;
 import com.xumengqi.reme.dao.mapper.AttachMapper;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -13,10 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * @author xumengqi
@@ -68,5 +67,23 @@ public class FileLogicImpl implements FileLogic {
             attachIds.add(attach.getAttachId());
         }
         return attachIds;
+    }
+
+    @Override
+    public Map<Long, String> getFileFullPaths(Set<Long> attachIdSet) {
+        assert attachIdSet != null && attachIdSet.size() > 0;
+        AttachExample attachExample = new AttachExample();
+        attachExample.createCriteria()
+                .andAttachIdIn(new ArrayList<>(attachIdSet));
+        List<Attach> attachList = attachMapper.selectByExample(attachExample);
+        AssertUtils.asserter()
+                .assertTrue(attachIdSet.size() == attachList.size())
+                .elseThrow(ErrorCodeEnum.ATTACH_NOT_EXIST);
+        Map<Long, String> longStringMap = new HashMap<>(attachList.size());
+        final String url = minioUtils.getMinioConfig().getUrl();
+        attachList.forEach(e -> {
+            longStringMap.put(e.getAttachId(), url + e.getAttachFullPath());
+        });
+        return longStringMap;
     }
 }

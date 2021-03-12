@@ -13,6 +13,7 @@ import java.io.InputStream;
 
 /**
  * Minio 对象存储工具类
+ *
  * @author xumengqi
  */
 @Component
@@ -23,8 +24,13 @@ public class MinioUtils {
 
     private MinioClient minioClient;
 
+    public MinioConfig getMinioConfig() {
+        return minioConfig;
+    }
+
     /**
      * 获取 minio 客服端
+     *
      * @return 客服端单例
      */
     public MinioClient getInstance() {

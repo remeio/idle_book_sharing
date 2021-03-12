@@ -72,4 +72,15 @@ public class ConfessionVO extends BaseVO {
      * 用户姓名
      */
     private String userName;
+
+
+    /**
+     * 用户头像附件ID
+     */
+    private Long avatarAttachId;
+
+    /**
+     * 用户头像路径
+     */
+    private String avatarFullPath;
 }
