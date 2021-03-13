@@ -14,9 +14,13 @@ import com.xumengqi.reme.as.vo.ConfessionVO;
 import com.xumengqi.reme.as.vo.FavorVO;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
+import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.ConvertUtils;
+import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.YesOrNoEnum;
 import com.xumengqi.reme.dao.entity.Confession;
+import com.xumengqi.reme.dao.entity.User;
+import com.xumengqi.reme.dao.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -40,6 +44,9 @@ public class ConfessionServiceImpl implements ConfessionService {
     @Autowired
     private FileLogic fileLogic;
 
+    @Autowired
+    private UserMapper userMapper;
+
     @Override
     public PostConfessionResponse postConfession(PostConfessionRequest request) {
         Confession confession = new Confession();
@@ -55,13 +62,15 @@ public class ConfessionServiceImpl implements ConfessionService {
 
     @Override
     public GetConfessionPageBySchoolResponse getConfessionPageBySchool(GetConfessionPageBySchoolRequest request) {
-        final Long schoolId = request.getSchoolId();
         final Set<Long> confessionTagIdSet = Optional.ofNullable(request.getConfessionTagIdSet()).orElse(new HashSet<>());
         final Integer isSolved = request.getIsSolved();
         final Long userId = request.getOperatorId();
-        confessionLogic.checkListConfessionParameter(schoolId,null, confessionTagIdSet, isSolved);
+        User user = userMapper.selectByPrimaryKey(userId);
+        AssertUtils.asserter().assertNotNull(user).elseThrow(ErrorCodeEnum.USER_NOT_EXISTS);
+        final Long schoolId = user.getSchoolId();
+        confessionLogic.checkListConfessionParameter(schoolId, null, confessionTagIdSet, isSolved);
         PageHelper.startPage(request.getPageNum(), request.getPageSize(), Optional.ofNullable(request.getOrderBy()).orElse("cc.gmt_create desc"));
-        List<ConfessionVO> confessionVOList = confessionLogic.listConfessionBySchoolId(request.getSchoolId(), request.getConfessionTagIdSet(), request.getIsSolved());
+        List<ConfessionVO> confessionVOList = confessionLogic.listConfessionBySchoolId(schoolId, confessionTagIdSet, isSolved);
         // 对用户头像路径进行添加
         Map<Long, String> filePathMap = fileLogic.getFileFullPaths(confessionVOList.stream().map(ConfessionVO::getAvatarAttachId).collect(Collectors.toSet()));
         confessionVOList.forEach(e -> {

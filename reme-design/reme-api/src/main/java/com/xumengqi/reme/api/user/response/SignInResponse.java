@@ -16,4 +16,6 @@ public class SignInResponse extends BaseResponse {
     @ApiModelProperty("token")
     private String token;
 
+    @ApiModelProperty("用户ID")
+    private Long userId;
 }

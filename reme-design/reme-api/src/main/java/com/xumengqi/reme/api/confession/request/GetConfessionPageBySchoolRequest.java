@@ -14,9 +14,6 @@ import java.util.Set;
 @Getter
 @Setter
 public class GetConfessionPageBySchoolRequest extends PageRequest {
-    @ApiModelProperty("学校ID")
-    private Long schoolId;
-
     @ApiModelProperty("标签集合")
     private Set<Long> confessionTagIdSet;
 
