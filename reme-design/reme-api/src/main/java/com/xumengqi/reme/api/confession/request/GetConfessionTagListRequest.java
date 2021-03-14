@@ -1,5 +1,6 @@
 package com.xumengqi.reme.api.confession.request;
 
+import com.xumengqi.reme.base.BaseRequest;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,6 @@ import lombok.Setter;
  */
 @Getter
 @Setter
-public class GetConfessionTagListRequest {
+public class GetConfessionTagListRequest extends BaseRequest {
 
 }

@@ -1,6 +1,7 @@
 package com.xumengqi.reme.api.confession.response;
 
 import com.xumengqi.reme.api.confession.dto.ConfessionTagDTO;
+import com.xumengqi.reme.base.BaseResponse;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,7 +14,7 @@ import java.util.List;
  */
 @Getter
 @Setter
-public class GetConfessionTagListResponse {
+public class GetConfessionTagListResponse extends BaseResponse {
     @ApiModelProperty("表白标签列表")
     private List<ConfessionTagDTO> confessionTagList;
 }
