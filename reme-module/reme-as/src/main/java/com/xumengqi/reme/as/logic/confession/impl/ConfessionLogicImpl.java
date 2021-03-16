@@ -14,10 +14,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -75,13 +72,13 @@ public class ConfessionLogicImpl implements ConfessionLogic {
         confessionMapper.insertSelective(confession);
         // 插入附件列表
         AtomicInteger order = new AtomicInteger(1);
-        attachIds.forEach(aLong -> {
+        Optional.ofNullable(attachIds).ifPresent(e -> e.forEach(aLong -> {
             ConfessionAttach confessionAttach = new ConfessionAttach();
             confessionAttach.setAttachId(aLong);
             confessionAttach.setConfessionId(confession.getConfessionId());
             confessionAttach.setAttachOrder(order.getAndIncrement());
             confessionAttachMapper.insertSelective(confessionAttach);
-        });
+        }));
     }
 
     @Override
