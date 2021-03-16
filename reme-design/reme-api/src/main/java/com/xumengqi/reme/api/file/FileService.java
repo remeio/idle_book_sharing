@@ -27,6 +27,6 @@ public interface FileService {
      */
     @ApiOperation("上传文件")
     @PostMapping("/upload")
-    UploadFileResponse upload(@RequestParam(name = "files") MultipartFile[] files, @RequestParam(name = "token") String token);
+    UploadFileResponse upload(@RequestParam(name = "files[]") MultipartFile[] files, @RequestParam(name = "token") String token);
 
 }
