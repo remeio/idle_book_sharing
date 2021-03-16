@@ -55,6 +55,7 @@ public class UserServiceImpl implements UserService {
                 TimeUnit.DAYS.toSeconds(systemConfig.getAccessTokenExpireTimeInDay()));
         SignInResponse signInResponse = new SignInResponse();
         signInResponse.setToken(token);
+        signInResponse.setUserId(userId);
         return signInResponse;
     }
 
