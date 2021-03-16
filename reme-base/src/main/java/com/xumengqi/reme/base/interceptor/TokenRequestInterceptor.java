@@ -69,7 +69,7 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
         String key = RedisKeyPrefixEnum.ACCESS_TOKEN.getPrefix() + token;
         String userId = redisUtils.get(key);
         if (userId == null) {
-            response.setStatus(HttpStatus.UNAUTHORIZED.value());
+            response.setStatus(HttpStatus.OK.value());
             BaseResponse baseResponse = new BaseResponse();
             baseResponse.error(ErrorCodeEnum.INVALID_TOKEN);
             returnJson(response, baseResponse);
