@@ -12,8 +12,12 @@ import com.xumengqi.reme.dao.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -46,21 +50,20 @@ public class ConfessionLogicImpl implements ConfessionLogic {
     @Transactional(rollbackFor = Exception.class)
     @Override
     public void addConfession(Confession confession, Set<Long> attachIds) {
-        if (attachIds == null) {
-            attachIds = new HashSet<>();
+        if (!CollectionUtils.isEmpty(attachIds)) {
+            AttachExample attachExample = new AttachExample();
+            attachExample.createCriteria().andAttachIdIn(new ArrayList<>(attachIds));
+            List<Attach> attachList = attachMapper.selectByExample(attachExample);
+            // 上传附件均存在
+            AssertUtils.asserter().assertTrue(attachList.size() == attachIds.size()).elseThrow(ErrorCodeEnum.ATTACH_NOT_EXIST);
+            // 上传附件必须都是来自此用户
+            Long userId = confession.getUserId();
+            attachList.stream()
+                    .map(Attach::getUserId)
+                    .distinct()
+                    .filter(e -> !e.equals(userId)).findAny()
+                    .ifPresent(aLong -> BizException.error(ErrorCodeEnum.ATTACH_NO_PERMISSION));
         }
-        AttachExample attachExample = new AttachExample();
-        attachExample.createCriteria().andAttachIdIn(new ArrayList<>(attachIds));
-        List<Attach> attachList = attachMapper.selectByExample(attachExample);
-        // 上传附件均存在
-        AssertUtils.asserter().assertTrue(attachList.size() == attachIds.size()).elseThrow(ErrorCodeEnum.ATTACH_NOT_EXIST);
-        // 上传附件必须都是来自此用户
-        Long userId = confession.getUserId();
-        attachList.stream()
-                .map(Attach::getUserId)
-                .distinct()
-                .filter(e -> !e.equals(userId)).findAny()
-                .ifPresent(aLong -> BizException.error(ErrorCodeEnum.ATTACH_NO_PERMISSION));
         // 表白标签必须存在
         AssertUtils.asserter().assertNotNull(confessionTagMapper.selectByPrimaryKey(confession.getConfessionTagId()))
                 .elseThrow(ErrorCodeEnum.CONFESSION_TAG_NOT_EXIST);
