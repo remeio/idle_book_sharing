@@ -8,6 +8,7 @@ import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +22,8 @@ import java.util.List;
  */
 @Component
 public class FileServiceImpl implements FileService {
+    private static final Logger log = Logger.getLogger(FileServiceImpl.class);
+
     @Autowired
     private RedisUtils<String> redisUtils;
 
@@ -29,6 +32,7 @@ public class FileServiceImpl implements FileService {
 
     @Override
     public UploadFileResponse upload(MultipartFile[] files, String token) {
+        log.info("token: " + token);
         AssertUtils.asserter().assertTrue(StringUtils.isNotBlank(token)).elseThrow(ErrorCodeEnum.NO_TOKEN);
         // 将 token 与缓存中的进行对比
         String key = RedisKeyPrefixEnum.ACCESS_TOKEN.getPrefix() + token;
