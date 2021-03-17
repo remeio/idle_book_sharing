@@ -129,7 +129,7 @@ public class ConfessionServiceImpl implements ConfessionService {
             }
             // 匿名且不是本人
             e.setUserId(null);
-            e.setUserName(e.getConfessionTagName());
+            e.setUserName(null);
             e.setAvatarFullPath(null);
         });
         GetConfessionPageBySchoolResponse response = new GetConfessionPageBySchoolResponse();
