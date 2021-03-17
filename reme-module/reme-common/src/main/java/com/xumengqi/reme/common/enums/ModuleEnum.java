@@ -9,33 +9,6 @@ public enum ModuleEnum {
      * 系统
      */
     SYSTEM(100),
-    /**
-     * 用户
-     */
-    USER(101),
-    /**
-     * 学校
-     */
-    SCHOOL(102),
-    /**
-     * 验证码
-     */
-    VERIFICATION_CODE(103),
-
-    /**
-     * 文件
-     */
-    FILE(104),
-
-    /**
-     * 附件
-     */
-    ATTACH(105),
-
-    /**
-     * 表白
-     */
-    CONFESSION(106),
 
     ;
     /**
