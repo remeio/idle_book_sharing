@@ -19,7 +19,10 @@ import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.YesOrNoEnum;
 import com.xumengqi.reme.dao.entity.Confession;
+import com.xumengqi.reme.dao.entity.ConfessionAttach;
+import com.xumengqi.reme.dao.entity.ConfessionAttachExample;
 import com.xumengqi.reme.dao.entity.User;
+import com.xumengqi.reme.dao.mapper.ConfessionAttachMapper;
 import com.xumengqi.reme.dao.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -46,6 +49,9 @@ public class ConfessionServiceImpl implements ConfessionService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ConfessionAttachMapper confessionAttachMapper;
 
     @Override
     public PostConfessionResponse postConfession(PostConfessionRequest request) {
@@ -90,6 +96,22 @@ public class ConfessionServiceImpl implements ConfessionService {
         favorVOList.forEach(f -> {
             confessionDTOList.stream().filter(c -> c.getConfessionId().equals(f.getConfessionId())).forEach(cc -> {
                 cc.setIsHadFavor(f.getFavorCount() > 0);
+            });
+        });
+        // 添加附件列表
+        ConfessionAttachExample confessionAttachExample = new ConfessionAttachExample();
+        confessionAttachExample.createCriteria()
+                .andConfessionIdIn(new ArrayList<>(confessionIdSet));
+        confessionAttachExample.setOrderByClause("attach_order");
+        List<ConfessionAttach> confessionAttachList = confessionAttachMapper.selectByExample(confessionAttachExample);
+        Map<Long, String> attachMap = fileLogic.getFileFullPaths(confessionAttachList.stream().map(ConfessionAttach::getAttachId).collect(Collectors.toSet()));
+        confessionIdSet.forEach(c -> {
+            confessionDTOList.stream().filter(dto -> dto.getConfessionId().equals(c)).findFirst().ifPresent(d -> {
+                d.setAttachFullPathList(confessionAttachList.stream()
+                        .filter(e -> e.getConfessionId().equals(c))
+                        .map(ConfessionAttach::getAttachId)
+                        .map(attachMap::get)
+                        .collect(Collectors.toSet()));
             });
         });
         // 对匿名用户进行过滤

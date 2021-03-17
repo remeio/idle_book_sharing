@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * @author xumengqi
@@ -102,4 +103,9 @@ public class ConfessionDTO extends BaseDTO {
      * 用户头像路径
      */
     private String avatarFullPath;
+
+    /**
+     * 附件列表
+     */
+    private Set<String> attachFullPathList;
 }
