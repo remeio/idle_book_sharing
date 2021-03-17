@@ -77,6 +77,9 @@ public class ConfessionServiceImpl implements ConfessionService {
         confessionLogic.checkListConfessionParameter(schoolId, null, confessionTagIdSet, isSolved);
         PageHelper.startPage(request.getPageNum(), request.getPageSize(), Optional.ofNullable(request.getOrderBy()).orElse("cc.gmt_create desc"));
         List<ConfessionVO> confessionVOList = confessionLogic.listConfessionBySchoolId(schoolId, confessionTagIdSet, isSolved);
+        if (confessionVOList.size() == 0) {
+            return new GetConfessionPageBySchoolResponse();
+        }
         // 对用户头像路径进行添加
         Map<Long, String> filePathMap = fileLogic.getFileFullPaths(confessionVOList.stream().map(ConfessionVO::getAvatarAttachId).collect(Collectors.toSet()));
         confessionVOList.forEach(e -> {
