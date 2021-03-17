@@ -107,16 +107,18 @@ public class ConfessionServiceImpl implements ConfessionService {
                 .andConfessionIdIn(new ArrayList<>(confessionIdSet));
         confessionAttachExample.setOrderByClause("attach_order");
         List<ConfessionAttach> confessionAttachList = confessionAttachMapper.selectByExample(confessionAttachExample);
-        Map<Long, String> attachMap = fileLogic.getFileFullPaths(confessionAttachList.stream().map(ConfessionAttach::getAttachId).collect(Collectors.toSet()));
-        confessionIdSet.forEach(c -> {
-            confessionDTOList.stream().filter(dto -> dto.getConfessionId().equals(c)).findFirst().ifPresent(d -> {
-                d.setAttachFullPathList(confessionAttachList.stream()
-                        .filter(e -> e.getConfessionId().equals(c))
-                        .map(ConfessionAttach::getAttachId)
-                        .map(attachMap::get)
-                        .collect(Collectors.toSet()));
+        if (confessionAttachList.size() > 0) {
+            Map<Long, String> attachMap = fileLogic.getFileFullPaths(confessionAttachList.stream().map(ConfessionAttach::getAttachId).collect(Collectors.toSet()));
+            confessionIdSet.forEach(c -> {
+                confessionDTOList.stream().filter(dto -> dto.getConfessionId().equals(c)).findFirst().ifPresent(d -> {
+                    d.setAttachFullPathList(confessionAttachList.stream()
+                            .filter(e -> e.getConfessionId().equals(c))
+                            .map(ConfessionAttach::getAttachId)
+                            .map(attachMap::get)
+                            .collect(Collectors.toSet()));
+                });
             });
-        });
+        }
         // 对匿名用户进行过滤
         confessionDTOList.forEach(e -> {
             if (YesOrNoEnum.isNo(e.getIsAnonymous())) {
