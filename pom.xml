@@ -11,7 +11,7 @@
     <packaging>pom</packaging>
     <groupId>com.xumengqi</groupId>
     <artifactId>reme</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>reme</name>
     <description>Never remember it.</description>
     <modules>
@@ -28,27 +28,27 @@
             <dependency>
                 <groupId>com.xumengqi</groupId>
                 <artifactId>reme-as</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.xumengqi</groupId>
                 <artifactId>reme-api</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.xumengqi</groupId>
                 <artifactId>reme-common</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.xumengqi</groupId>
                 <artifactId>reme-dao</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2-SNAPSHOT</version>
             </dependency>
             <dependency>
                 <groupId>com.xumengqi</groupId>
                 <artifactId>reme-base</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>0.0.2-SNAPSHOT</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
