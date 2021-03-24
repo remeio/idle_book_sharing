@@ -127,5 +127,9 @@
             <artifactId>minio</artifactId>
             <version>7.1.0</version>
         </dependency>
+        <dependency>
+            <groupId>com.xumengqi</groupId>
+            <artifactId>reme-common</artifactId>
+        </dependency>
     </dependencies>
 </project>

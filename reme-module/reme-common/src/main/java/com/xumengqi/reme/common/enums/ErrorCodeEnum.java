@@ -42,6 +42,8 @@ public enum ErrorCodeEnum {
      * 不是有效的是或否
      */
     NOT_YES_OR_NO(ModuleEnum.SYSTEM, 505, "不是有效的是或否"),
+
+    WRONG_PASSWORD(ModuleEnum.USER, 500, "手机号或密码错误"),
     ;
     /**
      * 状态码

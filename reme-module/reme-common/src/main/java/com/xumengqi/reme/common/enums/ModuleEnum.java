@@ -10,6 +10,11 @@ public enum ModuleEnum {
      */
     SYSTEM(100),
 
+    /**
+     * 用户
+     */
+    USER(101),
+
     ;
     /**
      * 模块编码
