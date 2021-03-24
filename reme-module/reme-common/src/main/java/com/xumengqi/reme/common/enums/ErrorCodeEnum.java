@@ -58,7 +58,13 @@ public enum ErrorCodeEnum {
     /**
      * 学校不存在
      */
-    SCHOOL_NOT_EXIST(ModuleEnum.SCHOOL, 501, "学校不存在"),
+    SCHOOL_NOT_EXIST(ModuleEnum.SCHOOL, 500, "学校不存在"),
+
+    // FILE
+    /**
+     * 学校不存在
+     */
+    FILE_UPLOAD_FAIL(ModuleEnum.FILE, 500, "文件上传失败"),
     ;
     /**
      * 状态码

@@ -18,7 +18,12 @@ public enum ModuleEnum {
     /**
      * 学校
      */
-    SCHOOL(102);
+    SCHOOL(102),
+
+    /**
+     * 文件
+     */
+    FILE(103);
     /**
      * 模块编码
      */
