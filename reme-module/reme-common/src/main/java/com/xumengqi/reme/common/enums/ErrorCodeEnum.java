@@ -43,7 +43,22 @@ public enum ErrorCodeEnum {
      */
     NOT_YES_OR_NO(ModuleEnum.SYSTEM, 505, "不是有效的是或否"),
 
+    // USER
+    /**
+     * 手机号或密码错误
+     */
     WRONG_PASSWORD(ModuleEnum.USER, 500, "手机号或密码错误"),
+
+    /**
+     * 该手机号已被注册
+     */
+    THE_PHONE_NUMBER_HAS_BEEN_REGISTERED(ModuleEnum.USER, 501, "该手机号已被注册"),
+
+    // SCHOOL
+    /**
+     * 学校不存在
+     */
+    SCHOOL_NOT_EXIST(ModuleEnum.SCHOOL, 501, "学校不存在"),
     ;
     /**
      * 状态码

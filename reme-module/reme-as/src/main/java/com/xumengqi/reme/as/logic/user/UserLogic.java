@@ -10,10 +10,18 @@ public interface UserLogic {
 
     /**
      * 验证用户，并返回用户ID
-     * @param userPhone /
+     *
+     * @param userPhone    /
      * @param userPassword /
      * @return 用户ID
      */
     Long validateUser(String userPhone, String userPassword);
 
+    /**
+     * 新增用户
+     *
+     * @param user       /
+     * @param schoolName /
+     */
+    void addUser(User user, String schoolName);
 }

@@ -2,12 +2,15 @@ package com.xumengqi.reme.as.service.user;
 
 import com.xumengqi.reme.api.user.UserService;
 import com.xumengqi.reme.api.user.request.SignInRequest;
+import com.xumengqi.reme.api.user.request.SignUpRequest;
 import com.xumengqi.reme.api.user.response.SignInResponse;
+import com.xumengqi.reme.api.user.response.SignUpResponse;
 import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.conf.SystemConfig;
 import com.xumengqi.reme.base.util.RedisUtils;
 import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
+import com.xumengqi.reme.dao.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -42,5 +45,15 @@ public class UserServiceImpl implements UserService {
         signInResponse.setToken(token);
         signInResponse.setUserId(userId);
         return signInResponse;
+    }
+
+    @Override
+    public SignUpResponse signUp(SignUpRequest request) {
+        User user = new User();
+        user.setUserPhone(request.getUserPhone());
+        user.setUserPassword(request.getUserPassword());
+        user.setUserFullName(request.getUserFullName());
+        userLogic.addUser(user, request.getSchoolName());
+        return new SignUpResponse();
     }
 }

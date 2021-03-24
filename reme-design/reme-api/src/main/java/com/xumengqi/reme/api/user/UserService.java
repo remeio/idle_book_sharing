@@ -1,7 +1,9 @@
 package com.xumengqi.reme.api.user;
 
 import com.xumengqi.reme.api.user.request.SignInRequest;
+import com.xumengqi.reme.api.user.request.SignUpRequest;
 import com.xumengqi.reme.api.user.response.SignInResponse;
+import com.xumengqi.reme.api.user.response.SignUpResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -24,10 +26,21 @@ public interface UserService {
 
     /**
      * 用户登录
+     *
      * @param request /
      * @return /
      */
     @ApiOperation("用户登录")
     @PostMapping("/signIn")
     SignInResponse signIn(@ApiParam @Valid @RequestBody SignInRequest request);
+
+    /**
+     * 注册用户
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("注册用户")
+    @PostMapping("/signUp")
+    SignUpResponse signUp(@ApiParam @Valid @RequestBody SignUpRequest request);
 }

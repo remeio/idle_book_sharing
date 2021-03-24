@@ -15,7 +15,10 @@ public enum ModuleEnum {
      */
     USER(101),
 
-    ;
+    /**
+     * 学校
+     */
+    SCHOOL(102);
     /**
      * 模块编码
      */
