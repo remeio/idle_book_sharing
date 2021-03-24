@@ -45,7 +45,7 @@ public class UserLogicImpl implements UserLogic {
         userExample.createCriteria()
                 .andUserPhoneEqualTo(userPhone);
         // 判断用户是否已注册
-        AssertUtils.asserter().assertEqualOne(userMapper.countByExample(userExample)).elseThrow(ErrorCodeEnum.THE_PHONE_NUMBER_HAS_BEEN_REGISTERED);
+        AssertUtils.asserter().assertEqualZero(userMapper.countByExample(userExample)).elseThrow(ErrorCodeEnum.THE_PHONE_NUMBER_HAS_BEEN_REGISTERED);
         // 判断学校是否存在
         SchoolExample schoolExample = new SchoolExample();
         schoolExample.createCriteria().andSchoolNameEqualTo(schoolName);
