@@ -1,5 +1,6 @@
 package com.xumengqi.reme.as.logic.user;
 
+import com.xumengqi.reme.dao.entity.School;
 import com.xumengqi.reme.dao.entity.User;
 
 /**
@@ -24,4 +25,12 @@ public interface UserLogic {
      * @param schoolName /
      */
     void addUser(User user, String schoolName);
+
+    /**
+     * 获取学校信息
+     *
+     * @param userId /
+     * @return 学校
+     */
+    School getSchoolByUserId(Long userId);
 }

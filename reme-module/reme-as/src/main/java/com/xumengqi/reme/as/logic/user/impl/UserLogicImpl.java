@@ -58,4 +58,13 @@ public class UserLogicImpl implements UserLogic {
         record.setSchoolId(school.getId());
         userMapper.insertSelective(record);
     }
+
+    @Override
+    public School getSchoolByUserId(Long userId) {
+        User user = userMapper.selectByPrimaryKey(userId);
+        AssertUtils.asserter().assertNotNull(user).elseThrow(ErrorCodeEnum.USER_NOT_EXIST);
+        School school = schoolMapper.selectByPrimaryKey(user.getSchoolId());
+        AssertUtils.asserter().assertNotNull(school).elseThrow(ErrorCodeEnum.SCHOOL_NOT_EXIST);
+        return school;
+    }
 }

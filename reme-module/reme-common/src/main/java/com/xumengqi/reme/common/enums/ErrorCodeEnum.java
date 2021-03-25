@@ -54,6 +54,11 @@ public enum ErrorCodeEnum {
      */
     THE_PHONE_NUMBER_HAS_BEEN_REGISTERED(ModuleEnum.USER, 501, "该手机号已被注册"),
 
+    /**
+     * 用户不存在
+     */
+    USER_NOT_EXIST(ModuleEnum.USER, 502, "用户不存在"),
+
     // SCHOOL
     /**
      * 学校不存在
