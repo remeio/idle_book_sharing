@@ -10,6 +10,7 @@ import com.xumengqi.reme.as.logic.book.BookCatalogLogic;
 import com.xumengqi.reme.as.logic.book.BookLogic;
 import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.annotations.AccessToken;
+import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
@@ -24,6 +25,7 @@ import java.util.Optional;
  * @author xumengqi
  * @date 2021/3/25 14:21
  */
+@SystemLog
 @Component
 public class BookServiceImpl implements BookService {
 
