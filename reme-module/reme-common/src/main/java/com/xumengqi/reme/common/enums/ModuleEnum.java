@@ -23,7 +23,12 @@ public enum ModuleEnum {
     /**
      * 文件
      */
-    FILE(103);
+    FILE(103),
+
+    /**
+     * 书籍分类
+     */
+    BOOK_CATALOG(104);
     /**
      * 模块编码
      */

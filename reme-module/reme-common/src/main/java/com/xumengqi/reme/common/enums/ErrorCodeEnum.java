@@ -70,6 +70,12 @@ public enum ErrorCodeEnum {
      * 学校不存在
      */
     FILE_UPLOAD_FAIL(ModuleEnum.FILE, 500, "文件上传失败"),
+
+    // BOOK_CATALOG
+    /**
+     * 书籍分类不存在
+     */
+    BOOK_CATALOG_NOT_EXIST(ModuleEnum.BOOK_CATALOG, 500, "书籍分类不存在"),
     ;
     /**
      * 状态码
