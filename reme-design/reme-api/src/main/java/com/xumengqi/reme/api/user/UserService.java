@@ -53,6 +53,6 @@ public interface UserService {
      * @return /
      */
     @ApiOperation("获取学校名称")
-    @PostMapping("/getSchool")
+    @PostMapping("/getSchoolInfo")
     GetSchoolInfoResponse getSchoolInfo(@ApiParam @Valid @RequestBody GetSchoolInfoRequest request);
 }
