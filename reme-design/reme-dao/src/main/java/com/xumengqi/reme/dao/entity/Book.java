@@ -74,11 +74,11 @@ public class Book implements Serializable {
     private Long userId;
 
     /**
-     * 是否已下架
+     * 书籍状态【1：可借阅，2.已下单，3：借阅中，4：已下架】
      *
      * @mbg.generated
      */
-    private Integer isDelete;
+    private Integer bookStatus;
 
     private static final long serialVersionUID = 1L;
 
@@ -162,12 +162,12 @@ public class Book implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getIsDelete() {
-        return isDelete;
+    public Integer getBookStatus() {
+        return bookStatus;
     }
 
-    public void setIsDelete(Integer isDelete) {
-        this.isDelete = isDelete;
+    public void setBookStatus(Integer bookStatus) {
+        this.bookStatus = bookStatus;
     }
 
     @Override
@@ -186,7 +186,7 @@ public class Book implements Serializable {
         sb.append(", bookCatalogId=").append(bookCatalogId);
         sb.append(", schoolId=").append(schoolId);
         sb.append(", userId=").append(userId);
-        sb.append(", isDelete=").append(isDelete);
+        sb.append(", bookStatus=").append(bookStatus);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

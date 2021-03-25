@@ -1,8 +1,10 @@
 package com.xumengqi.reme.api.book;
 
 import com.xumengqi.reme.api.book.request.GetBookCatalogListRequest;
+import com.xumengqi.reme.api.book.request.GetBookListByBookCatalogRequest;
 import com.xumengqi.reme.api.book.request.UploadBookRequest;
 import com.xumengqi.reme.api.book.response.GetBookCatalogListResponse;
+import com.xumengqi.reme.api.book.response.GetBookListByBookCatalogResponse;
 import com.xumengqi.reme.api.book.response.UploadBookResponse;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -43,4 +45,14 @@ public interface BookService {
     @ApiOperation("获取书籍分类列表")
     @PostMapping("/getBookCatalogList")
     GetBookCatalogListResponse getBookCatalogList(@ApiParam @Valid @RequestBody GetBookCatalogListRequest request);
+
+    /**
+     * 根据书籍分类获取书籍列表
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("根据书籍分类获取书籍列表")
+    @PostMapping("/getBookListByBookCatalog")
+    GetBookListByBookCatalogResponse getBookListByBookCatalog(@ApiParam @Valid @RequestBody GetBookListByBookCatalogRequest request);
 }

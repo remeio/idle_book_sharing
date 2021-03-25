@@ -744,63 +744,63 @@ public class BookExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIsNull() {
-            addCriterion("is_delete is null");
+        public Criteria andBookStatusIsNull() {
+            addCriterion("book_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIsNotNull() {
-            addCriterion("is_delete is not null");
+        public Criteria andBookStatusIsNotNull() {
+            addCriterion("book_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteEqualTo(Integer value) {
-            addCriterion("is_delete =", value, "isDelete");
+        public Criteria andBookStatusEqualTo(Integer value) {
+            addCriterion("book_status =", value, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotEqualTo(Integer value) {
-            addCriterion("is_delete <>", value, "isDelete");
+        public Criteria andBookStatusNotEqualTo(Integer value) {
+            addCriterion("book_status <>", value, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteGreaterThan(Integer value) {
-            addCriterion("is_delete >", value, "isDelete");
+        public Criteria andBookStatusGreaterThan(Integer value) {
+            addCriterion("book_status >", value, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteGreaterThanOrEqualTo(Integer value) {
-            addCriterion("is_delete >=", value, "isDelete");
+        public Criteria andBookStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("book_status >=", value, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteLessThan(Integer value) {
-            addCriterion("is_delete <", value, "isDelete");
+        public Criteria andBookStatusLessThan(Integer value) {
+            addCriterion("book_status <", value, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteLessThanOrEqualTo(Integer value) {
-            addCriterion("is_delete <=", value, "isDelete");
+        public Criteria andBookStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("book_status <=", value, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteIn(List<Integer> values) {
-            addCriterion("is_delete in", values, "isDelete");
+        public Criteria andBookStatusIn(List<Integer> values) {
+            addCriterion("book_status in", values, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotIn(List<Integer> values) {
-            addCriterion("is_delete not in", values, "isDelete");
+        public Criteria andBookStatusNotIn(List<Integer> values) {
+            addCriterion("book_status not in", values, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteBetween(Integer value1, Integer value2) {
-            addCriterion("is_delete between", value1, value2, "isDelete");
+        public Criteria andBookStatusBetween(Integer value1, Integer value2) {
+            addCriterion("book_status between", value1, value2, "bookStatus");
             return (Criteria) this;
         }
 
-        public Criteria andIsDeleteNotBetween(Integer value1, Integer value2) {
-            addCriterion("is_delete not between", value1, value2, "isDelete");
+        public Criteria andBookStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("book_status not between", value1, value2, "bookStatus");
             return (Criteria) this;
         }
     }

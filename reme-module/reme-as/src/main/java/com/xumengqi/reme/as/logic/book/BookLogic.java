@@ -1,6 +1,9 @@
 package com.xumengqi.reme.as.logic.book;
 
+import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.dao.entity.Book;
+
+import java.util.List;
 
 /**
  * @author xumengqi
@@ -14,4 +17,14 @@ public interface BookLogic {
      * @param book /
      */
     void addBook(Book book);
+
+    /**
+     * 获取书籍列表
+     *
+     * @param schoolId       为空查询全部
+     * @param bookCatalogId  为空查询全部
+     * @param bookStatusEnum 为空查询全部
+     * @return /
+     */
+    List<Book> getBookList(Long schoolId, Long bookCatalogId, BookStatusEnum bookStatusEnum);
 }
