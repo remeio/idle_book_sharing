@@ -20,7 +20,9 @@ public class BookCatalogLogicImpl implements BookCatalogLogic {
 
     @Override
     public List<BookCatalog> getBookCatalogList() {
-        return bookCatalogMapper.selectByExample(new BookCatalogExample());
+        BookCatalogExample bookCatalogExample = new BookCatalogExample();
+        bookCatalogExample.setOrderByClause("id asc");
+        return bookCatalogMapper.selectByExample(bookCatalogExample);
     }
 
     @Override
