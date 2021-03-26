@@ -111,6 +111,6 @@ public class BookServiceImpl implements BookService {
         bookDTO.setBookCatalogName(bookCatalogLogic.getBookCatalog(book.getBookCatalogId()).getBookCatalogName());
         GetBookInfoResponse response = new GetBookInfoResponse();
         response.setBookDTO(bookDTO);
-        return null;
+        return response;
     }
 }
