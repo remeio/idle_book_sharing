@@ -1,6 +1,7 @@
 package com.xumengqi.reme.dao.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class User implements Serializable {
     /**
@@ -37,6 +38,41 @@ public class User implements Serializable {
      * @mbg.generated
      */
     private Long schoolId;
+
+    /**
+     * 可用押金
+     *
+     * @mbg.generated
+     */
+    private Long canUseDeposit;
+
+    /**
+     * 占用押金
+     *
+     * @mbg.generated
+     */
+    private Long occupyDeposit;
+
+    /**
+     * 支付损失押金
+     *
+     * @mbg.generated
+     */
+    private Long lossDeposit;
+
+    /**
+     * 所得补偿押金
+     *
+     * @mbg.generated
+     */
+    private Long makeUpDeposit;
+
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
+    private Date gmtCreate;
 
     private static final long serialVersionUID = 1L;
 
@@ -80,6 +116,46 @@ public class User implements Serializable {
         this.schoolId = schoolId;
     }
 
+    public Long getCanUseDeposit() {
+        return canUseDeposit;
+    }
+
+    public void setCanUseDeposit(Long canUseDeposit) {
+        this.canUseDeposit = canUseDeposit;
+    }
+
+    public Long getOccupyDeposit() {
+        return occupyDeposit;
+    }
+
+    public void setOccupyDeposit(Long occupyDeposit) {
+        this.occupyDeposit = occupyDeposit;
+    }
+
+    public Long getLossDeposit() {
+        return lossDeposit;
+    }
+
+    public void setLossDeposit(Long lossDeposit) {
+        this.lossDeposit = lossDeposit;
+    }
+
+    public Long getMakeUpDeposit() {
+        return makeUpDeposit;
+    }
+
+    public void setMakeUpDeposit(Long makeUpDeposit) {
+        this.makeUpDeposit = makeUpDeposit;
+    }
+
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -91,6 +167,11 @@ public class User implements Serializable {
         sb.append(", userPassword=").append(userPassword);
         sb.append(", userFullName=").append(userFullName);
         sb.append(", schoolId=").append(schoolId);
+        sb.append(", canUseDeposit=").append(canUseDeposit);
+        sb.append(", occupyDeposit=").append(occupyDeposit);
+        sb.append(", lossDeposit=").append(lossDeposit);
+        sb.append(", makeUpDeposit=").append(makeUpDeposit);
+        sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

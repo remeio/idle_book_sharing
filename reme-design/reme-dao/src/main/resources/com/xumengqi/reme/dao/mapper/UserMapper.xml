@@ -2,11 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xumengqi.reme.dao.mapper.UserMapper">
   <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.User">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
-    <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
-    <result column="user_full_name" jdbcType="VARCHAR" property="userFullName" />
-    <result column="school_id" jdbcType="BIGINT" property="schoolId" />
+      <id column="id" jdbcType="BIGINT" property="id"/>
+      <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+      <result column="user_password" jdbcType="VARCHAR" property="userPassword"/>
+      <result column="user_full_name" jdbcType="VARCHAR" property="userFullName"/>
+      <result column="school_id" jdbcType="BIGINT" property="schoolId"/>
+      <result column="can_use_deposit" jdbcType="BIGINT" property="canUseDeposit"/>
+      <result column="occupy_deposit" jdbcType="BIGINT" property="occupyDeposit"/>
+      <result column="loss_deposit" jdbcType="BIGINT" property="lossDeposit"/>
+      <result column="make_up_deposit" jdbcType="BIGINT" property="makeUpDeposit"/>
+      <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, user_phone, user_password, user_full_name, school_id
+      id, user_phone, user_password, user_full_name, school_id, can_use_deposit, occupy_deposit,
+    loss_deposit, make_up_deposit, gmt_create
   </sql>
   <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -103,10 +109,14 @@
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into user (user_phone, user_password, user_full_name, 
-      school_id)
-    values (#{userPhone,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userFullName,jdbcType=VARCHAR}, 
-      #{schoolId,jdbcType=BIGINT})
+      insert into user (user_phone, user_password, user_full_name,
+      school_id, can_use_deposit, occupy_deposit,
+      loss_deposit, make_up_deposit, gmt_create
+      )
+      values (#{userPhone,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{userFullName,jdbcType=VARCHAR},
+      #{schoolId,jdbcType=BIGINT}, #{canUseDeposit,jdbcType=BIGINT}, #{occupyDeposit,jdbcType=BIGINT},
+      #{lossDeposit,jdbcType=BIGINT}, #{makeUpDeposit,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.User">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -117,29 +127,59 @@
       <if test="userPhone != null">
         user_phone,
       </if>
-      <if test="userPassword != null">
-        user_password,
-      </if>
-      <if test="userFullName != null">
-        user_full_name,
-      </if>
-      <if test="schoolId != null">
-        school_id,
-      </if>
+        <if test="userPassword != null">
+            user_password,
+        </if>
+        <if test="userFullName != null">
+            user_full_name,
+        </if>
+        <if test="schoolId != null">
+            school_id,
+        </if>
+        <if test="canUseDeposit != null">
+            can_use_deposit,
+        </if>
+        <if test="occupyDeposit != null">
+            occupy_deposit,
+        </if>
+        <if test="lossDeposit != null">
+            loss_deposit,
+        </if>
+        <if test="makeUpDeposit != null">
+            make_up_deposit,
+        </if>
+        <if test="gmtCreate != null">
+            gmt_create,
+        </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="userPhone != null">
         #{userPhone,jdbcType=VARCHAR},
       </if>
-      <if test="userPassword != null">
-        #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userFullName != null">
-        #{userFullName,jdbcType=VARCHAR},
-      </if>
-      <if test="schoolId != null">
-        #{schoolId,jdbcType=BIGINT},
-      </if>
+        <if test="userPassword != null">
+            #{userPassword,jdbcType=VARCHAR},
+        </if>
+        <if test="userFullName != null">
+            #{userFullName,jdbcType=VARCHAR},
+        </if>
+        <if test="schoolId != null">
+            #{schoolId,jdbcType=BIGINT},
+        </if>
+        <if test="canUseDeposit != null">
+            #{canUseDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="occupyDeposit != null">
+            #{occupyDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="lossDeposit != null">
+            #{lossDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="makeUpDeposit != null">
+            #{makeUpDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="gmtCreate != null">
+            #{gmtCreate,jdbcType=TIMESTAMP},
+        </if>
     </trim>
   </insert>
   <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.UserExample" resultType="java.lang.Long">
@@ -155,30 +195,50 @@
         id = #{record.id,jdbcType=BIGINT},
       </if>
       <if test="record.userPhone != null">
-        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+          user_phone = #{record.userPhone,jdbcType=VARCHAR},
       </if>
-      <if test="record.userPassword != null">
-        user_password = #{record.userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userFullName != null">
-        user_full_name = #{record.userFullName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.schoolId != null">
-        school_id = #{record.schoolId,jdbcType=BIGINT},
-      </if>
+        <if test="record.userPassword != null">
+            user_password = #{record.userPassword,jdbcType=VARCHAR},
+        </if>
+        <if test="record.userFullName != null">
+            user_full_name = #{record.userFullName,jdbcType=VARCHAR},
+        </if>
+        <if test="record.schoolId != null">
+            school_id = #{record.schoolId,jdbcType=BIGINT},
+        </if>
+        <if test="record.canUseDeposit != null">
+            can_use_deposit = #{record.canUseDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="record.occupyDeposit != null">
+            occupy_deposit = #{record.occupyDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="record.lossDeposit != null">
+            loss_deposit = #{record.lossDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="record.makeUpDeposit != null">
+            make_up_deposit = #{record.makeUpDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="record.gmtCreate != null">
+            gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+        </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update user
-    set id = #{record.id,jdbcType=BIGINT},
+      update user
+      set id = #{record.id,jdbcType=BIGINT},
       user_phone = #{record.userPhone,jdbcType=VARCHAR},
       user_password = #{record.userPassword,jdbcType=VARCHAR},
       user_full_name = #{record.userFullName,jdbcType=VARCHAR},
-      school_id = #{record.schoolId,jdbcType=BIGINT}
-    <if test="_parameter != null">
+      school_id = #{record.schoolId,jdbcType=BIGINT},
+      can_use_deposit = #{record.canUseDeposit,jdbcType=BIGINT},
+      occupy_deposit = #{record.occupyDeposit,jdbcType=BIGINT},
+      loss_deposit = #{record.lossDeposit,jdbcType=BIGINT},
+      make_up_deposit = #{record.makeUpDeposit,jdbcType=BIGINT},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
+      <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
@@ -188,24 +248,44 @@
       <if test="userPhone != null">
         user_phone = #{userPhone,jdbcType=VARCHAR},
       </if>
-      <if test="userPassword != null">
-        user_password = #{userPassword,jdbcType=VARCHAR},
-      </if>
-      <if test="userFullName != null">
-        user_full_name = #{userFullName,jdbcType=VARCHAR},
-      </if>
-      <if test="schoolId != null">
-        school_id = #{schoolId,jdbcType=BIGINT},
-      </if>
+        <if test="userPassword != null">
+            user_password = #{userPassword,jdbcType=VARCHAR},
+        </if>
+        <if test="userFullName != null">
+            user_full_name = #{userFullName,jdbcType=VARCHAR},
+        </if>
+        <if test="schoolId != null">
+            school_id = #{schoolId,jdbcType=BIGINT},
+        </if>
+        <if test="canUseDeposit != null">
+            can_use_deposit = #{canUseDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="occupyDeposit != null">
+            occupy_deposit = #{occupyDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="lossDeposit != null">
+            loss_deposit = #{lossDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="makeUpDeposit != null">
+            make_up_deposit = #{makeUpDeposit,jdbcType=BIGINT},
+        </if>
+        <if test="gmtCreate != null">
+            gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+        </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.User">
-    update user
-    set user_phone = #{userPhone,jdbcType=VARCHAR},
-      user_password = #{userPassword,jdbcType=VARCHAR},
-      user_full_name = #{userFullName,jdbcType=VARCHAR},
-      school_id = #{schoolId,jdbcType=BIGINT}
-    where id = #{id,jdbcType=BIGINT}
+      update user
+      set user_phone      = #{userPhone,jdbcType=VARCHAR},
+          user_password   = #{userPassword,jdbcType=VARCHAR},
+          user_full_name  = #{userFullName,jdbcType=VARCHAR},
+          school_id       = #{schoolId,jdbcType=BIGINT},
+          can_use_deposit = #{canUseDeposit,jdbcType=BIGINT},
+          occupy_deposit  = #{occupyDeposit,jdbcType=BIGINT},
+          loss_deposit    = #{lossDeposit,jdbcType=BIGINT},
+          make_up_deposit = #{makeUpDeposit,jdbcType=BIGINT},
+          gmt_create      = #{gmtCreate,jdbcType=TIMESTAMP}
+      where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

@@ -1,6 +1,7 @@
 package com.xumengqi.reme.dao.entity;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class UserExample {
@@ -431,6 +432,306 @@ public class UserExample {
 
         public Criteria andSchoolIdNotBetween(Long value1, Long value2) {
             addCriterion("school_id not between", value1, value2, "schoolId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositIsNull() {
+            addCriterion("can_use_deposit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositIsNotNull() {
+            addCriterion("can_use_deposit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositEqualTo(Long value) {
+            addCriterion("can_use_deposit =", value, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositNotEqualTo(Long value) {
+            addCriterion("can_use_deposit <>", value, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositGreaterThan(Long value) {
+            addCriterion("can_use_deposit >", value, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositGreaterThanOrEqualTo(Long value) {
+            addCriterion("can_use_deposit >=", value, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositLessThan(Long value) {
+            addCriterion("can_use_deposit <", value, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositLessThanOrEqualTo(Long value) {
+            addCriterion("can_use_deposit <=", value, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositIn(List<Long> values) {
+            addCriterion("can_use_deposit in", values, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositNotIn(List<Long> values) {
+            addCriterion("can_use_deposit not in", values, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositBetween(Long value1, Long value2) {
+            addCriterion("can_use_deposit between", value1, value2, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andCanUseDepositNotBetween(Long value1, Long value2) {
+            addCriterion("can_use_deposit not between", value1, value2, "canUseDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositIsNull() {
+            addCriterion("occupy_deposit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositIsNotNull() {
+            addCriterion("occupy_deposit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositEqualTo(Long value) {
+            addCriterion("occupy_deposit =", value, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositNotEqualTo(Long value) {
+            addCriterion("occupy_deposit <>", value, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositGreaterThan(Long value) {
+            addCriterion("occupy_deposit >", value, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositGreaterThanOrEqualTo(Long value) {
+            addCriterion("occupy_deposit >=", value, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositLessThan(Long value) {
+            addCriterion("occupy_deposit <", value, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositLessThanOrEqualTo(Long value) {
+            addCriterion("occupy_deposit <=", value, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositIn(List<Long> values) {
+            addCriterion("occupy_deposit in", values, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositNotIn(List<Long> values) {
+            addCriterion("occupy_deposit not in", values, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositBetween(Long value1, Long value2) {
+            addCriterion("occupy_deposit between", value1, value2, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andOccupyDepositNotBetween(Long value1, Long value2) {
+            addCriterion("occupy_deposit not between", value1, value2, "occupyDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositIsNull() {
+            addCriterion("loss_deposit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositIsNotNull() {
+            addCriterion("loss_deposit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositEqualTo(Long value) {
+            addCriterion("loss_deposit =", value, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositNotEqualTo(Long value) {
+            addCriterion("loss_deposit <>", value, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositGreaterThan(Long value) {
+            addCriterion("loss_deposit >", value, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositGreaterThanOrEqualTo(Long value) {
+            addCriterion("loss_deposit >=", value, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositLessThan(Long value) {
+            addCriterion("loss_deposit <", value, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositLessThanOrEqualTo(Long value) {
+            addCriterion("loss_deposit <=", value, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositIn(List<Long> values) {
+            addCriterion("loss_deposit in", values, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositNotIn(List<Long> values) {
+            addCriterion("loss_deposit not in", values, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositBetween(Long value1, Long value2) {
+            addCriterion("loss_deposit between", value1, value2, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andLossDepositNotBetween(Long value1, Long value2) {
+            addCriterion("loss_deposit not between", value1, value2, "lossDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositIsNull() {
+            addCriterion("make_up_deposit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositIsNotNull() {
+            addCriterion("make_up_deposit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositEqualTo(Long value) {
+            addCriterion("make_up_deposit =", value, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositNotEqualTo(Long value) {
+            addCriterion("make_up_deposit <>", value, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositGreaterThan(Long value) {
+            addCriterion("make_up_deposit >", value, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositGreaterThanOrEqualTo(Long value) {
+            addCriterion("make_up_deposit >=", value, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositLessThan(Long value) {
+            addCriterion("make_up_deposit <", value, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositLessThanOrEqualTo(Long value) {
+            addCriterion("make_up_deposit <=", value, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositIn(List<Long> values) {
+            addCriterion("make_up_deposit in", values, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositNotIn(List<Long> values) {
+            addCriterion("make_up_deposit not in", values, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositBetween(Long value1, Long value2) {
+            addCriterion("make_up_deposit between", value1, value2, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andMakeUpDepositNotBetween(Long value1, Long value2) {
+            addCriterion("make_up_deposit not between", value1, value2, "makeUpDeposit");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNull() {
+            addCriterion("gmt_create is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNotNull() {
+            addCriterion("gmt_create is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateEqualTo(Date value) {
+            addCriterion("gmt_create =", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotEqualTo(Date value) {
+            addCriterion("gmt_create <>", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThan(Date value) {
+            addCriterion("gmt_create >", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThanOrEqualTo(Date value) {
+            addCriterion("gmt_create >=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThan(Date value) {
+            addCriterion("gmt_create <", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThanOrEqualTo(Date value) {
+            addCriterion("gmt_create <=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIn(List<Date> values) {
+            addCriterion("gmt_create in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotIn(List<Date> values) {
+            addCriterion("gmt_create not in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateBetween(Date value1, Date value2) {
+            addCriterion("gmt_create between", value1, value2, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotBetween(Date value1, Date value2) {
+            addCriterion("gmt_create not between", value1, value2, "gmtCreate");
             return (Criteria) this;
         }
     }

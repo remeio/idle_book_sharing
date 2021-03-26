@@ -1,6 +1,7 @@
 package com.xumengqi.reme.dao.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 public class Book implements Serializable {
     /**
@@ -79,6 +80,13 @@ public class Book implements Serializable {
      * @mbg.generated
      */
     private Integer bookStatus;
+
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
+    private Date gmtCreate;
 
     private static final long serialVersionUID = 1L;
 
@@ -170,6 +178,14 @@ public class Book implements Serializable {
         this.bookStatus = bookStatus;
     }
 
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -187,6 +203,7 @@ public class Book implements Serializable {
         sb.append(", schoolId=").append(schoolId);
         sb.append(", userId=").append(userId);
         sb.append(", bookStatus=").append(bookStatus);
+        sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

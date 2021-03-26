@@ -24,6 +24,7 @@ import com.xumengqi.reme.dao.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -66,6 +67,7 @@ public class BookServiceImpl implements BookService {
         book.setSchoolId(userLogic.getSchoolByUserId(userId).getId());
         // 初始为可借阅
         book.setBookStatus(BookStatusEnum.CAN_BE_BORROWED.getCode());
+        book.setGmtCreate(new Date());
         bookLogic.addBook(book);
         return new UploadBookResponse();
     }

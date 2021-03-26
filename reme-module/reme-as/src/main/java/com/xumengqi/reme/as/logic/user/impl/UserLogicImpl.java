@@ -12,6 +12,8 @@ import com.xumengqi.reme.dao.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
 /**
  * @author xumengqi
  * @date 2021/2/27 13:23
@@ -56,6 +58,7 @@ public class UserLogicImpl implements UserLogic {
         record.setUserPassword(userPassword);
         record.setUserFullName(user.getUserFullName());
         record.setSchoolId(school.getId());
+        record.setGmtCreate(new Date());
         userMapper.insertSelective(record);
     }
 
