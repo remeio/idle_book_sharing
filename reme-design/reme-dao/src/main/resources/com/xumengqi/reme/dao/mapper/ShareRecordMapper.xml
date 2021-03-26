@@ -5,6 +5,7 @@
         <id column="id" jdbcType="BIGINT" property="id"/>
         <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
         <result column="book_id" jdbcType="BIGINT" property="bookId"/>
+        <result column="share_user_id" jdbcType="BIGINT" property="shareUserId"/>
         <result column="borrow_user_id" jdbcType="BIGINT" property="borrowUserId"/>
         <result column="record_status" jdbcType="INTEGER" property="recordStatus"/>
         <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
@@ -70,7 +71,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        id, order_no, book_id, borrow_user_id, record_status, gmt_create
+        id, order_no, book_id, share_user_id, borrow_user_id, record_status, gmt_create
     </sql>
     <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.ShareRecordExample"
             resultMap="BaseResultMap">
@@ -108,10 +109,12 @@
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into share_record (order_no, book_id, borrow_user_id,
-        record_status, gmt_create)
-        values (#{orderNo,jdbcType=VARCHAR}, #{bookId,jdbcType=BIGINT}, #{borrowUserId,jdbcType=BIGINT},
-        #{recordStatus,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP})
+        insert into share_record (order_no, book_id, share_user_id,
+        borrow_user_id, record_status, gmt_create
+        )
+        values (#{orderNo,jdbcType=VARCHAR}, #{bookId,jdbcType=BIGINT}, #{shareUserId,jdbcType=BIGINT},
+        #{borrowUserId,jdbcType=BIGINT}, #{recordStatus,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}
+        )
     </insert>
     <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.ShareRecord">
         <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -124,6 +127,9 @@
             </if>
             <if test="bookId != null">
                 book_id,
+            </if>
+            <if test="shareUserId != null">
+                share_user_id,
             </if>
             <if test="borrowUserId != null">
                 borrow_user_id,
@@ -141,6 +147,9 @@
             </if>
             <if test="bookId != null">
                 #{bookId,jdbcType=BIGINT},
+            </if>
+            <if test="shareUserId != null">
+                #{shareUserId,jdbcType=BIGINT},
             </if>
             <if test="borrowUserId != null">
                 #{borrowUserId,jdbcType=BIGINT},
@@ -172,6 +181,9 @@
             <if test="record.bookId != null">
                 book_id = #{record.bookId,jdbcType=BIGINT},
             </if>
+            <if test="record.shareUserId != null">
+                share_user_id = #{record.shareUserId,jdbcType=BIGINT},
+            </if>
             <if test="record.borrowUserId != null">
                 borrow_user_id = #{record.borrowUserId,jdbcType=BIGINT},
             </if>
@@ -191,6 +203,7 @@
         set id = #{record.id,jdbcType=BIGINT},
         order_no = #{record.orderNo,jdbcType=VARCHAR},
         book_id = #{record.bookId,jdbcType=BIGINT},
+        share_user_id = #{record.shareUserId,jdbcType=BIGINT},
         borrow_user_id = #{record.borrowUserId,jdbcType=BIGINT},
         record_status = #{record.recordStatus,jdbcType=INTEGER},
         gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
@@ -206,6 +219,9 @@
             </if>
             <if test="bookId != null">
                 book_id = #{bookId,jdbcType=BIGINT},
+            </if>
+            <if test="shareUserId != null">
+                share_user_id = #{shareUserId,jdbcType=BIGINT},
             </if>
             <if test="borrowUserId != null">
                 borrow_user_id = #{borrowUserId,jdbcType=BIGINT},
@@ -223,6 +239,7 @@
         update share_record
         set order_no       = #{orderNo,jdbcType=VARCHAR},
             book_id        = #{bookId,jdbcType=BIGINT},
+            share_user_id  = #{shareUserId,jdbcType=BIGINT},
             borrow_user_id = #{borrowUserId,jdbcType=BIGINT},
             record_status  = #{recordStatus,jdbcType=INTEGER},
             gmt_create     = #{gmtCreate,jdbcType=TIMESTAMP}

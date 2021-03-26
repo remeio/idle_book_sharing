@@ -78,8 +78,48 @@ public enum ErrorCodeEnum {
     BOOK_CATALOG_NOT_EXIST(ModuleEnum.BOOK_CATALOG, 500, "书籍分类不存在"),
 
     // BOOK
+    /**
+     * 书籍不存在
+     */
     BOOK_NOT_EXIST(ModuleEnum.BOOK, 500, "书籍不存在"),
+
+    /**
+     * 书籍状态不匹配
+     */
+    BOOK_BORROWING(ModuleEnum.BOOK, 501, "书籍已被借阅"),
+
+    // SHARE_RECORD
+
+    /**
+     * 共享记录不存在
+     */
+    SHARE_RECORD_NOT_EXIST(ModuleEnum.SHARE_RECORD, 500, "共享记录不存在"),
+
+    /**
+     * 共享记录与操作者不匹配
+     */
+    SHARE_RECORD_NOT_MATCH(ModuleEnum.SHARE_RECORD, 501, "共享记录与操作者不匹配"),
+
+    /**
+     * 共享记录修改状态不匹配
+     */
+    SHARE_RECORD_STATUS_NOT_MATCH(ModuleEnum.SHARE_RECORD, 502, "共享记录修改状态不匹配"),
+
+
+    /**
+     * 书籍共享同时又借阅
+     */
+    BOOK_BORROW_AND_SHARE_ON_SAME_TIME(ModuleEnum.SHARE_RECORD, 503, "不能借阅自己所共享的书籍"),
+
+
+    // DEPOSIT
+    /**
+     *
+     */
+    CAN_USE_DEPOSIT_NOT_ENOUGH(ModuleEnum.DEPOSIT, 500, "可用押金不足"),
     ;
+
+
     /**
      * 状态码
      */

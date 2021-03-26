@@ -33,7 +33,21 @@ public enum ModuleEnum {
      * 书籍
      */
     BOOK(105),
-    ;
+
+    /**
+     * 共享记录
+     */
+    SHARE_RECORD(106),
+
+    /**
+     * 共享日志
+     */
+    SHARE_LOG(107),
+
+    /**
+     * 押金
+     */
+    DEPOSIT(108);
     /**
      * 模块编码
      */

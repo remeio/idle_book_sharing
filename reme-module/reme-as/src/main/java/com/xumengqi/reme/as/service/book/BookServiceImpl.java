@@ -3,16 +3,11 @@ package com.xumengqi.reme.as.service.book;
 import com.xumengqi.reme.api.book.BookService;
 import com.xumengqi.reme.api.book.dto.BookCatalogDTO;
 import com.xumengqi.reme.api.book.dto.BookDTO;
-import com.xumengqi.reme.api.book.request.GetBookCatalogListRequest;
-import com.xumengqi.reme.api.book.request.GetBookInfoRequest;
-import com.xumengqi.reme.api.book.request.GetBookListByBookCatalogRequest;
-import com.xumengqi.reme.api.book.request.UploadBookRequest;
-import com.xumengqi.reme.api.book.response.GetBookCatalogListResponse;
-import com.xumengqi.reme.api.book.response.GetBookInfoResponse;
-import com.xumengqi.reme.api.book.response.GetBookListByBookCatalogResponse;
-import com.xumengqi.reme.api.book.response.UploadBookResponse;
+import com.xumengqi.reme.api.book.request.*;
+import com.xumengqi.reme.api.book.response.*;
 import com.xumengqi.reme.as.logic.book.BookCatalogLogic;
 import com.xumengqi.reme.as.logic.book.BookLogic;
+import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
 import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
@@ -44,6 +39,9 @@ public class BookServiceImpl implements BookService {
 
     @Autowired
     private UserLogic userLogic;
+
+    @Autowired
+    private ShareRecordLogic shareRecordLogic;
 
     @AccessToken
     @Override
@@ -114,5 +112,14 @@ public class BookServiceImpl implements BookService {
         GetBookInfoResponse response = new GetBookInfoResponse();
         response.setBookDTO(bookDTO);
         return response;
+    }
+
+    @AccessToken
+    @Override
+    public BorrowBookResponse borrowBook(BorrowBookRequest request) {
+        final Long bookId = request.getBookId();
+        final Long borrowUserId = request.getOperatorId();
+        shareRecordLogic.borrowBook(bookId, borrowUserId);
+        return new BorrowBookResponse();
     }
 }

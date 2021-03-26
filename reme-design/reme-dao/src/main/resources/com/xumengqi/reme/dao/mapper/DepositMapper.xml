@@ -7,9 +7,9 @@
         <result column="deposit_amount" jdbcType="BIGINT" property="depositAmount"/>
         <result column="deposit_operate_type" jdbcType="INTEGER" property="depositOperateType"/>
         <result column="user_id" jdbcType="BIGINT" property="userId"/>
-        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
         <result column="inner_order_no" jdbcType="VARCHAR" property="innerOrderNo"/>
         <result column="outer_order_no" jdbcType="VARCHAR" property="outerOrderNo"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
     </resultMap>
     <sql id="Example_Where_Clause">
         <where>
@@ -72,8 +72,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-        deposit_id, deposit_order_no, deposit_amount, deposit_operate_type, user_id, gmt_create,
-    inner_order_no, outer_order_no
+        deposit_id, deposit_order_no, deposit_amount, deposit_operate_type, user_id, inner_order_no,
+    outer_order_no, gmt_create
     </sql>
     <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.DepositExample" resultMap="BaseResultMap">
         select
@@ -108,11 +108,11 @@
     </delete>
     <insert id="insert" parameterType="com.xumengqi.reme.dao.entity.Deposit">
         insert into deposit (deposit_id, deposit_order_no, deposit_amount,
-                             deposit_operate_type, user_id, gmt_create,
-                             inner_order_no, outer_order_no)
+                             deposit_operate_type, user_id, inner_order_no,
+                             outer_order_no, gmt_create)
         values (#{depositId,jdbcType=BIGINT}, #{depositOrderNo,jdbcType=VARCHAR}, #{depositAmount,jdbcType=BIGINT},
-                #{depositOperateType,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP},
-                #{innerOrderNo,jdbcType=VARCHAR}, #{outerOrderNo,jdbcType=VARCHAR})
+                #{depositOperateType,jdbcType=INTEGER}, #{userId,jdbcType=BIGINT}, #{innerOrderNo,jdbcType=VARCHAR},
+                #{outerOrderNo,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP})
     </insert>
     <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Deposit">
         insert into deposit
@@ -132,14 +132,14 @@
             <if test="userId != null">
                 user_id,
             </if>
-            <if test="gmtCreate != null">
-                gmt_create,
-            </if>
             <if test="innerOrderNo != null">
                 inner_order_no,
             </if>
             <if test="outerOrderNo != null">
                 outer_order_no,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -158,14 +158,14 @@
             <if test="userId != null">
                 #{userId,jdbcType=BIGINT},
             </if>
-            <if test="gmtCreate != null">
-                #{gmtCreate,jdbcType=TIMESTAMP},
-            </if>
             <if test="innerOrderNo != null">
                 #{innerOrderNo,jdbcType=VARCHAR},
             </if>
             <if test="outerOrderNo != null">
                 #{outerOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
@@ -193,14 +193,14 @@
             <if test="record.userId != null">
                 user_id = #{record.userId,jdbcType=BIGINT},
             </if>
-            <if test="record.gmtCreate != null">
-                gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-            </if>
             <if test="record.innerOrderNo != null">
                 inner_order_no = #{record.innerOrderNo,jdbcType=VARCHAR},
             </if>
             <if test="record.outerOrderNo != null">
                 outer_order_no = #{record.outerOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="record.gmtCreate != null">
+                gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
             </if>
         </set>
         <if test="_parameter != null">
@@ -214,9 +214,9 @@
         deposit_amount = #{record.depositAmount,jdbcType=BIGINT},
         deposit_operate_type = #{record.depositOperateType,jdbcType=INTEGER},
         user_id = #{record.userId,jdbcType=BIGINT},
-        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
         inner_order_no = #{record.innerOrderNo,jdbcType=VARCHAR},
-        outer_order_no = #{record.outerOrderNo,jdbcType=VARCHAR}
+        outer_order_no = #{record.outerOrderNo,jdbcType=VARCHAR},
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -236,14 +236,14 @@
             <if test="userId != null">
                 user_id = #{userId,jdbcType=BIGINT},
             </if>
-            <if test="gmtCreate != null">
-                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-            </if>
             <if test="innerOrderNo != null">
                 inner_order_no = #{innerOrderNo,jdbcType=VARCHAR},
             </if>
             <if test="outerOrderNo != null">
                 outer_order_no = #{outerOrderNo,jdbcType=VARCHAR},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
             </if>
         </set>
         where deposit_id = #{depositId,jdbcType=BIGINT}
@@ -254,9 +254,9 @@
             deposit_amount       = #{depositAmount,jdbcType=BIGINT},
             deposit_operate_type = #{depositOperateType,jdbcType=INTEGER},
             user_id              = #{userId,jdbcType=BIGINT},
-            gmt_create           = #{gmtCreate,jdbcType=TIMESTAMP},
             inner_order_no       = #{innerOrderNo,jdbcType=VARCHAR},
-            outer_order_no       = #{outerOrderNo,jdbcType=VARCHAR}
+            outer_order_no       = #{outerOrderNo,jdbcType=VARCHAR},
+            gmt_create           = #{gmtCreate,jdbcType=TIMESTAMP}
         where deposit_id = #{depositId,jdbcType=BIGINT}
     </update>
 </mapper>

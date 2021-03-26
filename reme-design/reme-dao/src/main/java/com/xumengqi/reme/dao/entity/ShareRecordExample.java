@@ -295,6 +295,66 @@ public class ShareRecordExample {
             return (Criteria) this;
         }
 
+        public Criteria andShareUserIdIsNull() {
+            addCriterion("share_user_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdIsNotNull() {
+            addCriterion("share_user_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdEqualTo(Long value) {
+            addCriterion("share_user_id =", value, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdNotEqualTo(Long value) {
+            addCriterion("share_user_id <>", value, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdGreaterThan(Long value) {
+            addCriterion("share_user_id >", value, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("share_user_id >=", value, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdLessThan(Long value) {
+            addCriterion("share_user_id <", value, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdLessThanOrEqualTo(Long value) {
+            addCriterion("share_user_id <=", value, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdIn(List<Long> values) {
+            addCriterion("share_user_id in", values, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdNotIn(List<Long> values) {
+            addCriterion("share_user_id not in", values, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdBetween(Long value1, Long value2) {
+            addCriterion("share_user_id between", value1, value2, "shareUserId");
+            return (Criteria) this;
+        }
+
+        public Criteria andShareUserIdNotBetween(Long value1, Long value2) {
+            addCriterion("share_user_id not between", value1, value2, "shareUserId");
+            return (Criteria) this;
+        }
+
         public Criteria andBorrowUserIdIsNull() {
             addCriterion("borrow_user_id is null");
             return (Criteria) this;

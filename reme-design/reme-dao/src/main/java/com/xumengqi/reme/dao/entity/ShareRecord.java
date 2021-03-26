@@ -26,6 +26,13 @@ public class ShareRecord implements Serializable {
     private Long bookId;
 
     /**
+     * 共享者ID
+     *
+     * @mbg.generated
+     */
+    private Long shareUserId;
+
+    /**
      * 借阅者ID
      *
      * @mbg.generated
@@ -72,6 +79,14 @@ public class ShareRecord implements Serializable {
         this.bookId = bookId;
     }
 
+    public Long getShareUserId() {
+        return shareUserId;
+    }
+
+    public void setShareUserId(Long shareUserId) {
+        this.shareUserId = shareUserId;
+    }
+
     public Long getBorrowUserId() {
         return borrowUserId;
     }
@@ -105,6 +120,7 @@ public class ShareRecord implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", orderNo=").append(orderNo);
         sb.append(", bookId=").append(bookId);
+        sb.append(", shareUserId=").append(shareUserId);
         sb.append(", borrowUserId=").append(borrowUserId);
         sb.append(", recordStatus=").append(recordStatus);
         sb.append(", gmtCreate=").append(gmtCreate);

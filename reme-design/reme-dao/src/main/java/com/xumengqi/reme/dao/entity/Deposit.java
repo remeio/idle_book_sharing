@@ -19,7 +19,7 @@ public class Deposit implements Serializable {
     private String depositOrderNo;
 
     /**
-     * 押金金额（以分为单位）
+     * 押金金额
      *
      * @mbg.generated
      */
@@ -40,13 +40,6 @@ public class Deposit implements Serializable {
     private Long userId;
 
     /**
-     * 创建时间
-     *
-     * @mbg.generated
-     */
-    private Date gmtCreate;
-
-    /**
      * 内部订单号（关联支付损失和所得补偿）
      *
      * @mbg.generated
@@ -59,6 +52,13 @@ public class Deposit implements Serializable {
      * @mbg.generated
      */
     private String outerOrderNo;
+
+    /**
+     * 创建时间
+     *
+     * @mbg.generated
+     */
+    private Date gmtCreate;
 
     private static final long serialVersionUID = 1L;
 
@@ -102,14 +102,6 @@ public class Deposit implements Serializable {
         this.userId = userId;
     }
 
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
     public String getInnerOrderNo() {
         return innerOrderNo;
     }
@@ -126,6 +118,14 @@ public class Deposit implements Serializable {
         this.outerOrderNo = outerOrderNo;
     }
 
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -137,9 +137,9 @@ public class Deposit implements Serializable {
         sb.append(", depositAmount=").append(depositAmount);
         sb.append(", depositOperateType=").append(depositOperateType);
         sb.append(", userId=").append(userId);
-        sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", innerOrderNo=").append(innerOrderNo);
         sb.append(", outerOrderNo=").append(outerOrderNo);
+        sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

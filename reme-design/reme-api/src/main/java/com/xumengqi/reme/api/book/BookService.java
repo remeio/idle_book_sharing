@@ -1,13 +1,7 @@
 package com.xumengqi.reme.api.book;
 
-import com.xumengqi.reme.api.book.request.GetBookCatalogListRequest;
-import com.xumengqi.reme.api.book.request.GetBookInfoRequest;
-import com.xumengqi.reme.api.book.request.GetBookListByBookCatalogRequest;
-import com.xumengqi.reme.api.book.request.UploadBookRequest;
-import com.xumengqi.reme.api.book.response.GetBookCatalogListResponse;
-import com.xumengqi.reme.api.book.response.GetBookInfoResponse;
-import com.xumengqi.reme.api.book.response.GetBookListByBookCatalogResponse;
-import com.xumengqi.reme.api.book.response.UploadBookResponse;
+import com.xumengqi.reme.api.book.request.*;
+import com.xumengqi.reme.api.book.response.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -67,4 +61,14 @@ public interface BookService {
     @ApiOperation("获取书籍信息")
     @PostMapping("/getBookInfo")
     GetBookInfoResponse getBookInfo(@ApiParam @Valid @RequestBody GetBookInfoRequest request);
+
+    /**
+     * 借阅书籍
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("借阅书籍")
+    @PostMapping("/borrowBook")
+    BorrowBookResponse borrowBook(@ApiParam @Valid @RequestBody BorrowBookRequest request);
 }

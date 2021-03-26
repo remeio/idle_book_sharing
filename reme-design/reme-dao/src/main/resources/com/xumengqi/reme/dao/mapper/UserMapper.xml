@@ -118,114 +118,114 @@
       #{lossDeposit,jdbcType=BIGINT}, #{makeUpDeposit,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.User">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into user
-      <trim prefix="(" suffix=")" suffixOverrides=",">
-          <if test="userPhone != null">
-              user_phone,
-          </if>
-          <if test="userPassword != null">
-              user_password,
-          </if>
-          <if test="userFullName != null">
-              user_full_name,
-          </if>
-          <if test="schoolId != null">
-              school_id,
-          </if>
-          <if test="canUseDeposit != null">
-              can_use_deposit,
-          </if>
-          <if test="occupyDeposit != null">
-              occupy_deposit,
-          </if>
-          <if test="lossDeposit != null">
-              loss_deposit,
-          </if>
-          <if test="makeUpDeposit != null">
-              make_up_deposit,
-          </if>
-          <if test="gmtCreate != null">
-              gmt_create,
-          </if>
-      </trim>
-      <trim prefix="values (" suffix=")" suffixOverrides=",">
-          <if test="userPhone != null">
-              #{userPhone,jdbcType=VARCHAR},
-          </if>
-          <if test="userPassword != null">
-              #{userPassword,jdbcType=VARCHAR},
-          </if>
-          <if test="userFullName != null">
-              #{userFullName,jdbcType=VARCHAR},
-          </if>
-          <if test="schoolId != null">
-              #{schoolId,jdbcType=BIGINT},
-          </if>
-          <if test="canUseDeposit != null">
-              #{canUseDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="occupyDeposit != null">
-              #{occupyDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="lossDeposit != null">
-              #{lossDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="makeUpDeposit != null">
-              #{makeUpDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="gmtCreate != null">
-              #{gmtCreate,jdbcType=TIMESTAMP},
-          </if>
-      </trim>
-  </insert>
+    <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.User">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userPhone != null">
+                user_phone,
+            </if>
+            <if test="userPassword != null">
+                user_password,
+            </if>
+            <if test="userFullName != null">
+                user_full_name,
+            </if>
+            <if test="schoolId != null">
+                school_id,
+            </if>
+            <if test="canUseDeposit != null">
+                can_use_deposit,
+            </if>
+            <if test="occupyDeposit != null">
+                occupy_deposit,
+            </if>
+            <if test="lossDeposit != null">
+                loss_deposit,
+            </if>
+            <if test="makeUpDeposit != null">
+                make_up_deposit,
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userPhone != null">
+                #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userFullName != null">
+                #{userFullName,jdbcType=VARCHAR},
+            </if>
+            <if test="schoolId != null">
+                #{schoolId,jdbcType=BIGINT},
+            </if>
+            <if test="canUseDeposit != null">
+                #{canUseDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="occupyDeposit != null">
+                #{occupyDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="lossDeposit != null">
+                #{lossDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="makeUpDeposit != null">
+                #{makeUpDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
   <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.UserExample" resultType="java.lang.Long">
     select count(*) from user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update user
-      <set>
-          <if test="record.id != null">
-              id = #{record.id,jdbcType=BIGINT},
-          </if>
-          <if test="record.userPhone != null">
-              user_phone = #{record.userPhone,jdbcType=VARCHAR},
-          </if>
-          <if test="record.userPassword != null">
-              user_password = #{record.userPassword,jdbcType=VARCHAR},
-          </if>
-          <if test="record.userFullName != null">
-              user_full_name = #{record.userFullName,jdbcType=VARCHAR},
-          </if>
-          <if test="record.schoolId != null">
-              school_id = #{record.schoolId,jdbcType=BIGINT},
-          </if>
-          <if test="record.canUseDeposit != null">
-              can_use_deposit = #{record.canUseDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="record.occupyDeposit != null">
-              occupy_deposit = #{record.occupyDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="record.lossDeposit != null">
-              loss_deposit = #{record.lossDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="record.makeUpDeposit != null">
-              make_up_deposit = #{record.makeUpDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="record.gmtCreate != null">
-              gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
-          </if>
-      </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+    <update id="updateByExampleSelective" parameterType="map">
+        update user
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.userPhone != null">
+                user_phone = #{record.userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userPassword != null">
+                user_password = #{record.userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="record.userFullName != null">
+                user_full_name = #{record.userFullName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.schoolId != null">
+                school_id = #{record.schoolId,jdbcType=BIGINT},
+            </if>
+            <if test="record.canUseDeposit != null">
+                can_use_deposit = #{record.canUseDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="record.occupyDeposit != null">
+                occupy_deposit = #{record.occupyDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="record.lossDeposit != null">
+                loss_deposit = #{record.lossDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="record.makeUpDeposit != null">
+                make_up_deposit = #{record.makeUpDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="record.gmtCreate != null">
+                gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
   <update id="updateByExample" parameterType="map">
       update user
       set id = #{record.id,jdbcType=BIGINT},
@@ -242,39 +242,39 @@
           <include refid="Update_By_Example_Where_Clause"/>
       </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xumengqi.reme.dao.entity.User">
-    update user
-      <set>
-          <if test="userPhone != null">
-              user_phone = #{userPhone,jdbcType=VARCHAR},
-          </if>
-          <if test="userPassword != null">
-              user_password = #{userPassword,jdbcType=VARCHAR},
-          </if>
-          <if test="userFullName != null">
-              user_full_name = #{userFullName,jdbcType=VARCHAR},
-          </if>
-          <if test="schoolId != null">
-              school_id = #{schoolId,jdbcType=BIGINT},
-          </if>
-          <if test="canUseDeposit != null">
-              can_use_deposit = #{canUseDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="occupyDeposit != null">
-              occupy_deposit = #{occupyDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="lossDeposit != null">
-              loss_deposit = #{lossDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="makeUpDeposit != null">
-              make_up_deposit = #{makeUpDeposit,jdbcType=BIGINT},
-          </if>
-          <if test="gmtCreate != null">
-              gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
-          </if>
-      </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+    <update id="updateByPrimaryKeySelective" parameterType="com.xumengqi.reme.dao.entity.User">
+        update user
+        <set>
+            <if test="userPhone != null">
+                user_phone = #{userPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="userPassword != null">
+                user_password = #{userPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="userFullName != null">
+                user_full_name = #{userFullName,jdbcType=VARCHAR},
+            </if>
+            <if test="schoolId != null">
+                school_id = #{schoolId,jdbcType=BIGINT},
+            </if>
+            <if test="canUseDeposit != null">
+                can_use_deposit = #{canUseDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="occupyDeposit != null">
+                occupy_deposit = #{occupyDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="lossDeposit != null">
+                loss_deposit = #{lossDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="makeUpDeposit != null">
+                make_up_deposit = #{makeUpDeposit,jdbcType=BIGINT},
+            </if>
+            <if test="gmtCreate != null">
+                gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.User">
       update user
       set user_phone      = #{userPhone,jdbcType=VARCHAR},
