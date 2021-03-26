@@ -76,6 +76,9 @@ public enum ErrorCodeEnum {
      * 书籍分类不存在
      */
     BOOK_CATALOG_NOT_EXIST(ModuleEnum.BOOK_CATALOG, 500, "书籍分类不存在"),
+
+    // BOOK
+    BOOK_NOT_EXIST(ModuleEnum.BOOK, 500, "书籍不存在"),
     ;
     /**
      * 状态码

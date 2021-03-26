@@ -4,9 +4,11 @@ import com.xumengqi.reme.api.book.BookService;
 import com.xumengqi.reme.api.book.dto.BookCatalogDTO;
 import com.xumengqi.reme.api.book.dto.BookDTO;
 import com.xumengqi.reme.api.book.request.GetBookCatalogListRequest;
+import com.xumengqi.reme.api.book.request.GetBookInfoRequest;
 import com.xumengqi.reme.api.book.request.GetBookListByBookCatalogRequest;
 import com.xumengqi.reme.api.book.request.UploadBookRequest;
 import com.xumengqi.reme.api.book.response.GetBookCatalogListResponse;
+import com.xumengqi.reme.api.book.response.GetBookInfoResponse;
 import com.xumengqi.reme.api.book.response.GetBookListByBookCatalogResponse;
 import com.xumengqi.reme.api.book.response.UploadBookResponse;
 import com.xumengqi.reme.as.logic.book.BookCatalogLogic;
@@ -91,5 +93,22 @@ public class BookServiceImpl implements BookService {
         GetBookListByBookCatalogResponse response = new GetBookListByBookCatalogResponse();
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
         return response;
+    }
+
+    @Override
+    public GetBookInfoResponse getBookInfo(GetBookInfoRequest request) {
+        final Long bookId = request.getBookId();
+        // 判断书籍是否存在
+        Book book = bookLogic.getBook(bookId);
+        AssertUtils.asserter().assertNotNull(book).elseThrow(ErrorCodeEnum.BOOK_NOT_EXIST);
+        final Long userId = book.getUserId();
+        BookDTO bookDTO = ConvertUtils.toObj(book, BookDTO.class);
+        // 填充学校
+        bookDTO.setSchoolName(userLogic.getSchoolByUserId(userId).getSchoolName());
+        // 填充学校
+        bookDTO.setUserFullName(userLogic.getUser(userId).getUserFullName());
+        GetBookInfoResponse response = new GetBookInfoResponse();
+        response.setBookDTO(bookDTO);
+        return null;
     }
 }

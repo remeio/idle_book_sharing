@@ -28,7 +28,12 @@ public enum ModuleEnum {
     /**
      * 书籍分类
      */
-    BOOK_CATALOG(104);
+    BOOK_CATALOG(104),
+    /**
+     * 书籍
+     */
+    BOOK(105),
+    ;
     /**
      * 模块编码
      */

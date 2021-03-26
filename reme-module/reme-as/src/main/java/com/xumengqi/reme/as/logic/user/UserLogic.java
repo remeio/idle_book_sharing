@@ -33,4 +33,12 @@ public interface UserLogic {
      * @return 学校
      */
     School getSchoolByUserId(Long userId);
+
+    /**
+     * 获取用户
+     *
+     * @param userId /
+     * @return /
+     */
+    User getUser(Long userId);
 }

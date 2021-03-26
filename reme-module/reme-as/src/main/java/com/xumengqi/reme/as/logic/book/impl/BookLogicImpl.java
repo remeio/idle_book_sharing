@@ -39,4 +39,9 @@ public class BookLogicImpl implements BookLogic {
         }
         return bookMapper.selectByExample(bookExample);
     }
+
+    @Override
+    public Book getBook(Long bookId) {
+        return bookMapper.selectByPrimaryKey(bookId);
+    }
 }

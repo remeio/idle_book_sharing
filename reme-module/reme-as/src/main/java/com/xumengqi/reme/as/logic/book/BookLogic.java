@@ -27,4 +27,12 @@ public interface BookLogic {
      * @return /
      */
     List<Book> getBookList(Long schoolId, Long bookCatalogId, BookStatusEnum bookStatusEnum);
+
+    /**
+     * 获取书籍
+     *
+     * @param bookId /
+     * @return /
+     */
+    Book getBook(Long bookId);
 }

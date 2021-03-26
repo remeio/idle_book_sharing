@@ -67,4 +67,9 @@ public class UserLogicImpl implements UserLogic {
         AssertUtils.asserter().assertNotNull(school).elseThrow(ErrorCodeEnum.SCHOOL_NOT_EXIST);
         return school;
     }
+
+    @Override
+    public User getUser(Long userId) {
+        return userMapper.selectByPrimaryKey(userId);
+    }
 }

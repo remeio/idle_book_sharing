@@ -65,4 +65,14 @@ public class BookDTO extends BaseDTO {
      * 书籍状态【1：可借阅，2.已下单，3：借阅中，4：已下架】
      */
     private Integer bookStatus;
+
+    /**
+     * 学校名称
+     */
+    private String schoolName;
+
+    /**
+     * 共享者名称
+     */
+    private String userFullName;
 }
