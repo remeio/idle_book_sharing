@@ -105,8 +105,10 @@ public class BookServiceImpl implements BookService {
         BookDTO bookDTO = ConvertUtils.toObj(book, BookDTO.class);
         // 填充学校
         bookDTO.setSchoolName(userLogic.getSchoolByUserId(userId).getSchoolName());
-        // 填充学校
+        // 填充上传用户
         bookDTO.setUserFullName(userLogic.getUser(userId).getUserFullName());
+        // 填充书籍分类
+        bookDTO.setBookCatalogName(bookCatalogLogic.getBookCatalog(book.getBookCatalogId()).getBookCatalogName());
         GetBookInfoResponse response = new GetBookInfoResponse();
         response.setBookDTO(bookDTO);
         return null;

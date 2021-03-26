@@ -75,4 +75,9 @@ public class BookDTO extends BaseDTO {
      * 共享者名称
      */
     private String userFullName;
+
+    /**
+     * 书籍分类名称
+     */
+    private String bookCatalogName;
 }

@@ -29,4 +29,9 @@ public class BookCatalogLogicImpl implements BookCatalogLogic {
     public Boolean isExistBookCatalog(Long bookCatalogId) {
         return bookCatalogMapper.selectByPrimaryKey(bookCatalogId) != null;
     }
+
+    @Override
+    public BookCatalog getBookCatalog(Long bookCatalogId) {
+        return bookCatalogMapper.selectByPrimaryKey(bookCatalogId);
+    }
 }

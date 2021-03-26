@@ -23,4 +23,12 @@ public interface BookCatalogLogic {
      * @return /
      */
     Boolean isExistBookCatalog(Long bookCatalogId);
+
+    /**
+     * 获取书籍分类
+     *
+     * @param bookCatalogId /
+     * @return /
+     */
+    BookCatalog getBookCatalog(Long bookCatalogId);
 }
