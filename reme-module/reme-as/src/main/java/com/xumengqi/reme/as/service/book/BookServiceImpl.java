@@ -66,7 +66,7 @@ public class BookServiceImpl implements BookService {
         book.setUserId(userId);
         book.setSchoolId(userLogic.getSchoolByUserId(userId).getId());
         // 初始为可借阅
-        book.setBookStatus(BookStatusEnum.CAN_BE_BORROWED.getCode());
+        book.setBookStatus(BookStatusEnum.IDLE.getCode());
         book.setGmtCreate(new Date());
         bookLogic.addBook(book);
         return new UploadBookResponse();
@@ -91,7 +91,7 @@ public class BookServiceImpl implements BookService {
         final Long userId = request.getOperatorId();
         final Long schoolId = userLogic.getSchoolByUserId(userId).getId();
         // 根据学校ID和分类ID查询书籍列表
-        List<Book> books = bookLogic.getBookList(schoolId, bookCatalogId, BookStatusEnum.CAN_BE_BORROWED);
+        List<Book> books = bookLogic.getBookList(schoolId, bookCatalogId, BookStatusEnum.IDLE);
         GetBookListByBookCatalogResponse response = new GetBookListByBookCatalogResponse();
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
         return response;

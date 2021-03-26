@@ -8,18 +8,18 @@ import java.util.Arrays;
  */
 public enum BookStatusEnum {
     /**
-     * 可借阅
+     * 空闲
      */
-    CAN_BE_BORROWED(1, "可借阅"),
+    IDLE(1, "空闲"),
     /**
-     * 已下单
+     * 受理中
      */
-    ORDER_HAS_BEEN_PLACED(2, "已下单"),
+    ACCEPTING(2, "受理中"),
 
     /**
-     * 借阅中
+     * 异常
      */
-    BORROWING(3, "借阅中"),
+    ABNORMAL(3, "异常"),
 
     /**
      * 已下架
