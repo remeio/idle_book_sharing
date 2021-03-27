@@ -77,7 +77,7 @@ public class DepositLogicImpl implements DepositLogic {
         } else if (DepositOperateTypeEnum.DRAW.equals(depositOperateTypeEnum)) {
             // 提取押金
             long balance = user.getCanUseDeposit() - depositAmount;
-            AssertUtils.asserter().assertGreaterThanZero(balance).elseThrow(ErrorCodeEnum.CAN_USE_DEPOSIT_NOT_ENOUGH);
+            AssertUtils.asserter().assertGreaterThanOrEqualZero(balance).elseThrow(ErrorCodeEnum.CAN_USE_DEPOSIT_NOT_ENOUGH);
             user.setCanUseDeposit(balance);
         }
         userMapper.updateByPrimaryKeySelective(user);
@@ -113,17 +113,17 @@ public class DepositLogicImpl implements DepositLogic {
         User user = userMapper.selectByPrimaryKey(deposit.getUserId());
         if (DepositOperateTypeEnum.OCCUPY.equals(depositOperateTypeEnum)) {
             long balance = user.getCanUseDeposit() - depositAmount;
-            AssertUtils.asserter().assertGreaterThanZero(balance).elseThrow(ErrorCodeEnum.CAN_USE_DEPOSIT_NOT_ENOUGH);
+            AssertUtils.asserter().assertGreaterThanOrEqualZero(balance).elseThrow(ErrorCodeEnum.CAN_USE_DEPOSIT_NOT_ENOUGH);
             user.setCanUseDeposit(balance);
             user.setOccupyDeposit(user.getOccupyDeposit() + depositAmount);
         } else if (DepositOperateTypeEnum.RELEASE.equals(depositOperateTypeEnum)) {
             long balance = user.getOccupyDeposit() - depositAmount;
-            AssertUtils.asserter().assertGreaterThanZero(balance).elseThrow(ErrorCodeEnum.OCCUPY_DEPOSIT_NOT_ENOUGH);
+            AssertUtils.asserter().assertTrue(balance >= 0).elseThrow(ErrorCodeEnum.OCCUPY_DEPOSIT_NOT_ENOUGH);
             user.setCanUseDeposit(user.getCanUseDeposit() + depositAmount);
             user.setOccupyDeposit(balance);
         } else if (DepositOperateTypeEnum.PAY_LOSS.equals(depositOperateTypeEnum)) {
             long balance = user.getOccupyDeposit() - depositAmount;
-            AssertUtils.asserter().assertGreaterThanZero(balance).elseThrow(ErrorCodeEnum.OCCUPY_DEPOSIT_NOT_ENOUGH);
+            AssertUtils.asserter().assertTrue(balance >= 0).elseThrow(ErrorCodeEnum.OCCUPY_DEPOSIT_NOT_ENOUGH);
             user.setOccupyDeposit(balance);
             user.setLossDeposit(user.getLossDeposit() + depositAmount);
         } else if (DepositOperateTypeEnum.COMPENSATION.equals(depositOperateTypeEnum)) {

@@ -62,7 +62,7 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         // 判断押金是否足够
         boolean isNeedDeposit = book.getBookDeposit() > 0;
         if (isNeedDeposit) {
-            AssertUtils.asserter().assertGreaterThanZero(user.getCanUseDeposit() - book.getBookDeposit())
+            AssertUtils.asserter().assertGreaterThanOrEqualZero(user.getCanUseDeposit() - book.getBookDeposit())
                     .elseThrow(ErrorCodeEnum.CAN_USE_DEPOSIT_NOT_ENOUGH);
         }
         // 创建共享记录，初始状态为初始化
@@ -171,7 +171,7 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         ShareRecord shareRecord = shareRecordMapper.selectByPrimaryKey(shareRecordId);
         ShareRecordStatusEnum oldStatusEnum = ShareRecordStatusEnum.getByCode(shareRecord.getRecordStatus());
         // 判断要修改的旧状态是否是新状态的父状态
-        AssertUtils.asserter().assertTrue(statusEnum.getParentShareRecordStatus().equals(oldStatusEnum)).elseThrow(ErrorCodeEnum.SHARE_RECORD_NOT_MATCH);
+        AssertUtils.asserter().assertTrue(statusEnum.getParentShareRecordStatus().equals(oldStatusEnum)).elseThrow(ErrorCodeEnum.SHARE_RECORD_STATUS_NOT_MATCH);
         shareRecord.setRecordStatus(statusEnum.getCode());
         // 更新共享记录
         shareRecordMapper.updateByPrimaryKey(shareRecord);

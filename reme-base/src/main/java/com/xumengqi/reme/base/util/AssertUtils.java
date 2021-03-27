@@ -32,6 +32,14 @@ public class AssertUtils {
             return assertTrue(val != null);
         }
 
+        public Builder assertGreaterThanOrEqualZero(long val) {
+            return assertTrue(val >= 0);
+        }
+
+        public Builder assertLessThanOrEqualZero(long val) {
+            return assertTrue(val <= 0);
+        }
+
         public Builder assertGreaterThanZero(long val) {
             return assertTrue(val > 0);
         }
