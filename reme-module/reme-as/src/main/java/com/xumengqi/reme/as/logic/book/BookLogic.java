@@ -29,6 +29,14 @@ public interface BookLogic {
     List<Book> getBookList(Long schoolId, Long bookCatalogId, BookStatusEnum bookStatusEnum);
 
     /**
+     * 获取书籍列表
+     *
+     * @param userId 为空查询全部
+     * @return /
+     */
+    List<Book> getBookList(Long userId);
+
+    /**
      * 获取书籍
      *
      * @param bookId /

@@ -39,6 +39,18 @@ public class BookLogicImpl implements BookLogic {
         if (bookStatusEnum != null) {
             criteria.andBookStatusEqualTo(bookStatusEnum.getCode());
         }
+        bookExample.setOrderByClause("gmt_create desc");
+        return bookMapper.selectByExample(bookExample);
+    }
+
+    @Override
+    public List<Book> getBookList(Long userId) {
+        BookExample bookExample = new BookExample();
+        BookExample.Criteria criteria = bookExample.createCriteria();
+        if (userId != null) {
+            criteria.andUserIdEqualTo(userId);
+        }
+        bookExample.setOrderByClause("gmt_create desc");
         return bookMapper.selectByExample(bookExample);
     }
 

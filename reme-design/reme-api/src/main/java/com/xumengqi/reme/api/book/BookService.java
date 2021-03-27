@@ -52,6 +52,18 @@ public interface BookService {
     @PostMapping("/getBookListByBookCatalog")
     GetBookListByBookCatalogResponse getBookListByBookCatalog(@ApiParam @Valid @RequestBody GetBookListByBookCatalogRequest request);
 
+
+    /**
+     * 根据用户ID获取书籍列表
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("根据用户ID获取书籍列表")
+    @PostMapping("getBookListByUserId")
+    GetBookListByUserIdResponse getBookListByUserId(@ApiParam @Valid @RequestBody GetBookListByUserIdRequest request);
+
+
     /**
      * 获取书籍信息
      *

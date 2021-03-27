@@ -19,6 +19,7 @@ import com.xumengqi.reme.dao.entity.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -91,6 +92,14 @@ public class BookServiceImpl implements BookService {
         // 根据学校ID和分类ID查询书籍列表
         List<Book> books = bookLogic.getBookList(schoolId, bookCatalogId, BookStatusEnum.IDLE);
         GetBookListByBookCatalogResponse response = new GetBookListByBookCatalogResponse();
+        response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
+        return response;
+    }
+
+    @Override
+    public GetBookListByUserIdResponse getBookListByUserId(@Valid GetBookListByUserIdRequest request) {
+        List<Book> books = bookLogic.getBookList(request.getOperatorId());
+        GetBookListByUserIdResponse response = new GetBookListByUserIdResponse();
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
         return response;
     }
