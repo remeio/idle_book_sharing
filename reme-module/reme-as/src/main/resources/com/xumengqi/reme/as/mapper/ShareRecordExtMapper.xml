@@ -33,6 +33,6 @@
                b.book_deposit
         FROM share_record s
                  LEFT JOIN book b ON s.book_id = b.id
-        where s.borrow_user_id = #{userId}
+        where s.share_user_id = #{userId}
     </select>
 </mapper>
