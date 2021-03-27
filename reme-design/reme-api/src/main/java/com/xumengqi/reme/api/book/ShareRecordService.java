@@ -84,4 +84,25 @@ public interface ShareRecordService {
     @PostMapping("/seriouslyOverdueHandleBook")
     SeriouslyOverdueHandleBookResponse seriouslyOverdueHandleBook(@ApiParam @Valid @RequestBody SeriouslyOverdueHandleBookRequest request);
 
+
+    /**
+     * 根据借阅者查询共享记录列表
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("根据借阅者查询共享记录列表")
+    @PostMapping("/getShareRecordListByBorrowUserId")
+    GetShareRecordListByBorrowUserIdResponse getShareRecordListByBorrowUserId(@ApiParam @Valid @RequestBody GetShareRecordListByBorrowUserIdRequest request);
+
+    /**
+     * 根据共享者查询共享记录列表
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("根据共享者查询共享记录列表")
+    @PostMapping("/getShareRecordListByShareUserId")
+    GetShareRecordListByShareUserIdResponse getShareRecordListByShareUserId(@ApiParam @Valid @RequestBody GetShareRecordListByShareUserIdRequest request);
+
 }

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xumengqi.reme.as.mapper.ShareRecordExtMapper">
+    <resultMap id="BaseResultMap" type="com.xumengqi.reme.as.vo.ShareRecordVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="order_no" jdbcType="VARCHAR" property="orderNo"/>
+        <result column="book_id" jdbcType="BIGINT" property="bookId"/>
+        <result column="share_user_id" jdbcType="BIGINT" property="shareUserId"/>
+        <result column="borrow_user_id" jdbcType="BIGINT" property="borrowUserId"/>
+        <result column="record_status" jdbcType="INTEGER" property="recordStatus"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
+        <result column="book_image_url" jdbcType="VARCHAR" property="bookImageUrl"/>
+        <result column="book_max_period" jdbcType="INTEGER" property="bookMaxPeriod"/>
+        <result column="book_deposit" jdbcType="BIGINT" property="bookDeposit"/>
+    </resultMap>
+
+    <select id="selectByBorrowUserId" resultMap="BaseResultMap">
+        SELECT s.*,
+               b.book_name,
+               b.book_image_url,
+               b.book_max_period,
+               b.book_deposit
+        FROM share_record s
+                 LEFT JOIN book b ON s.book_id = b.id
+        where s.borrow_user_id = #{userId}
+    </select>
+    <select id="selectByShareUserId" resultMap="BaseResultMap">
+        SELECT s.*,
+               b.book_name,
+               b.book_image_url,
+               b.book_max_period,
+               b.book_deposit
+        FROM share_record s
+                 LEFT JOIN book b ON s.book_id = b.id
+        where s.borrow_user_id = #{userId}
+    </select>
+</mapper>

@@ -1,5 +1,9 @@
 package com.xumengqi.reme.as.logic.book;
 
+import com.xumengqi.reme.as.vo.ShareRecordVO;
+
+import java.util.List;
+
 /**
  * @author xumengqi
  * @date 2021/3/26 19:24
@@ -85,4 +89,20 @@ public interface ShareRecordLogic {
      * @param shareUserId   /
      */
     void isShareUser(Long shareRecordId, Long shareUserId);
+
+    /**
+     * 根据借阅者ID获取共享记录列表
+     *
+     * @param userId /
+     * @return /
+     */
+    List<ShareRecordVO> getShareRecordListByBorrowUserId(Long userId);
+
+    /**
+     * 根据共享者ID获取共享记录列表
+     *
+     * @param userId /
+     * @return /
+     */
+    List<ShareRecordVO> getShareRecordListByShareUserId(Long userId);
 }

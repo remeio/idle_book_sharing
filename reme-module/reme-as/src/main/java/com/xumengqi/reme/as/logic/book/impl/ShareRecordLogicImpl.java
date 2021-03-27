@@ -2,6 +2,8 @@ package com.xumengqi.reme.as.logic.book.impl;
 
 import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
 import com.xumengqi.reme.as.logic.deposit.DepositLogic;
+import com.xumengqi.reme.as.mapper.ShareRecordExtMapper;
+import com.xumengqi.reme.as.vo.ShareRecordVO;
 import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.UUIDUtils;
@@ -13,12 +15,16 @@ import com.xumengqi.reme.dao.entity.Book;
 import com.xumengqi.reme.dao.entity.ShareLog;
 import com.xumengqi.reme.dao.entity.ShareRecord;
 import com.xumengqi.reme.dao.entity.User;
-import com.xumengqi.reme.dao.mapper.*;
+import com.xumengqi.reme.dao.mapper.BookMapper;
+import com.xumengqi.reme.dao.mapper.ShareLogMapper;
+import com.xumengqi.reme.dao.mapper.ShareRecordMapper;
+import com.xumengqi.reme.dao.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -27,8 +33,6 @@ import java.util.Objects;
  */
 @Component
 public class ShareRecordLogicImpl implements ShareRecordLogic {
-    @Autowired
-    private DepositMapper depositMapper;
 
     @Autowired
     private UserMapper userMapper;
@@ -44,6 +48,9 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
 
     @Autowired
     private DepositLogic depositLogic;
+
+    @Autowired
+    private ShareRecordExtMapper shareRecordExtMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -153,6 +160,23 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         AssertUtils.asserter()
                 .assertTrue(shareRecord.getShareUserId().equals(shareUserId))
                 .elseThrow(ErrorCodeEnum.SHARE_RECORD_NOT_MATCH);
+    }
+
+    @Override
+    public List<ShareRecordVO> getShareRecordListByBorrowUserId(Long userId) {
+        return getShareRecordListByUserId(userId, true);
+    }
+
+    @Override
+    public List<ShareRecordVO> getShareRecordListByShareUserId(Long userId) {
+        return getShareRecordListByUserId(userId, false);
+    }
+
+    private List<ShareRecordVO> getShareRecordListByUserId(Long userId, boolean isBorrow) {
+        // 判断用户是否存在
+        AssertUtils.asserter().assertNotNull(userMapper.selectByPrimaryKey(userId)).elseThrow(ErrorCodeEnum.USER_NOT_EXIST);
+        // 查询记录
+        return isBorrow ? shareRecordExtMapper.selectByBorrowUserId(userId) : shareRecordExtMapper.selectByShareUserId(userId);
     }
 
     /**
