@@ -21,7 +21,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
-import java.util.*;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -100,10 +103,7 @@ public class BookServiceImpl implements BookService {
     public GetBookListByUserIdResponse getBookListByUserId(@Valid GetBookListByUserIdRequest request) {
         List<Book> books = bookLogic.getBookList(request.getOperatorId());
         List<BookCatalog> bookCatalogs = bookCatalogLogic.getBookCatalogList();
-        Map<Long, String> bookCatalogMap = new HashMap<>(bookCatalogs.size());
-        bookCatalogs.forEach(e -> {
-            bookCatalogMap.put(e.getId(), e.getBookCatalogName());
-        });
+        Map<Long, String> bookCatalogMap = bookCatalogs.stream().collect(Collectors.toMap(BookCatalog::getId, BookCatalog::getBookCatalogName));
         GetBookListByUserIdResponse response = new GetBookListByUserIdResponse();
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class)
                 .stream()
