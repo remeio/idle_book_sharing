@@ -123,6 +123,7 @@ public class BookServiceImpl implements BookService {
         return new BorrowBookResponse();
     }
 
+    @AccessToken
     @Override
     public OffShelfBookResponse offShelfBook(OffShelfBookRequest request) {
         bookLogic.offShelfBook(request.getBookId(), request.getOperatorId());
