@@ -2,6 +2,7 @@ package com.xumengqi.reme.as.logic.deposit.impl;
 
 import com.xumengqi.reme.as.logic.deposit.DepositLogic;
 import com.xumengqi.reme.base.util.AssertUtils;
+import com.xumengqi.reme.base.util.UUIDUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.DepositOperateTypeEnum;
 import com.xumengqi.reme.dao.entity.Deposit;
@@ -17,7 +18,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
-import java.util.UUID;
 
 /**
  * @author xumengqi
@@ -64,7 +64,7 @@ public class DepositLogicImpl implements DepositLogic {
         }
         // 插入押金流水,并更新用户押金状态
         Deposit deposit = new Deposit();
-        deposit.setDepositOrderNo(UUID.randomUUID().toString());
+        deposit.setDepositOrderNo(UUIDUtils.getOrderNo());
         deposit.setDepositAmount(depositAmount);
         deposit.setDepositOperateType(depositOperateTypeEnum.getCode());
         deposit.setUserId(userId);
@@ -102,7 +102,7 @@ public class DepositLogicImpl implements DepositLogic {
         }
         // 插入押金流水,并更新用户押金状态
         Deposit deposit = new Deposit();
-        deposit.setDepositOrderNo(UUID.randomUUID().toString());
+        deposit.setDepositOrderNo(UUIDUtils.getOrderNo());
         deposit.setDepositAmount(depositAmount);
         deposit.setDepositOperateType(depositOperateTypeEnum.getCode());
         deposit.setUserId(DepositOperateTypeEnum.COMPENSATION.equals(depositOperateTypeEnum) ? shareRecord.getShareUserId() : shareRecord.getBorrowUserId());

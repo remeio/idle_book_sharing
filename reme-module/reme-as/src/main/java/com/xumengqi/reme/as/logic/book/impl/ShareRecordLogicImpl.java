@@ -4,6 +4,7 @@ import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
 import com.xumengqi.reme.as.logic.deposit.DepositLogic;
 import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.base.util.AssertUtils;
+import com.xumengqi.reme.base.util.UUIDUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.common.enums.biz.OperatorTypeEnum;
@@ -19,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
 
 /**
  * @author xumengqi
@@ -67,7 +67,7 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         }
         // 创建共享记录，初始状态为初始化
         ShareRecord shareRecord = new ShareRecord();
-        shareRecord.setOrderNo(UUID.randomUUID().toString());
+        shareRecord.setOrderNo(UUIDUtils.getOrderNo());
         shareRecord.setBookId(bookId);
         shareRecord.setBorrowUserId(borrowUserId);
         shareRecord.setShareUserId(book.getUserId());
