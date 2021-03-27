@@ -69,7 +69,8 @@ public class BookLogicImpl implements BookLogic {
         AssertUtils.asserter().assertEqual(userId, book.getUserId()).elseThrow(ErrorCodeEnum.PERMISSION_DENIED);
         // 判断书籍状态，空闲和异常才能被下架
         BookStatusEnum bookStatusEnum = BookStatusEnum.getByCode(book.getBookStatus());
-        AssertUtils.asserter().assertTrue(bookStatusEnum.equals(BookStatusEnum.IDLE) || bookStatusEnum.equals(BookStatusEnum.ABNORMAL))
+        AssertUtils.asserter().assertTrue(bookStatusEnum.equals(BookStatusEnum.IDLE)
+                || bookStatusEnum.equals(BookStatusEnum.ABNORMAL))
                 .elseThrow(ErrorCodeEnum.BOOK_CAN_NOT_OFF_SHELF);
         // 将书籍状态更新为已下架
         book.setBookStatus(BookStatusEnum.HAD_OFF_SHELF.getCode());
@@ -82,9 +83,11 @@ public class BookLogicImpl implements BookLogic {
         AssertUtils.asserter().assertNotNull(book).elseThrow(ErrorCodeEnum.BOOK_NOT_EXIST);
         // 判断用户是否正确
         AssertUtils.asserter().assertEqual(userId, book.getUserId()).elseThrow(ErrorCodeEnum.PERMISSION_DENIED);
-        // 判断书籍状态，空闲或已下架才能被删除
+        // 判断书籍状态，空闲或异常或已下架才能被删除
         BookStatusEnum bookStatusEnum = BookStatusEnum.getByCode(book.getBookStatus());
-        AssertUtils.asserter().assertTrue(bookStatusEnum.equals(BookStatusEnum.IDLE) || bookStatusEnum.equals(BookStatusEnum.HAD_OFF_SHELF))
+        AssertUtils.asserter().assertTrue(bookStatusEnum.equals(BookStatusEnum.IDLE)
+                || bookStatusEnum.equals(BookStatusEnum.ABNORMAL)
+                || bookStatusEnum.equals(BookStatusEnum.HAD_OFF_SHELF))
                 .elseThrow(ErrorCodeEnum.BOOK_CAN_NOT_DELETED);
         // 将书籍状态更新为已删除
         book.setBookStatus(BookStatusEnum.HAD_DELETED.getCode());
