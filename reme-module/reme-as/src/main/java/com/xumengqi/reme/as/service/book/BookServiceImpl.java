@@ -16,13 +16,13 @@ import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.dao.entity.Book;
+import com.xumengqi.reme.dao.entity.BookCatalog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.validation.Valid;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author xumengqi
@@ -99,8 +99,16 @@ public class BookServiceImpl implements BookService {
     @Override
     public GetBookListByUserIdResponse getBookListByUserId(@Valid GetBookListByUserIdRequest request) {
         List<Book> books = bookLogic.getBookList(request.getOperatorId());
+        List<BookCatalog> bookCatalogs = bookCatalogLogic.getBookCatalogList();
+        Map<Long, String> bookCatalogMap = new HashMap<>(bookCatalogs.size());
+        bookCatalogs.forEach(e -> {
+            bookCatalogMap.put(e.getId(), e.getBookCatalogName());
+        });
         GetBookListByUserIdResponse response = new GetBookListByUserIdResponse();
-        response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
+        response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class)
+                .stream()
+                .peek(e -> e.setBookCatalogName(bookCatalogMap.get(e.getBookCatalogId())))
+                .collect(Collectors.toList()));
         return response;
     }
 
