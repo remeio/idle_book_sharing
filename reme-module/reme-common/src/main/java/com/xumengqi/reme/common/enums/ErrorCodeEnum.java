@@ -97,6 +97,14 @@ public enum ErrorCodeEnum {
      * 当前书籍不能被下架
      */
     BOOK_CAN_NOT_OFF_SHELF(ModuleEnum.BOOK, 502, "当前书籍不能被下架"),
+    /**
+     * 当前书籍不能被删除
+     */
+    BOOK_CAN_NOT_DELETED(ModuleEnum.BOOK, 503, "当前书籍不能被删除"),
+    /**
+     * 当前书籍不能被上架
+     */
+    BOOK_CAN_NOT_ON_SHELF(ModuleEnum.BOOK, 504, "当前书籍不能被上架"),
 
 
     // SHARE_RECORD

@@ -93,4 +93,24 @@ public interface BookService {
     @ApiOperation("下架书籍")
     @PostMapping("/offShelfBook")
     OffShelfBookResponse offShelfBook(@ApiParam @Valid @RequestBody OffShelfBookRequest request);
+
+    /**
+     * 上架书籍
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("上架书籍")
+    @PostMapping("/onShelfBook")
+    OnShelfBookResponse onShelfBook(@ApiParam @Valid @RequestBody OnShelfBookRequest request);
+
+    /**
+     * 删除书籍
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("删除书籍")
+    @PostMapping("/deleteBook")
+    DeleteBookResponse deleteBook(@ApiParam @Valid @RequestBody DeleteBookRequest request);
 }

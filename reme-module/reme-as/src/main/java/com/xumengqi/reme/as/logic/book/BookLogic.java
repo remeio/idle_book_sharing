@@ -51,4 +51,20 @@ public interface BookLogic {
      * @param userId /
      */
     void offShelfBook(Long bookId, Long userId);
+
+    /**
+     * 删除书籍
+     *
+     * @param bookId /
+     * @param userId /
+     */
+    void deleteBook(Long bookId, Long userId);
+
+    /**
+     * 上架书籍
+     *
+     * @param bookId /
+     * @param userId /
+     */
+    void onShelfBook(Long bookId, Long userId);
 }

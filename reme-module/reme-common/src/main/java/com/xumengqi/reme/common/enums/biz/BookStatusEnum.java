@@ -24,7 +24,13 @@ public enum BookStatusEnum {
     /**
      * 已下架
      */
-    HAD_DELETED(4, "已下架");
+    HAD_OFF_SHELF(4, "已下架"),
+
+    /**
+     * 已删除
+     */
+    HAD_DELETED(5, "已删除");
+
     private final Integer code;
 
     private final String description;

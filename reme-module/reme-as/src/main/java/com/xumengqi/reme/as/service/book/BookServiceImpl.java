@@ -138,4 +138,18 @@ public class BookServiceImpl implements BookService {
         bookLogic.offShelfBook(request.getBookId(), request.getOperatorId());
         return new OffShelfBookResponse();
     }
+
+    @AccessToken
+    @Override
+    public OnShelfBookResponse onShelfBook(@Valid OnShelfBookRequest request) {
+        bookLogic.onShelfBook(request.getBookId(), request.getOperatorId());
+        return new OnShelfBookResponse();
+    }
+
+    @AccessToken
+    @Override
+    public DeleteBookResponse deleteBook(DeleteBookRequest request) {
+        bookLogic.deleteBook(request.getBookId(), request.getOperatorId());
+        return new DeleteBookResponse();
+    }
 }
