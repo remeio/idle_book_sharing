@@ -43,6 +43,11 @@ public enum ErrorCodeEnum {
      */
     NOT_YES_OR_NO(ModuleEnum.SYSTEM, 505, "不是有效的是或否"),
 
+    /**
+     * 没有权限
+     */
+    PERMISSION_DENIED(ModuleEnum.SYSTEM, 506, "没有权限"),
+
     // USER
     /**
      * 手机号或密码错误
@@ -88,6 +93,12 @@ public enum ErrorCodeEnum {
      */
     BOOK_BORROWING(ModuleEnum.BOOK, 501, "书籍已被借阅"),
 
+    /**
+     * 当前书籍不能被下架
+     */
+    BOOK_CAN_NOT_OFF_SHELF(ModuleEnum.BOOK, 502, "当前书籍不能被下架"),
+
+
     // SHARE_RECORD
 
     /**
@@ -123,7 +134,6 @@ public enum ErrorCodeEnum {
      */
     OCCUPY_DEPOSIT_NOT_ENOUGH(ModuleEnum.DEPOSIT, 501, "占用押金不足"),
     ;
-
 
     /**
      * 状态码

@@ -71,4 +71,14 @@ public interface BookService {
     @ApiOperation("借阅书籍")
     @PostMapping("/borrowBook")
     BorrowBookResponse borrowBook(@ApiParam @Valid @RequestBody BorrowBookRequest request);
+
+    /**
+     * 下架书籍
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("下架书籍")
+    @PostMapping("/offShelfBook")
+    OffShelfBookResponse offShelfBook(@ApiParam @Valid @RequestBody OffShelfBookRequest request);
 }

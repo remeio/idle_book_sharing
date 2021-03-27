@@ -1,6 +1,8 @@
 package com.xumengqi.reme.as.logic.book.impl;
 
 import com.xumengqi.reme.as.logic.book.BookLogic;
+import com.xumengqi.reme.base.util.AssertUtils;
+import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.dao.entity.Book;
 import com.xumengqi.reme.dao.entity.BookExample;
@@ -43,5 +45,20 @@ public class BookLogicImpl implements BookLogic {
     @Override
     public Book getBook(Long bookId) {
         return bookMapper.selectByPrimaryKey(bookId);
+    }
+
+    @Override
+    public void offShelfBook(Long bookId, Long userId) {
+        Book book = getBook(bookId);
+        AssertUtils.asserter().assertNotNull(book).elseThrow(ErrorCodeEnum.BOOK_NOT_EXIST);
+        // 判断用户是否正确
+        AssertUtils.asserter().assertEqual(userId, book.getUserId()).elseThrow(ErrorCodeEnum.PERMISSION_DENIED);
+        // 判断书籍状态，空闲和异常才能被下架
+        BookStatusEnum bookStatusEnum = BookStatusEnum.getByCode(book.getBookStatus());
+        AssertUtils.asserter().assertTrue(bookStatusEnum.equals(BookStatusEnum.IDLE) || bookStatusEnum.equals(BookStatusEnum.ABNORMAL))
+                .elseThrow(ErrorCodeEnum.BOOK_CAN_NOT_OFF_SHELF);
+        // 将书籍状态更新为已下架
+        book.setBookStatus(BookStatusEnum.HAD_DELETED.getCode());
+        bookMapper.updateByPrimaryKeySelective(book);
     }
 }

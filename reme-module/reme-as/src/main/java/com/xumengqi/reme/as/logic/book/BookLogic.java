@@ -35,4 +35,12 @@ public interface BookLogic {
      * @return /
      */
     Book getBook(Long bookId);
+
+    /**
+     * 下架书籍
+     *
+     * @param bookId /
+     * @param userId /
+     */
+    void offShelfBook(Long bookId, Long userId);
 }

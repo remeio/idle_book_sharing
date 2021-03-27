@@ -20,6 +20,14 @@ public class AssertUtils {
             return this;
         }
 
+        public Builder assertEqual(Object obj1, Object obj2) {
+            return assertTrue(obj1 != null && obj1.equals(obj2));
+        }
+
+        public Builder assertEqual(long val1, long val2) {
+            return assertTrue(val1 == val2);
+        }
+
         public Builder assertFalse(boolean val) {
             return assertTrue(!val);
         }

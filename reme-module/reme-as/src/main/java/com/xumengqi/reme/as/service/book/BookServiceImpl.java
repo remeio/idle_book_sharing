@@ -122,4 +122,10 @@ public class BookServiceImpl implements BookService {
         shareRecordLogic.borrowBook(bookId, borrowUserId);
         return new BorrowBookResponse();
     }
+
+    @Override
+    public OffShelfBookResponse offShelfBook(OffShelfBookRequest request) {
+        bookLogic.offShelfBook(request.getBookId(), request.getOperatorId());
+        return new OffShelfBookResponse();
+    }
 }
