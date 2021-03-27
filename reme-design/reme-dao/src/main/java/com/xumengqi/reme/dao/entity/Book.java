@@ -44,7 +44,7 @@ public class Book implements Serializable {
      *
      * @mbg.generated
      */
-    private Integer bookDeposit;
+    private Long bookDeposit;
 
     /**
      * 书籍图片URL
@@ -130,11 +130,11 @@ public class Book implements Serializable {
         this.bookMaxPeriod = bookMaxPeriod;
     }
 
-    public Integer getBookDeposit() {
+    public Long getBookDeposit() {
         return bookDeposit;
     }
 
-    public void setBookDeposit(Integer bookDeposit) {
+    public void setBookDeposit(Long bookDeposit) {
         this.bookDeposit = bookDeposit;
     }
 

@@ -182,12 +182,12 @@
             </if>
         </trim>
     </insert>
-  <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.UserExample" resultType="java.lang.Long">
-    select count(*) from user
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
+    <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.UserExample" resultType="java.lang.Long">
+        select count(*) from user
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
     <update id="updateByExampleSelective" parameterType="map">
         update user
         <set>
@@ -226,22 +226,22 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-  <update id="updateByExample" parameterType="map">
-      update user
-      set id = #{record.id,jdbcType=BIGINT},
-      user_phone = #{record.userPhone,jdbcType=VARCHAR},
-      user_password = #{record.userPassword,jdbcType=VARCHAR},
-      user_full_name = #{record.userFullName,jdbcType=VARCHAR},
-      school_id = #{record.schoolId,jdbcType=BIGINT},
-      can_use_deposit = #{record.canUseDeposit,jdbcType=BIGINT},
-      occupy_deposit = #{record.occupyDeposit,jdbcType=BIGINT},
-      loss_deposit = #{record.lossDeposit,jdbcType=BIGINT},
-      make_up_deposit = #{record.makeUpDeposit,jdbcType=BIGINT},
-      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
-      <if test="_parameter != null">
-          <include refid="Update_By_Example_Where_Clause"/>
-      </if>
-  </update>
+    <update id="updateByExample" parameterType="map">
+        update user
+        set id = #{record.id,jdbcType=BIGINT},
+        user_phone = #{record.userPhone,jdbcType=VARCHAR},
+        user_password = #{record.userPassword,jdbcType=VARCHAR},
+        user_full_name = #{record.userFullName,jdbcType=VARCHAR},
+        school_id = #{record.schoolId,jdbcType=BIGINT},
+        can_use_deposit = #{record.canUseDeposit,jdbcType=BIGINT},
+        occupy_deposit = #{record.occupyDeposit,jdbcType=BIGINT},
+        loss_deposit = #{record.lossDeposit,jdbcType=BIGINT},
+        make_up_deposit = #{record.makeUpDeposit,jdbcType=BIGINT},
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
     <update id="updateByPrimaryKeySelective" parameterType="com.xumengqi.reme.dao.entity.User">
         update user
         <set>
@@ -275,17 +275,17 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-  <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.User">
-      update user
-      set user_phone      = #{userPhone,jdbcType=VARCHAR},
-          user_password   = #{userPassword,jdbcType=VARCHAR},
-          user_full_name  = #{userFullName,jdbcType=VARCHAR},
-          school_id       = #{schoolId,jdbcType=BIGINT},
-          can_use_deposit = #{canUseDeposit,jdbcType=BIGINT},
-          occupy_deposit  = #{occupyDeposit,jdbcType=BIGINT},
-          loss_deposit    = #{lossDeposit,jdbcType=BIGINT},
-          make_up_deposit = #{makeUpDeposit,jdbcType=BIGINT},
-          gmt_create      = #{gmtCreate,jdbcType=TIMESTAMP}
-      where id = #{id,jdbcType=BIGINT}
-  </update>
+    <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.User">
+        update user
+        set user_phone      = #{userPhone,jdbcType=VARCHAR},
+            user_password   = #{userPassword,jdbcType=VARCHAR},
+            user_full_name  = #{userFullName,jdbcType=VARCHAR},
+            school_id       = #{schoolId,jdbcType=BIGINT},
+            can_use_deposit = #{canUseDeposit,jdbcType=BIGINT},
+            occupy_deposit  = #{occupyDeposit,jdbcType=BIGINT},
+            loss_deposit    = #{lossDeposit,jdbcType=BIGINT},
+            make_up_deposit = #{makeUpDeposit,jdbcType=BIGINT},
+            gmt_create      = #{gmtCreate,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
 </mapper>

@@ -52,7 +52,7 @@ public class UploadBookRequest extends BaseRequest {
     @ApiModelProperty("书籍所需押金")
     @Min(0)
     @Max(99)
-    private Integer bookDeposit;
+    private Long bookDeposit;
 
     /**
      * 书籍图片URL

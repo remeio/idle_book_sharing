@@ -26,7 +26,7 @@ public class Deposit implements Serializable {
     private Long depositAmount;
 
     /**
-     * 操作类型：【1：缴纳，2：提取，3：支付损失，4：所得补偿】
+     * 操作类型：【1：缴纳，2：提取，3：占用押金，4：释放押金，5：支付损失，6：所得补偿】
      *
      * @mbg.generated
      */

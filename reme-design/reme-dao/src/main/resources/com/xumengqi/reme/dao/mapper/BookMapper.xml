@@ -7,7 +7,7 @@
         <result column="book_isbn" jdbcType="VARCHAR" property="bookIsbn"/>
         <result column="book_description" jdbcType="VARCHAR" property="bookDescription"/>
         <result column="book_max_period" jdbcType="INTEGER" property="bookMaxPeriod"/>
-        <result column="book_deposit" jdbcType="INTEGER" property="bookDeposit"/>
+        <result column="book_deposit" jdbcType="BIGINT" property="bookDeposit"/>
         <result column="book_image_url" jdbcType="VARCHAR" property="bookImageUrl"/>
         <result column="book_catalog_id" jdbcType="BIGINT" property="bookCatalogId"/>
         <result column="school_id" jdbcType="BIGINT" property="schoolId"/>
@@ -119,7 +119,7 @@
         book_catalog_id, school_id, user_id,
         book_status, gmt_create)
         values (#{bookName,jdbcType=VARCHAR}, #{bookIsbn,jdbcType=VARCHAR}, #{bookDescription,jdbcType=VARCHAR},
-        #{bookMaxPeriod,jdbcType=INTEGER}, #{bookDeposit,jdbcType=INTEGER}, #{bookImageUrl,jdbcType=VARCHAR},
+        #{bookMaxPeriod,jdbcType=INTEGER}, #{bookDeposit,jdbcType=BIGINT}, #{bookImageUrl,jdbcType=VARCHAR},
         #{bookCatalogId,jdbcType=BIGINT}, #{schoolId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT},
         #{bookStatus,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP})
     </insert>
@@ -177,7 +177,7 @@
                 #{bookMaxPeriod,jdbcType=INTEGER},
             </if>
             <if test="bookDeposit != null">
-                #{bookDeposit,jdbcType=INTEGER},
+                #{bookDeposit,jdbcType=BIGINT},
             </if>
             <if test="bookImageUrl != null">
                 #{bookImageUrl,jdbcType=VARCHAR},
@@ -224,7 +224,7 @@
                 book_max_period = #{record.bookMaxPeriod,jdbcType=INTEGER},
             </if>
             <if test="record.bookDeposit != null">
-                book_deposit = #{record.bookDeposit,jdbcType=INTEGER},
+                book_deposit = #{record.bookDeposit,jdbcType=BIGINT},
             </if>
             <if test="record.bookImageUrl != null">
                 book_image_url = #{record.bookImageUrl,jdbcType=VARCHAR},
@@ -256,7 +256,7 @@
         book_isbn = #{record.bookIsbn,jdbcType=VARCHAR},
         book_description = #{record.bookDescription,jdbcType=VARCHAR},
         book_max_period = #{record.bookMaxPeriod,jdbcType=INTEGER},
-        book_deposit = #{record.bookDeposit,jdbcType=INTEGER},
+        book_deposit = #{record.bookDeposit,jdbcType=BIGINT},
         book_image_url = #{record.bookImageUrl,jdbcType=VARCHAR},
         book_catalog_id = #{record.bookCatalogId,jdbcType=BIGINT},
         school_id = #{record.schoolId,jdbcType=BIGINT},
@@ -283,7 +283,7 @@
                 book_max_period = #{bookMaxPeriod,jdbcType=INTEGER},
             </if>
             <if test="bookDeposit != null">
-                book_deposit = #{bookDeposit,jdbcType=INTEGER},
+                book_deposit = #{bookDeposit,jdbcType=BIGINT},
             </if>
             <if test="bookImageUrl != null">
                 book_image_url = #{bookImageUrl,jdbcType=VARCHAR},
@@ -312,7 +312,7 @@
             book_isbn        = #{bookIsbn,jdbcType=VARCHAR},
             book_description = #{bookDescription,jdbcType=VARCHAR},
             book_max_period  = #{bookMaxPeriod,jdbcType=INTEGER},
-            book_deposit     = #{bookDeposit,jdbcType=INTEGER},
+            book_deposit     = #{bookDeposit,jdbcType=BIGINT},
             book_image_url   = #{bookImageUrl,jdbcType=VARCHAR},
             book_catalog_id  = #{bookCatalogId,jdbcType=BIGINT},
             school_id        = #{schoolId,jdbcType=BIGINT},

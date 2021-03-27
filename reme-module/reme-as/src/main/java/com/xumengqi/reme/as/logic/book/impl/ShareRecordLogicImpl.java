@@ -1,6 +1,7 @@
 package com.xumengqi.reme.as.logic.book.impl;
 
 import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
+import com.xumengqi.reme.as.logic.deposit.DepositLogic;
 import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
@@ -40,6 +41,9 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
 
     @Autowired
     private ShareLogMapper shareLogMapper;
+
+    @Autowired
+    private DepositLogic depositLogic;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -152,7 +156,7 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
     }
 
     /**
-     * 修改共享记录状态，并记录共享日志，并更新书籍状态
+     * 修改共享记录状态，并记录共享日志，并更新书籍状态，并更新押金
      *
      * @param shareRecordId    共享记录ID
      * @param statusEnum       要修改的状态
@@ -204,6 +208,30 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         }
         book.setBookStatus(bookStatusEnum.getCode());
         bookMapper.updateByPrimaryKeySelective(book);
-        // TODO 押金处理
+        if (book.getBookDeposit() > 0) {
+            // 押金处理
+            updateDeposit(book.getBookDeposit(), shareRecord.getOrderNo(), statusEnum);
+        }
+    }
+
+    private void updateDeposit(Long depositAmount, String innerOrderNo, ShareRecordStatusEnum statusEnum) {
+        switch (statusEnum) {
+            case ORDER_HAS_BEEN_PLACED:
+                depositLogic.occupyDeposit(depositAmount, innerOrderNo);
+                break;
+            case BORROWING:
+                break;
+            case RETURNED:
+            case OVERDUE_RETURNED:
+            case CANCEL_AFTER_ORDER:
+                depositLogic.releaseDeposit(depositAmount, innerOrderNo);
+                break;
+            case LOST_OR_DAMAGED:
+            case SERIOUSLY_OVERDUE:
+                depositLogic.payLossDeposit(depositAmount, innerOrderNo);
+                depositLogic.compensation(depositAmount, innerOrderNo);
+                break;
+            default:
+        }
     }
 }

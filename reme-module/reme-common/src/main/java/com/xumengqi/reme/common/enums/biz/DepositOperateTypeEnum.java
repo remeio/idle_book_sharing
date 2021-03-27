@@ -15,15 +15,26 @@ public enum DepositOperateTypeEnum {
      * 提取
      */
     DRAW(2, "提取"),
+
+    /**
+     * 占用押金
+     */
+    OCCUPY(3, "占用押金"),
+
+    /**
+     * 释放押金
+     */
+    RELEASE(4, "释放押金"),
+
     /**
      * 支付损失
      */
-    PAY_LOSS(3, "支付损失"),
+    PAY_LOSS(5, "支付损失"),
 
     /**
      * 所得补偿
      */
-    COMPENSATION(4, "所得补偿"),
+    COMPENSATION(6, "所得补偿"),
 
     ;
     private final Integer code;

@@ -114,9 +114,14 @@ public enum ErrorCodeEnum {
 
     // DEPOSIT
     /**
-     *
+     * 可用押金不足
      */
     CAN_USE_DEPOSIT_NOT_ENOUGH(ModuleEnum.DEPOSIT, 500, "可用押金不足"),
+
+    /**
+     * 占用余额不足
+     */
+    OCCUPY_DEPOSIT_NOT_ENOUGH(ModuleEnum.DEPOSIT, 501, "占用押金不足"),
     ;
 
 

@@ -40,4 +40,21 @@ public interface DepositLogic {
      */
     void compensation(Long depositAmount, String innerOrderNo);
 
+    /**
+     * 占用押金
+     *
+     * @param depositAmount /
+     * @param innerOrderNo  /
+     */
+    void occupyDeposit(Long depositAmount, String innerOrderNo);
+
+
+    /**
+     * 释放押金
+     *
+     * @param depositAmount /
+     * @param innerOrderNo  /
+     */
+    void releaseDeposit(Long depositAmount, String innerOrderNo);
+
 }

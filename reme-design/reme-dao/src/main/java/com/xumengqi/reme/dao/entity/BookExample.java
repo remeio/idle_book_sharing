@@ -445,52 +445,52 @@ public class BookExample {
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositEqualTo(Integer value) {
+        public Criteria andBookDepositEqualTo(Long value) {
             addCriterion("book_deposit =", value, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositNotEqualTo(Integer value) {
+        public Criteria andBookDepositNotEqualTo(Long value) {
             addCriterion("book_deposit <>", value, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositGreaterThan(Integer value) {
+        public Criteria andBookDepositGreaterThan(Long value) {
             addCriterion("book_deposit >", value, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositGreaterThanOrEqualTo(Integer value) {
+        public Criteria andBookDepositGreaterThanOrEqualTo(Long value) {
             addCriterion("book_deposit >=", value, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositLessThan(Integer value) {
+        public Criteria andBookDepositLessThan(Long value) {
             addCriterion("book_deposit <", value, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositLessThanOrEqualTo(Integer value) {
+        public Criteria andBookDepositLessThanOrEqualTo(Long value) {
             addCriterion("book_deposit <=", value, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositIn(List<Integer> values) {
+        public Criteria andBookDepositIn(List<Long> values) {
             addCriterion("book_deposit in", values, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositNotIn(List<Integer> values) {
+        public Criteria andBookDepositNotIn(List<Long> values) {
             addCriterion("book_deposit not in", values, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositBetween(Integer value1, Integer value2) {
+        public Criteria andBookDepositBetween(Long value1, Long value2) {
             addCriterion("book_deposit between", value1, value2, "bookDeposit");
             return (Criteria) this;
         }
 
-        public Criteria andBookDepositNotBetween(Integer value1, Integer value2) {
+        public Criteria andBookDepositNotBetween(Long value1, Long value2) {
             addCriterion("book_deposit not between", value1, value2, "bookDeposit");
             return (Criteria) this;
         }
