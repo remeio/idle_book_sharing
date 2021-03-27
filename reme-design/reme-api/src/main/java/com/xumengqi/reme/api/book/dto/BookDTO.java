@@ -41,7 +41,7 @@ public class BookDTO extends BaseDTO {
     /**
      * 书籍所需押金
      */
-    private Integer bookDeposit;
+    private Long bookDeposit;
 
     /**
      * 书籍图片URL
