@@ -99,6 +99,7 @@ public class BookServiceImpl implements BookService {
         return response;
     }
 
+    @AccessToken
     @Override
     public GetBookListByUserIdResponse getBookListByUserId(@Valid GetBookListByUserIdRequest request) {
         List<Book> books = bookLogic.getBookList(request.getOperatorId());
