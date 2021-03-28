@@ -28,6 +28,6 @@ public interface ShareLogService {
      * @return /
      */
     @ApiOperation("根据共享记录ID查询共享记录和共享日志列表")
-    @PostMapping("/getShareLogListByShareRecordIdResponse")
-    GetShareLogListByShareRecordIdResponse getShareLogListByShareRecordIdResponse(@ApiParam @Valid @RequestBody GetShareLogListByShareRecordIdRequest request);
+    @PostMapping("/getShareLogListByShareRecordId")
+    GetShareLogListByShareRecordIdResponse getShareLogListByShareRecordId(@ApiParam @Valid @RequestBody GetShareLogListByShareRecordIdRequest request);
 }

@@ -35,7 +35,7 @@ public class ShareLogServiceImpl implements ShareLogService {
 
     @AccessToken
     @Override
-    public GetShareLogListByShareRecordIdResponse getShareLogListByShareRecordIdResponse(GetShareLogListByShareRecordIdRequest request) {
+    public GetShareLogListByShareRecordIdResponse getShareLogListByShareRecordId(GetShareLogListByShareRecordIdRequest request) {
         final Long userId = request.getOperatorId();
         final Long shareRecordId = request.getShareRecordId();
         ShareRecordVO shareRecordVO = shareRecordLogic.getShareRecord(shareRecordId);
