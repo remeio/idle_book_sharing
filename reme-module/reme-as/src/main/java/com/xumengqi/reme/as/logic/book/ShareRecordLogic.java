@@ -105,4 +105,13 @@ public interface ShareRecordLogic {
      * @return /
      */
     List<ShareRecordVO> getShareRecordListByShareUserId(Long userId);
+
+
+    /**
+     * 查询共享记录（VO）
+     *
+     * @param shareRecordId /
+     * @return /
+     */
+    ShareRecordVO getShareRecord(Long shareRecordId);
 }

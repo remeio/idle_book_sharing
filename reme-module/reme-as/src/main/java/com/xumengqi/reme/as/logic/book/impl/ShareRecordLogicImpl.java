@@ -172,6 +172,12 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         return getShareRecordListByUserId(userId, false);
     }
 
+    @Override
+    public ShareRecordVO getShareRecord(Long shareRecordId) {
+        isExistShareRecord(shareRecordId);
+        return shareRecordExtMapper.selectById(shareRecordId);
+    }
+
     private List<ShareRecordVO> getShareRecordListByUserId(Long userId, boolean isBorrow) {
         // 判断用户是否存在
         AssertUtils.asserter().assertNotNull(userMapper.selectByPrimaryKey(userId)).elseThrow(ErrorCodeEnum.USER_NOT_EXIST);

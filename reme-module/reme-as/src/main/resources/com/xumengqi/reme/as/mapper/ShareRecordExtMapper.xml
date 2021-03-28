@@ -35,4 +35,14 @@
                  LEFT JOIN book b ON s.book_id = b.id
         where s.share_user_id = #{userId}
     </select>
+    <select id="selectById" resultMap="BaseResultMap">
+        SELECT s.*,
+               b.book_name,
+               b.book_image_url,
+               b.book_max_period,
+               b.book_deposit
+        FROM share_record s
+                 LEFT JOIN book b ON s.book_id = b.id
+        where s.id = #{id}
+    </select>
 </mapper>

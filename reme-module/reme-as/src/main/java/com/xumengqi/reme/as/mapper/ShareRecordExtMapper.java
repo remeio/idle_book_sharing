@@ -26,4 +26,12 @@ public interface ShareRecordExtMapper {
      * @return /
      */
     List<ShareRecordVO> selectByShareUserId(@Param("userId") Long userId);
+
+    /**
+     * 查询共享记录
+     *
+     * @param id /
+     * @return /
+     */
+    ShareRecordVO selectById(@Param("id") Long id);
 }
