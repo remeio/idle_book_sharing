@@ -35,14 +35,6 @@ public interface ShareRecordLogic {
     void returnBook(Long shareRecordId, Long shareUserId);
 
     /**
-     * 共享者收到书籍 (逾期)
-     *
-     * @param shareRecordId /
-     * @param shareUserId   /
-     */
-    void overdueReturnBook(Long shareRecordId, Long shareUserId);
-
-    /**
      * 借阅者或共享者取消订单
      *
      * @param shareRecordId /

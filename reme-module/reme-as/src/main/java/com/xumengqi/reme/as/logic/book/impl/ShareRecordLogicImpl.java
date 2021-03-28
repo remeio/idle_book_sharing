@@ -11,10 +11,7 @@ import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.common.enums.biz.OperatorTypeEnum;
 import com.xumengqi.reme.common.enums.biz.ShareRecordStatusEnum;
-import com.xumengqi.reme.dao.entity.Book;
-import com.xumengqi.reme.dao.entity.ShareLog;
-import com.xumengqi.reme.dao.entity.ShareRecord;
-import com.xumengqi.reme.dao.entity.User;
+import com.xumengqi.reme.dao.entity.*;
 import com.xumengqi.reme.dao.mapper.BookMapper;
 import com.xumengqi.reme.dao.mapper.ShareLogMapper;
 import com.xumengqi.reme.dao.mapper.ShareRecordMapper;
@@ -96,14 +93,20 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
     @Override
     public void returnBook(Long shareRecordId, Long shareUserId) {
         isShareUser(shareRecordId, shareUserId);
-        updateShareRecordStatusAndRecordShareLogAndUpdateBookStatus(shareRecordId, ShareRecordStatusEnum.RETURNED, OperatorTypeEnum.SHARER);
-    }
-
-    @Transactional(rollbackFor = Exception.class)
-    @Override
-    public void overdueReturnBook(Long shareRecordId, Long shareUserId) {
-        isShareUser(shareRecordId, shareUserId);
-        updateShareRecordStatusAndRecordShareLogAndUpdateBookStatus(shareRecordId, ShareRecordStatusEnum.OVERDUE_RETURNED, OperatorTypeEnum.SHARER);
+        // 判断是否是逾期归还
+        ShareRecord shareRecord = shareRecordMapper.selectByPrimaryKey(shareRecordId);
+        Book book = bookMapper.selectByPrimaryKey(shareRecord.getBookId());
+        // 查询借阅天数
+        Integer period = book.getBookMaxPeriod();
+        // 查询借阅日期
+        ShareLogExample shareLogExample = new ShareLogExample();
+        shareLogExample.createCriteria().andShareRecordIdEqualTo(shareRecordId).andShareRecordStatusEqualTo(ShareRecordStatusEnum.BORROWING.getCode());
+        ShareLog shareLog = shareLogMapper.selectByExample(shareLogExample).stream().findFirst().orElse(null);
+        AssertUtils.asserter().assertNotNull(shareLog).elseThrow(ErrorCodeEnum.SYSTEM_ERROR);
+        // 比较
+        Date now = new Date();
+        boolean isOverdue = now.after(new Date(shareLog.getGmtCreate().getTime() + ((period + 2L) * 24 * 60 * 60 * 1000)));
+        updateShareRecordStatusAndRecordShareLogAndUpdateBookStatus(shareRecordId, isOverdue ? ShareRecordStatusEnum.OVERDUE_RETURNED : ShareRecordStatusEnum.RETURNED, OperatorTypeEnum.SHARER);
     }
 
     @Transactional(rollbackFor = Exception.class)

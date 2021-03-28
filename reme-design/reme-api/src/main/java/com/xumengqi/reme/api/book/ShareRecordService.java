@@ -43,17 +43,6 @@ public interface ShareRecordService {
     ReturnBookResponse returnBook(@ApiParam @Valid @RequestBody ReturnBookRequest request);
 
     /**
-     * 共享者收到书籍 (逾期)
-     *
-     * @param request /
-     * @return /
-     */
-    @ApiOperation("共享者收到书籍 (逾期)")
-    @PostMapping("/overdueReturnBook")
-    OverdueReturnBookResponse overdueReturnBook(@ApiParam @Valid @RequestBody OverdueReturnBookRequest request);
-
-
-    /**
      * 借阅者或共享者取消订单
      *
      * @param request /

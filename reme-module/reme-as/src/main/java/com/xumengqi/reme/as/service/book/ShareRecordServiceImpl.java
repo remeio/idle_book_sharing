@@ -48,14 +48,6 @@ public class ShareRecordServiceImpl implements ShareRecordService {
     }
 
     @Override
-    public OverdueReturnBookResponse overdueReturnBook(OverdueReturnBookRequest request) {
-        final Long userId = request.getOperatorId();
-        final Long shareRecordId = request.getShareRecordId();
-        shareRecordLogic.overdueReturnBook(shareRecordId, userId);
-        return new OverdueReturnBookResponse();
-    }
-
-    @Override
     public CancelBorrowBookResponse cancelBorrowBook(CancelBorrowBookRequest request) {
         final Long userId = request.getOperatorId();
         final Long shareRecordId = request.getShareRecordId();
