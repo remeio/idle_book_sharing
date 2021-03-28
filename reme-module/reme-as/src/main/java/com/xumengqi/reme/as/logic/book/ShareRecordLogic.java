@@ -43,12 +43,12 @@ public interface ShareRecordLogic {
     void overdueReturnBook(Long shareRecordId, Long shareUserId);
 
     /**
-     * 借阅者取消订单
+     * 借阅者或共享者取消订单
      *
      * @param shareRecordId /
-     * @param borrowUserId  /
+     * @param userId        /
      */
-    void cancelBorrowBook(Long shareRecordId, Long borrowUserId);
+    void cancelBorrowBook(Long shareRecordId, Long userId);
 
     /**
      * 丢失书籍处理 (共享者或借阅者均可处理)

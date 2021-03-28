@@ -54,12 +54,12 @@ public interface ShareRecordService {
 
 
     /**
-     * 借阅者取消订单
+     * 借阅者或共享者取消订单
      *
      * @param request /
      * @return /
      */
-    @ApiOperation("借阅者取消订单")
+    @ApiOperation("借阅者或共享者取消订单")
     @PostMapping("/cancelBorrowBook")
     CancelBorrowBookResponse cancelBorrowBook(@ApiParam @Valid @RequestBody CancelBorrowBookRequest request);
 

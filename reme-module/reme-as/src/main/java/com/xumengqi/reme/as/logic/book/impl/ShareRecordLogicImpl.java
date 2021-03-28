@@ -108,9 +108,17 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public void cancelBorrowBook(Long shareRecordId, Long borrowUserId) {
-        isBorrowUser(shareRecordId, borrowUserId);
-        updateShareRecordStatusAndRecordShareLogAndUpdateBookStatus(shareRecordId, ShareRecordStatusEnum.CANCEL_AFTER_ORDER, OperatorTypeEnum.BORROWER);
+    public void cancelBorrowBook(Long shareRecordId, Long userId) {
+        ShareRecord shareRecord = shareRecordMapper.selectByPrimaryKey(shareRecordId);
+        OperatorTypeEnum operatorTypeEnum = null;
+        if (shareRecord.getShareUserId().equals(userId)) {
+            operatorTypeEnum = OperatorTypeEnum.SHARER;
+        } else if (shareRecord.getBorrowUserId().equals(userId)) {
+            operatorTypeEnum = OperatorTypeEnum.BORROWER;
+        } else {
+            BizException.error(ErrorCodeEnum.SYSTEM_ERROR);
+        }
+        updateShareRecordStatusAndRecordShareLogAndUpdateBookStatus(shareRecordId, ShareRecordStatusEnum.CANCEL_AFTER_ORDER, operatorTypeEnum);
     }
 
 
@@ -122,7 +130,7 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         if (shareRecord.getShareUserId().equals(userId)) {
             operatorTypeEnum = OperatorTypeEnum.SHARER;
         } else if (shareRecord.getBorrowUserId().equals(userId)) {
-            operatorTypeEnum = OperatorTypeEnum.SHARER;
+            operatorTypeEnum = OperatorTypeEnum.BORROWER;
         } else {
             BizException.error(ErrorCodeEnum.SYSTEM_ERROR);
         }
