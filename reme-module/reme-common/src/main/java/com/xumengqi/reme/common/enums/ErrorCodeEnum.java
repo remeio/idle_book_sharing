@@ -91,7 +91,7 @@ public enum ErrorCodeEnum {
     /**
      * 书籍状态不匹配
      */
-    BOOK_BORROWING(ModuleEnum.BOOK, 501, "书籍已被借阅"),
+    BOOK_BORROWING(ModuleEnum.BOOK, 501, "当前书籍不允许借阅"),
 
     /**
      * 当前书籍不能被下架
