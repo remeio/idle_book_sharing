@@ -24,6 +24,7 @@
         FROM share_record s
                  LEFT JOIN book b ON s.book_id = b.id
         where s.borrow_user_id = #{userId}
+        order by id desc
     </select>
     <select id="selectByShareUserId" resultMap="BaseResultMap">
         SELECT s.*,
@@ -34,6 +35,7 @@
         FROM share_record s
                  LEFT JOIN book b ON s.book_id = b.id
         where s.share_user_id = #{userId}
+        order by id desc
     </select>
     <select id="selectById" resultMap="BaseResultMap">
         SELECT s.*,
