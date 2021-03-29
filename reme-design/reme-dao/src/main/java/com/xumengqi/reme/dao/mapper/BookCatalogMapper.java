@@ -2,9 +2,8 @@ package com.xumengqi.reme.dao.mapper;
 
 import com.xumengqi.reme.dao.entity.BookCatalog;
 import com.xumengqi.reme.dao.entity.BookCatalogExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface BookCatalogMapper {
     long countByExample(BookCatalogExample example);

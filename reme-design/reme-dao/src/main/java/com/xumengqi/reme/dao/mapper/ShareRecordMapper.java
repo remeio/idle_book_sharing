@@ -2,9 +2,8 @@ package com.xumengqi.reme.dao.mapper;
 
 import com.xumengqi.reme.dao.entity.ShareRecord;
 import com.xumengqi.reme.dao.entity.ShareRecordExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface ShareRecordMapper {
     long countByExample(ShareRecordExample example);

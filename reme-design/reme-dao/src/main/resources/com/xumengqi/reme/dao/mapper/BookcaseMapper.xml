@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.xumengqi.reme.dao.mapper.ShareLogMapper">
-  <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.ShareLog">
+<mapper namespace="com.xumengqi.reme.dao.mapper.BookcaseMapper">
+  <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.Bookcase">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="share_record_id" jdbcType="BIGINT" property="shareRecordId" />
-    <result column="share_record_status" jdbcType="INTEGER" property="shareRecordStatus" />
-    <result column="operator_type" jdbcType="INTEGER" property="operatorType" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="book_id" jdbcType="BIGINT" property="bookId" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, share_record_id, share_record_status, operator_type, gmt_create
+    id, user_id, book_id, gmt_create
   </sql>
-  <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.ShareLogExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.BookcaseExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from share_log
+    from bookcase
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -86,82 +85,73 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from share_log
+    from bookcase
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from share_log
+    delete from bookcase
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.xumengqi.reme.dao.entity.ShareLogExample">
-    delete from share_log
+  <delete id="deleteByExample" parameterType="com.xumengqi.reme.dao.entity.BookcaseExample">
+    delete from bookcase
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.xumengqi.reme.dao.entity.ShareLog">
+  <insert id="insert" parameterType="com.xumengqi.reme.dao.entity.Bookcase">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into share_log (share_record_id, share_record_status, 
-      operator_type, gmt_create)
-    values (#{shareRecordId,jdbcType=BIGINT}, #{shareRecordStatus,jdbcType=INTEGER}, 
-      #{operatorType,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP})
+    insert into bookcase (user_id, book_id, gmt_create
+      )
+    values (#{userId,jdbcType=BIGINT}, #{bookId,jdbcType=BIGINT}, #{gmtCreate,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.ShareLog">
+  <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Bookcase">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into share_log
+    insert into bookcase
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="shareRecordId != null">
-        share_record_id,
+      <if test="userId != null">
+        user_id,
       </if>
-      <if test="shareRecordStatus != null">
-        share_record_status,
-      </if>
-      <if test="operatorType != null">
-        operator_type,
+      <if test="bookId != null">
+        book_id,
       </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="shareRecordId != null">
-        #{shareRecordId,jdbcType=BIGINT},
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
       </if>
-      <if test="shareRecordStatus != null">
-        #{shareRecordStatus,jdbcType=INTEGER},
-      </if>
-      <if test="operatorType != null">
-        #{operatorType,jdbcType=INTEGER},
+      <if test="bookId != null">
+        #{bookId,jdbcType=BIGINT},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.ShareLogExample" resultType="java.lang.Long">
-    select count(*) from share_log
+  <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.BookcaseExample" resultType="java.lang.Long">
+    select count(*) from bookcase
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update share_log
+    update bookcase
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.shareRecordId != null">
-        share_record_id = #{record.shareRecordId,jdbcType=BIGINT},
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=BIGINT},
       </if>
-      <if test="record.shareRecordStatus != null">
-        share_record_status = #{record.shareRecordStatus,jdbcType=INTEGER},
-      </if>
-      <if test="record.operatorType != null">
-        operator_type = #{record.operatorType,jdbcType=INTEGER},
+      <if test="record.bookId != null">
+        book_id = #{record.bookId,jdbcType=BIGINT},
       </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
@@ -172,27 +162,23 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update share_log
+    update bookcase
     set id = #{record.id,jdbcType=BIGINT},
-      share_record_id = #{record.shareRecordId,jdbcType=BIGINT},
-      share_record_status = #{record.shareRecordStatus,jdbcType=INTEGER},
-      operator_type = #{record.operatorType,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      book_id = #{record.bookId,jdbcType=BIGINT},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.xumengqi.reme.dao.entity.ShareLog">
-    update share_log
+  <update id="updateByPrimaryKeySelective" parameterType="com.xumengqi.reme.dao.entity.Bookcase">
+    update bookcase
     <set>
-      <if test="shareRecordId != null">
-        share_record_id = #{shareRecordId,jdbcType=BIGINT},
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
       </if>
-      <if test="shareRecordStatus != null">
-        share_record_status = #{shareRecordStatus,jdbcType=INTEGER},
-      </if>
-      <if test="operatorType != null">
-        operator_type = #{operatorType,jdbcType=INTEGER},
+      <if test="bookId != null">
+        book_id = #{bookId,jdbcType=BIGINT},
       </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
@@ -200,11 +186,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.ShareLog">
-    update share_log
-    set share_record_id = #{shareRecordId,jdbcType=BIGINT},
-      share_record_status = #{shareRecordStatus,jdbcType=INTEGER},
-      operator_type = #{operatorType,jdbcType=INTEGER},
+  <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.Bookcase">
+    update bookcase
+    set user_id = #{userId,jdbcType=BIGINT},
+      book_id = #{bookId,jdbcType=BIGINT},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>

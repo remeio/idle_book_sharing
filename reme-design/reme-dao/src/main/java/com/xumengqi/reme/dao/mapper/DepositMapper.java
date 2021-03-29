@@ -2,9 +2,8 @@ package com.xumengqi.reme.dao.mapper;
 
 import com.xumengqi.reme.dao.entity.Deposit;
 import com.xumengqi.reme.dao.entity.DepositExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DepositMapper {
     long countByExample(DepositExample example);

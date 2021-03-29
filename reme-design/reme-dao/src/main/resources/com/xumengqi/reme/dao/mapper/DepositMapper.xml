@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.xumengqi.reme.dao.mapper.DepositMapper">
   <resultMap id="BaseResultMap" type="com.xumengqi.reme.dao.entity.Deposit">
-    <id column="id" jdbcType="BIGINT" property="id"/>
-    <result column="deposit_order_no" jdbcType="VARCHAR" property="depositOrderNo"/>
-    <result column="deposit_amount" jdbcType="BIGINT" property="depositAmount"/>
-    <result column="deposit_operate_type" jdbcType="INTEGER" property="depositOperateType"/>
-    <result column="user_id" jdbcType="BIGINT" property="userId"/>
-    <result column="inner_order_no" jdbcType="VARCHAR" property="innerOrderNo"/>
-    <result column="outer_order_no" jdbcType="VARCHAR" property="outerOrderNo"/>
-    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="deposit_order_no" jdbcType="VARCHAR" property="depositOrderNo" />
+    <result column="deposit_amount" jdbcType="BIGINT" property="depositAmount" />
+    <result column="deposit_operate_type" jdbcType="INTEGER" property="depositOperateType" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="inner_order_no" jdbcType="VARCHAR" property="innerOrderNo" />
+    <result column="outer_order_no" jdbcType="VARCHAR" property="outerOrderNo" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -78,43 +78,41 @@
     <if test="distinct">
       distinct
     </if>
-    <include refid="Base_Column_List"/>
+    <include refid="Base_Column_List" />
     from deposit
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause"/>
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
+    select 
+    <include refid="Base_Column_List" />
     from deposit
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete
-    from deposit
+    delete from deposit
     where id = #{id,jdbcType=BIGINT}
   </delete>
   <delete id="deleteByExample" parameterType="com.xumengqi.reme.dao.entity.DepositExample">
     delete from deposit
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause"/>
+      <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="com.xumengqi.reme.dao.entity.Deposit">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into deposit (deposit_order_no, deposit_amount, deposit_operate_type,
-    user_id, inner_order_no, outer_order_no,
-    gmt_create)
-    values (#{depositOrderNo,jdbcType=VARCHAR}, #{depositAmount,jdbcType=BIGINT},
-    #{depositOperateType,jdbcType=INTEGER},
-    #{userId,jdbcType=BIGINT}, #{innerOrderNo,jdbcType=VARCHAR}, #{outerOrderNo,jdbcType=VARCHAR},
-    #{gmtCreate,jdbcType=TIMESTAMP})
+    insert into deposit (deposit_order_no, deposit_amount, deposit_operate_type, 
+      user_id, inner_order_no, outer_order_no, 
+      gmt_create)
+    values (#{depositOrderNo,jdbcType=VARCHAR}, #{depositAmount,jdbcType=BIGINT}, #{depositOperateType,jdbcType=INTEGER}, 
+      #{userId,jdbcType=BIGINT}, #{innerOrderNo,jdbcType=VARCHAR}, #{outerOrderNo,jdbcType=VARCHAR}, 
+      #{gmtCreate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.Deposit">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -171,7 +169,7 @@
   <select id="countByExample" parameterType="com.xumengqi.reme.dao.entity.DepositExample" resultType="java.lang.Long">
     select count(*) from deposit
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause"/>
+      <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
@@ -203,21 +201,21 @@
       </if>
     </set>
     <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause"/>
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
     update deposit
     set id = #{record.id,jdbcType=BIGINT},
-    deposit_order_no = #{record.depositOrderNo,jdbcType=VARCHAR},
-    deposit_amount = #{record.depositAmount,jdbcType=BIGINT},
-    deposit_operate_type = #{record.depositOperateType,jdbcType=INTEGER},
-    user_id = #{record.userId,jdbcType=BIGINT},
-    inner_order_no = #{record.innerOrderNo,jdbcType=VARCHAR},
-    outer_order_no = #{record.outerOrderNo,jdbcType=VARCHAR},
-    gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
+      deposit_order_no = #{record.depositOrderNo,jdbcType=VARCHAR},
+      deposit_amount = #{record.depositAmount,jdbcType=BIGINT},
+      deposit_operate_type = #{record.depositOperateType,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=BIGINT},
+      inner_order_no = #{record.innerOrderNo,jdbcType=VARCHAR},
+      outer_order_no = #{record.outerOrderNo,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause"/>
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="com.xumengqi.reme.dao.entity.Deposit">
@@ -249,13 +247,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.xumengqi.reme.dao.entity.Deposit">
     update deposit
-    set deposit_order_no     = #{depositOrderNo,jdbcType=VARCHAR},
-        deposit_amount       = #{depositAmount,jdbcType=BIGINT},
-        deposit_operate_type = #{depositOperateType,jdbcType=INTEGER},
-        user_id              = #{userId,jdbcType=BIGINT},
-        inner_order_no       = #{innerOrderNo,jdbcType=VARCHAR},
-        outer_order_no       = #{outerOrderNo,jdbcType=VARCHAR},
-        gmt_create           = #{gmtCreate,jdbcType=TIMESTAMP}
+    set deposit_order_no = #{depositOrderNo,jdbcType=VARCHAR},
+      deposit_amount = #{depositAmount,jdbcType=BIGINT},
+      deposit_operate_type = #{depositOperateType,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=BIGINT},
+      inner_order_no = #{innerOrderNo,jdbcType=VARCHAR},
+      outer_order_no = #{outerOrderNo,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

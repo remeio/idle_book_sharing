@@ -2,9 +2,8 @@ package com.xumengqi.reme.dao.mapper;
 
 import com.xumengqi.reme.dao.entity.ShareLog;
 import com.xumengqi.reme.dao.entity.ShareLogExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface ShareLogMapper {
     long countByExample(ShareLogExample example);
