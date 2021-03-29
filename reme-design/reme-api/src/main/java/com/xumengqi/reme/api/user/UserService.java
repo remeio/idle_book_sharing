@@ -1,9 +1,11 @@
 package com.xumengqi.reme.api.user;
 
 import com.xumengqi.reme.api.user.request.GetSchoolInfoRequest;
+import com.xumengqi.reme.api.user.request.GetUserInfoRequest;
 import com.xumengqi.reme.api.user.request.SignInRequest;
 import com.xumengqi.reme.api.user.request.SignUpRequest;
 import com.xumengqi.reme.api.user.response.GetSchoolInfoResponse;
+import com.xumengqi.reme.api.user.response.GetUserInfoResponse;
 import com.xumengqi.reme.api.user.response.SignInResponse;
 import com.xumengqi.reme.api.user.response.SignUpResponse;
 import io.swagger.annotations.Api;
@@ -55,4 +57,14 @@ public interface UserService {
     @ApiOperation("获取学校名称")
     @PostMapping("/getSchoolInfo")
     GetSchoolInfoResponse getSchoolInfo(@ApiParam @Valid @RequestBody GetSchoolInfoRequest request);
+
+    /**
+     * 获取用户信息
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取用户信息")
+    @PostMapping("/getUserInfo")
+    GetUserInfoResponse getUserInfo(@ApiParam @Valid @RequestBody GetUserInfoRequest request);
 }

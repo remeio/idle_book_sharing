@@ -1,17 +1,23 @@
 package com.xumengqi.reme.as.service.user;
 
 import com.xumengqi.reme.api.user.UserService;
+import com.xumengqi.reme.api.user.dto.UserDTO;
 import com.xumengqi.reme.api.user.request.GetSchoolInfoRequest;
+import com.xumengqi.reme.api.user.request.GetUserInfoRequest;
 import com.xumengqi.reme.api.user.request.SignInRequest;
 import com.xumengqi.reme.api.user.request.SignUpRequest;
 import com.xumengqi.reme.api.user.response.GetSchoolInfoResponse;
+import com.xumengqi.reme.api.user.response.GetUserInfoResponse;
 import com.xumengqi.reme.api.user.response.SignInResponse;
 import com.xumengqi.reme.api.user.response.SignUpResponse;
 import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.conf.SystemConfig;
+import com.xumengqi.reme.base.util.AssertUtils;
+import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.base.util.RedisUtils;
+import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.RedisKeyPrefixEnum;
 import com.xumengqi.reme.dao.entity.School;
 import com.xumengqi.reme.dao.entity.User;
@@ -68,6 +74,19 @@ public class UserServiceImpl implements UserService {
         GetSchoolInfoResponse response = new GetSchoolInfoResponse();
         response.setSchoolId(school.getId());
         response.setSchoolName(school.getSchoolName());
+        return response;
+    }
+
+    @AccessToken
+    @Override
+    public GetUserInfoResponse getUserInfo(GetUserInfoRequest request) {
+        User user = userLogic.getUser(request.getOperatorId());
+        AssertUtils.asserter().assertNotNull(user).elseThrow(ErrorCodeEnum.USER_NOT_EXIST);
+        School school = userLogic.getSchoolByUserId(request.getOperatorId());
+        UserDTO userDTO = ConvertUtils.toObj(user, UserDTO.class);
+        userDTO.setSchoolName(school.getSchoolName());
+        GetUserInfoResponse response = new GetUserInfoResponse();
+        response.setUserDTO(userDTO);
         return response;
     }
 }
