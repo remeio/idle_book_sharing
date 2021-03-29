@@ -5,10 +5,7 @@ import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.UUIDUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.DepositOperateTypeEnum;
-import com.xumengqi.reme.dao.entity.Deposit;
-import com.xumengqi.reme.dao.entity.ShareRecord;
-import com.xumengqi.reme.dao.entity.ShareRecordExample;
-import com.xumengqi.reme.dao.entity.User;
+import com.xumengqi.reme.dao.entity.*;
 import com.xumengqi.reme.dao.mapper.DepositMapper;
 import com.xumengqi.reme.dao.mapper.ShareRecordMapper;
 import com.xumengqi.reme.dao.mapper.UserMapper;
@@ -18,6 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author xumengqi
@@ -154,5 +152,12 @@ public class DepositLogicImpl implements DepositLogic {
     @Override
     public void releaseDeposit(Long depositAmount, String innerOrderNo) {
         innerHandle(depositAmount, innerOrderNo, DepositOperateTypeEnum.RELEASE);
+    }
+
+    @Override
+    public List<Deposit> getDepositListByUserId(Long userId) {
+        DepositExample depositExample = new DepositExample();
+        depositExample.createCriteria().andUserIdEqualTo(userId);
+        return depositMapper.selectByExample(depositExample);
     }
 }

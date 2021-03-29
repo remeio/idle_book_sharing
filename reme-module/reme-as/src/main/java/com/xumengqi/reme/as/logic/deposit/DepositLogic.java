@@ -1,5 +1,9 @@
 package com.xumengqi.reme.as.logic.deposit;
 
+import com.xumengqi.reme.dao.entity.Deposit;
+
+import java.util.List;
+
 /**
  * @author xumengqi
  * @date 2021/3/26 21:02
@@ -56,5 +60,14 @@ public interface DepositLogic {
      * @param innerOrderNo  /
      */
     void releaseDeposit(Long depositAmount, String innerOrderNo);
+
+
+    /**
+     * 根据用户ID获取押金记录（ID倒序）
+     *
+     * @param userId /
+     * @return /
+     */
+    List<Deposit> getDepositListByUserId(Long userId);
 
 }
