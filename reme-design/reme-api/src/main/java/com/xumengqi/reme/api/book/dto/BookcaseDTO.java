@@ -4,6 +4,8 @@ import com.xumengqi.reme.base.BaseDTO;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 /**
  * @author xumengqi
  * @date 2021/3/29 22:31
@@ -25,6 +27,11 @@ public class BookcaseDTO extends BaseDTO {
      * 书籍ID
      */
     private Long bookId;
+
+    /**
+     * 创建时间
+     */
+    private Date gmtCreate;
 
     // CUSTOM
     /**
