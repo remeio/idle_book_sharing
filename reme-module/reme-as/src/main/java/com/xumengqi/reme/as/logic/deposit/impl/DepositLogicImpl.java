@@ -158,6 +158,7 @@ public class DepositLogicImpl implements DepositLogic {
     public List<Deposit> getDepositListByUserId(Long userId) {
         DepositExample depositExample = new DepositExample();
         depositExample.createCriteria().andUserIdEqualTo(userId);
+        depositExample.setOrderByClause("id desc");
         return depositMapper.selectByExample(depositExample);
     }
 }

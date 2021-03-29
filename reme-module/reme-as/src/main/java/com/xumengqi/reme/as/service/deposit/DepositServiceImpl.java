@@ -10,6 +10,7 @@ import com.xumengqi.reme.api.deposit.response.GetDepositListByUserIdResponse;
 import com.xumengqi.reme.api.deposit.response.PayDepositResponse;
 import com.xumengqi.reme.as.logic.deposit.DepositLogic;
 import com.xumengqi.reme.base.annotations.AccessToken;
+import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.dao.entity.Deposit;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ import java.util.List;
  * @author xumengqi
  * @date 2021/3/27 12:58
  */
+@SystemLog
 @Component
 public class DepositServiceImpl implements DepositService {
     @Autowired
