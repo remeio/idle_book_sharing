@@ -6,6 +6,7 @@ import com.xumengqi.reme.as.vo.BookcaseVO;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.dao.entity.Bookcase;
+import com.xumengqi.reme.dao.entity.BookcaseExample;
 import com.xumengqi.reme.dao.mapper.BookcaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,6 +28,12 @@ public class BookcaseLogicImpl implements BookcaseLogic {
 
     @Override
     public void add(Long bookId, Long userId) {
+        // 判断书籍是否已经被添加
+        BookcaseExample bookcaseExample = new BookcaseExample();
+        bookcaseExample.createCriteria().andBookIdEqualTo(bookId).andUserIdEqualTo(userId);
+        AssertUtils.asserter()
+                .assertEqualZero(bookcaseMapper.selectByExample(bookcaseExample).size())
+                .elseThrow(ErrorCodeEnum.BOOKCASE_HAD_EXIST);
         Bookcase record = new Bookcase();
         record.setUserId(userId);
         record.setBookId(bookId);

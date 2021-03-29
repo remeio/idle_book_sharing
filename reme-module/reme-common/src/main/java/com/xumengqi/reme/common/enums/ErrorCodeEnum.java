@@ -149,7 +149,9 @@ public enum ErrorCodeEnum {
     OCCUPY_DEPOSIT_NOT_ENOUGH(ModuleEnum.DEPOSIT, 501, "占用押金不足"),
 
 
-    BOOKCASE_NOT_EXIT(ModuleEnum.BOOKCASE, 500, "书箱记录不存在")
+    BOOKCASE_NOT_EXIT(ModuleEnum.BOOKCASE, 500, "书箱记录不存在"),
+
+    BOOKCASE_HAD_EXIST(ModuleEnum.BOOKCASE, 501, "书籍已被添加，不能重复添加")
     ;
 
     /**
