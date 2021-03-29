@@ -41,4 +41,13 @@ public interface UserLogic {
      * @return /
      */
     User getUser(Long userId);
+
+    /**
+     * 修改用户密码
+     *
+     * @param userId          /
+     * @param userPassword    /
+     * @param userNewPassword /
+     */
+    void resetPassword(Long userId, String userPassword, String userNewPassword);
 }

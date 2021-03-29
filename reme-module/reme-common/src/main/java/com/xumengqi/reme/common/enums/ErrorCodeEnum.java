@@ -64,6 +64,12 @@ public enum ErrorCodeEnum {
      */
     USER_NOT_EXIST(ModuleEnum.USER, 502, "用户不存在"),
 
+
+    /**
+     * 当前密码错误
+     */
+    THE_CURRENT_PASSWORD_IS_WRONG(ModuleEnum.USER, 502, "当前密码错误"),
+
     // SCHOOL
     /**
      * 学校不存在

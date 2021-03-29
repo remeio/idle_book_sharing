@@ -1,13 +1,7 @@
 package com.xumengqi.reme.api.user;
 
-import com.xumengqi.reme.api.user.request.GetSchoolInfoRequest;
-import com.xumengqi.reme.api.user.request.GetUserInfoRequest;
-import com.xumengqi.reme.api.user.request.SignInRequest;
-import com.xumengqi.reme.api.user.request.SignUpRequest;
-import com.xumengqi.reme.api.user.response.GetSchoolInfoResponse;
-import com.xumengqi.reme.api.user.response.GetUserInfoResponse;
-import com.xumengqi.reme.api.user.response.SignInResponse;
-import com.xumengqi.reme.api.user.response.SignUpResponse;
+import com.xumengqi.reme.api.user.request.*;
+import com.xumengqi.reme.api.user.response.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
@@ -67,4 +61,14 @@ public interface UserService {
     @ApiOperation("获取用户信息")
     @PostMapping("/getUserInfo")
     GetUserInfoResponse getUserInfo(@ApiParam @Valid @RequestBody GetUserInfoRequest request);
+
+    /**
+     * 修改用户密码
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("修改用户密码")
+    @PostMapping("/resetPassword")
+    ResetPasswordResponse resetPassword(@ApiParam @Valid @RequestBody ResetPasswordRequest request);
 }

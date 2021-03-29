@@ -75,4 +75,12 @@ public class UserLogicImpl implements UserLogic {
     public User getUser(Long userId) {
         return userMapper.selectByPrimaryKey(userId);
     }
+
+    @Override
+    public void resetPassword(Long userId, String userPassword, String userNewPassword) {
+        User user = getUser(userId);
+        AssertUtils.asserter().assertEqual(user.getUserPassword(), userPassword).elseThrow(ErrorCodeEnum.THE_CURRENT_PASSWORD_IS_WRONG);
+        user.setUserPassword(userNewPassword);
+        userMapper.updateByPrimaryKeySelective(user);
+    }
 }

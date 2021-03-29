@@ -2,14 +2,8 @@ package com.xumengqi.reme.as.service.user;
 
 import com.xumengqi.reme.api.user.UserService;
 import com.xumengqi.reme.api.user.dto.UserDTO;
-import com.xumengqi.reme.api.user.request.GetSchoolInfoRequest;
-import com.xumengqi.reme.api.user.request.GetUserInfoRequest;
-import com.xumengqi.reme.api.user.request.SignInRequest;
-import com.xumengqi.reme.api.user.request.SignUpRequest;
-import com.xumengqi.reme.api.user.response.GetSchoolInfoResponse;
-import com.xumengqi.reme.api.user.response.GetUserInfoResponse;
-import com.xumengqi.reme.api.user.response.SignInResponse;
-import com.xumengqi.reme.api.user.response.SignUpResponse;
+import com.xumengqi.reme.api.user.request.*;
+import com.xumengqi.reme.api.user.response.*;
 import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
@@ -24,6 +18,7 @@ import com.xumengqi.reme.dao.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.validation.Valid;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -88,5 +83,12 @@ public class UserServiceImpl implements UserService {
         GetUserInfoResponse response = new GetUserInfoResponse();
         response.setUserDTO(userDTO);
         return response;
+    }
+
+    @AccessToken
+    @Override
+    public ResetPasswordResponse resetPassword(@Valid ResetPasswordRequest request) {
+        userLogic.resetPassword(request.getOperatorId(), request.getUserPassword(), request.getUserNewPassword());
+        return new ResetPasswordResponse();
     }
 }
