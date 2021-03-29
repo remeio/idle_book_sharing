@@ -47,6 +47,7 @@ public class DepositServiceImpl implements DepositService {
         return new DrawDepositResponse();
     }
 
+    @AccessToken
     @Override
     public GetDepositListByUserIdResponse getDepositListByUserId(@Valid GetDepositListByUserIdRequest request) {
         List<Deposit> deposits = depositLogic.getDepositListByUserId(request.getOperatorId());
