@@ -48,7 +48,7 @@ public interface BookcaseService {
      * @return /
      */
     @ApiOperation("获取书箱")
-    @PostMapping("/addToBookcase")
+    @PostMapping("/getBookcaseListByUserId")
     GetBookcaseListByUserIdResponse getBookcaseListByUserId(@ApiParam @Valid @RequestBody GetBookListByUserIdRequest request);
 
 
