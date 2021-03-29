@@ -75,7 +75,7 @@ public class Book implements Serializable {
     private Long userId;
 
     /**
-     * 书籍状态【1：空闲，2：受理中，3：异常，4：已下架】
+     * 书籍状态【1：空闲，2：受理中，3：异常，4：已下架，5：已删除】
      *
      * @mbg.generated
      */

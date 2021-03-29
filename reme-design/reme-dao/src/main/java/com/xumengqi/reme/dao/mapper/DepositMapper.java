@@ -11,7 +11,7 @@ public interface DepositMapper {
 
     int deleteByExample(DepositExample example);
 
-    int deleteByPrimaryKey(Long depositId);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Deposit record);
 
@@ -19,7 +19,7 @@ public interface DepositMapper {
 
     List<Deposit> selectByExample(DepositExample example);
 
-    Deposit selectByPrimaryKey(Long depositId);
+    Deposit selectByPrimaryKey(Long id);
 
     int updateByExampleSelective(@Param("record") Deposit record, @Param("example") DepositExample example);
 

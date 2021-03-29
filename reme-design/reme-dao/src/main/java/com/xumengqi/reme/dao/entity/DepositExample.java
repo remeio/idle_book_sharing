@@ -105,63 +105,63 @@ public class DepositExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andDepositIdIsNull() {
-            addCriterion("deposit_id is null");
+        public Criteria andIdIsNull() {
+            addCriterion("id is null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdIsNotNull() {
-            addCriterion("deposit_id is not null");
+        public Criteria andIdIsNotNull() {
+            addCriterion("id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdEqualTo(Long value) {
-            addCriterion("deposit_id =", value, "depositId");
+        public Criteria andIdEqualTo(Long value) {
+            addCriterion("id =", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdNotEqualTo(Long value) {
-            addCriterion("deposit_id <>", value, "depositId");
+        public Criteria andIdNotEqualTo(Long value) {
+            addCriterion("id <>", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdGreaterThan(Long value) {
-            addCriterion("deposit_id >", value, "depositId");
+        public Criteria andIdGreaterThan(Long value) {
+            addCriterion("id >", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("deposit_id >=", value, "depositId");
+        public Criteria andIdGreaterThanOrEqualTo(Long value) {
+            addCriterion("id >=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdLessThan(Long value) {
-            addCriterion("deposit_id <", value, "depositId");
+        public Criteria andIdLessThan(Long value) {
+            addCriterion("id <", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdLessThanOrEqualTo(Long value) {
-            addCriterion("deposit_id <=", value, "depositId");
+        public Criteria andIdLessThanOrEqualTo(Long value) {
+            addCriterion("id <=", value, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdIn(List<Long> values) {
-            addCriterion("deposit_id in", values, "depositId");
+        public Criteria andIdIn(List<Long> values) {
+            addCriterion("id in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdNotIn(List<Long> values) {
-            addCriterion("deposit_id not in", values, "depositId");
+        public Criteria andIdNotIn(List<Long> values) {
+            addCriterion("id not in", values, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdBetween(Long value1, Long value2) {
-            addCriterion("deposit_id between", value1, value2, "depositId");
+        public Criteria andIdBetween(Long value1, Long value2) {
+            addCriterion("id between", value1, value2, "id");
             return (Criteria) this;
         }
 
-        public Criteria andDepositIdNotBetween(Long value1, Long value2) {
-            addCriterion("deposit_id not between", value1, value2, "depositId");
+        public Criteria andIdNotBetween(Long value1, Long value2) {
+            addCriterion("id not between", value1, value2, "id");
             return (Criteria) this;
         }
 

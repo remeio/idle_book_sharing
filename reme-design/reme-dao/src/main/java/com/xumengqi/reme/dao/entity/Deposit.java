@@ -9,7 +9,7 @@ public class Deposit implements Serializable {
      *
      * @mbg.generated
      */
-    private Long depositId;
+    private Long id;
 
     /**
      * 押金订单号
@@ -62,12 +62,12 @@ public class Deposit implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public Long getDepositId() {
-        return depositId;
+    public Long getId() {
+        return id;
     }
 
-    public void setDepositId(Long depositId) {
-        this.depositId = depositId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getDepositOrderNo() {
@@ -132,7 +132,7 @@ public class Deposit implements Serializable {
         sb.append(getClass().getSimpleName());
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
-        sb.append(", depositId=").append(depositId);
+        sb.append(", id=").append(id);
         sb.append(", depositOrderNo=").append(depositOrderNo);
         sb.append(", depositAmount=").append(depositAmount);
         sb.append(", depositOperateType=").append(depositOperateType);

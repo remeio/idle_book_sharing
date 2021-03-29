@@ -16,7 +16,7 @@ public class DepositDTO extends BaseDTO {
     /**
      * 押金ID
      */
-    private Long depositId;
+    private Long id;
 
     /**
      * 押金订单号
