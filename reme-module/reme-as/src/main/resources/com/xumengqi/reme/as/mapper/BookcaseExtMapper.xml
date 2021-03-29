@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xumengqi.reme.as.mapper.BookcaseExtMapper">
+    <resultMap id="BaseResultMap" type="com.xumengqi.reme.as.vo.BookcaseVO">
+        <id column="id" jdbcType="BIGINT" property="id" />
+        <result column="user_id" jdbcType="BIGINT" property="userId" />
+        <result column="book_id" jdbcType="BIGINT" property="bookId" />
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+        <result column="book_image_url" jdbcType="VARCHAR" property="bookDTO.bookImageUrl"/>
+        <result column="book_image_url" jdbcType="VARCHAR" property="bookDTO.bookName"/>
+        <result column="book_image_url" jdbcType="INTEGER" property="bookDTO.bookStatus"/>
+        <result column="book_image_url" jdbcType="INTEGER" property="bookDTO.bookMaxPeriod"/>
+        <result column="book_image_url" jdbcType="BIGINT" property="bookDTO.bookDeposit"/>
+    </resultMap>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT bc.*,
+               b.book_image_url,
+               b.book_name,
+               b.book_status,
+               b.book_max_period,
+               b.book_deposit
+        FROM bookcase bc
+                 LEFT JOIN book b ON bc.book_id = b.id
+        WHERE bc.user_id = #{userId}
+        ORDER BY bc.id DESC
+    </select>
+
+</mapper>

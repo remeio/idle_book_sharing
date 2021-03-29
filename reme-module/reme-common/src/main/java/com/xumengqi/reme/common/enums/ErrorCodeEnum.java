@@ -147,6 +147,9 @@ public enum ErrorCodeEnum {
      * 占用余额不足
      */
     OCCUPY_DEPOSIT_NOT_ENOUGH(ModuleEnum.DEPOSIT, 501, "占用押金不足"),
+
+
+    BOOKCASE_NOT_EXIT(ModuleEnum.BOOKCASE, 500, "书箱记录不存在")
     ;
 
     /**

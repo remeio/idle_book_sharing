@@ -47,7 +47,12 @@ public enum ModuleEnum {
     /**
      * 押金
      */
-    DEPOSIT(108);
+    DEPOSIT(108),
+
+    /**
+     * 书箱记录
+     */
+    BOOKCASE(109);
     /**
      * 模块编码
      */
