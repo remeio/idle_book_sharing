@@ -7,10 +7,10 @@
         <result column="book_id" jdbcType="BIGINT" property="bookId" />
         <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
         <result column="book_image_url" jdbcType="VARCHAR" property="bookDTO.bookImageUrl"/>
-        <result column="book_image_url" jdbcType="VARCHAR" property="bookDTO.bookName"/>
-        <result column="book_image_url" jdbcType="INTEGER" property="bookDTO.bookStatus"/>
-        <result column="book_image_url" jdbcType="INTEGER" property="bookDTO.bookMaxPeriod"/>
-        <result column="book_image_url" jdbcType="BIGINT" property="bookDTO.bookDeposit"/>
+        <result column="book_name" jdbcType="VARCHAR" property="bookDTO.bookName"/>
+        <result column="book_status" jdbcType="INTEGER" property="bookDTO.bookStatus"/>
+        <result column="book_max_period" jdbcType="INTEGER" property="bookDTO.bookMaxPeriod"/>
+        <result column="book_deposit" jdbcType="BIGINT" property="bookDTO.bookDeposit"/>
     </resultMap>
 
     <select id="selectByUserId" resultMap="BaseResultMap">
