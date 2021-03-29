@@ -1,6 +1,6 @@
-package com.xumengqi.reme.api.deposit.dto;
+package com.xumengqi.reme.as.vo;
 
-import com.xumengqi.reme.base.BaseDTO;
+import com.xumengqi.reme.base.BaseVO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +12,7 @@ import java.util.Date;
  */
 @Getter
 @Setter
-public class DepositDTO extends BaseDTO {
+public class DepositVO extends BaseVO {
     /**
      * 押金ID
      */

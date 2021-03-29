@@ -1,11 +1,16 @@
 package com.xumengqi.reme.as.logic.deposit.impl;
 
 import com.xumengqi.reme.as.logic.deposit.DepositLogic;
+import com.xumengqi.reme.as.mapper.DepositExtMapper;
+import com.xumengqi.reme.as.vo.DepositVO;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.base.util.UUIDUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.DepositOperateTypeEnum;
-import com.xumengqi.reme.dao.entity.*;
+import com.xumengqi.reme.dao.entity.Deposit;
+import com.xumengqi.reme.dao.entity.ShareRecord;
+import com.xumengqi.reme.dao.entity.ShareRecordExample;
+import com.xumengqi.reme.dao.entity.User;
 import com.xumengqi.reme.dao.mapper.DepositMapper;
 import com.xumengqi.reme.dao.mapper.ShareRecordMapper;
 import com.xumengqi.reme.dao.mapper.UserMapper;
@@ -31,6 +36,9 @@ public class DepositLogicImpl implements DepositLogic {
 
     @Autowired
     private ShareRecordMapper shareRecordMapper;
+
+    @Autowired
+    private DepositExtMapper depositExtMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -155,10 +163,7 @@ public class DepositLogicImpl implements DepositLogic {
     }
 
     @Override
-    public List<Deposit> getDepositListByUserId(Long userId) {
-        DepositExample depositExample = new DepositExample();
-        depositExample.createCriteria().andUserIdEqualTo(userId);
-        depositExample.setOrderByClause("id desc");
-        return depositMapper.selectByExample(depositExample);
+    public List<DepositVO> getDepositListByUserId(Long userId) {
+        return depositExtMapper.selectByUserId(userId);
     }
 }

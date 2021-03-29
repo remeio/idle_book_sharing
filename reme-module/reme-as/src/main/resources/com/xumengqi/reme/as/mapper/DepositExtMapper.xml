@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xumengqi.reme.as.mapper.DepositExtMapper">
+    <resultMap id="BaseResultMap" type="com.xumengqi.reme.as.vo.DepositVO">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="deposit_order_no" jdbcType="VARCHAR" property="depositOrderNo"/>
+        <result column="deposit_amount" jdbcType="BIGINT" property="depositAmount"/>
+        <result column="deposit_operate_type" jdbcType="INTEGER" property="depositOperateType"/>
+        <result column="user_id" jdbcType="BIGINT" property="userId"/>
+        <result column="inner_order_no" jdbcType="VARCHAR" property="innerOrderNo"/>
+        <result column="outer_order_no" jdbcType="VARCHAR" property="outerOrderNo"/>
+        <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
+        <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
+    </resultMap>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        SELECT s.*,
+               b.book_name
+        FROM (
+                 SELECT d.*,
+                        sr.book_id
+                 FROM deposit d
+                          LEFT JOIN share_record sr ON d.inner_order_no = sr.order_no
+                 WHERE d.user_id = #{userId}
+             ) s
+                 LEFT JOIN book b ON b.id = s.book_id
+        ORDER BY id desc
+    </select>
+
+</mapper>

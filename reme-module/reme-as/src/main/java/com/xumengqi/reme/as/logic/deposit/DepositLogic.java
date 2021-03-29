@@ -1,6 +1,6 @@
 package com.xumengqi.reme.as.logic.deposit;
 
-import com.xumengqi.reme.dao.entity.Deposit;
+import com.xumengqi.reme.as.vo.DepositVO;
 
 import java.util.List;
 
@@ -68,6 +68,6 @@ public interface DepositLogic {
      * @param userId /
      * @return /
      */
-    List<Deposit> getDepositListByUserId(Long userId);
+    List<DepositVO> getDepositListByUserId(Long userId);
 
 }

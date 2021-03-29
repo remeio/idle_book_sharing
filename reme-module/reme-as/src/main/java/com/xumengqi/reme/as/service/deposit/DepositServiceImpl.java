@@ -9,10 +9,10 @@ import com.xumengqi.reme.api.deposit.response.DrawDepositResponse;
 import com.xumengqi.reme.api.deposit.response.GetDepositListByUserIdResponse;
 import com.xumengqi.reme.api.deposit.response.PayDepositResponse;
 import com.xumengqi.reme.as.logic.deposit.DepositLogic;
+import com.xumengqi.reme.as.vo.DepositVO;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.util.ConvertUtils;
-import com.xumengqi.reme.dao.entity.Deposit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,7 +52,7 @@ public class DepositServiceImpl implements DepositService {
     @AccessToken
     @Override
     public GetDepositListByUserIdResponse getDepositListByUserId(@Valid GetDepositListByUserIdRequest request) {
-        List<Deposit> deposits = depositLogic.getDepositListByUserId(request.getOperatorId());
+        List<DepositVO> deposits = depositLogic.getDepositListByUserId(request.getOperatorId());
         GetDepositListByUserIdResponse response = new GetDepositListByUserIdResponse();
         response.setDepositDTOList(ConvertUtils.toList(deposits, DepositDTO.class));
         return response;
