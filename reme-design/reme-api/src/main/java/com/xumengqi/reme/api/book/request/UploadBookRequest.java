@@ -22,7 +22,7 @@ public class UploadBookRequest extends BaseRequest {
      * 书籍名称
      */
     @ApiModelProperty("书籍名称")
-    @ChineseLength(min = 1, max = 50)
+    @ChineseLength(min = 1, max = 200)
     private String bookName;
 
     /**
