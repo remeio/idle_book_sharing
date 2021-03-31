@@ -166,6 +166,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public GetRecommendBookListResponse getRecommendBookList(@Valid GetRecommendBookListRequest request) {
         List<Book> books = bookLogic.getRecommendBookList(request.getOperatorId());
+        if (books.size() % 2 != 0) {
+            books.remove(books.size() - 1);
+        }
         GetRecommendBookListResponse response = new GetRecommendBookListResponse();
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
         return response;
@@ -175,6 +178,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public GetTodayBookListResponse getTodayBookList(GetTodayBookListRequest request) {
         List<Book> books = bookLogic.getTodayBookList(request.getOperatorId());
+        if (books.size() % 2 != 0) {
+            books.remove(books.size() - 1);
+        }
         GetTodayBookListResponse response = new GetTodayBookListResponse();
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
         return response;
