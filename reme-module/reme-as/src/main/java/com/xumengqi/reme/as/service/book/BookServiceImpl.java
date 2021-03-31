@@ -162,6 +162,7 @@ public class BookServiceImpl implements BookService {
         return new DeleteBookResponse();
     }
 
+    @AccessToken
     @Override
     public GetRecommendBookListResponse getRecommendBookList(@Valid GetRecommendBookListRequest request) {
         List<Book> books = bookLogic.getRecommendBookList(request.getOperatorId());
@@ -170,6 +171,7 @@ public class BookServiceImpl implements BookService {
         return response;
     }
 
+    @AccessToken
     @Override
     public GetTodayBookListResponse getTodayBookList(GetTodayBookListRequest request) {
         List<Book> books = bookLogic.getTodayBookList(request.getOperatorId());
