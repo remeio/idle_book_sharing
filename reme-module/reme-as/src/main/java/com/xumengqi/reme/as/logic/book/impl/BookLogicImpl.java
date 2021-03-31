@@ -6,11 +6,19 @@ import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.dao.entity.Book;
 import com.xumengqi.reme.dao.entity.BookExample;
+import com.xumengqi.reme.dao.entity.User;
 import com.xumengqi.reme.dao.mapper.BookMapper;
+import com.xumengqi.reme.dao.mapper.UserMapper;
+import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author xumengqi
@@ -20,6 +28,9 @@ import java.util.List;
 public class BookLogicImpl implements BookLogic {
     @Autowired
     private BookMapper bookMapper;
+
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public void addBook(Book book) {
@@ -107,5 +118,51 @@ public class BookLogicImpl implements BookLogic {
         // 将书籍状态更新为空闲
         book.setBookStatus(BookStatusEnum.IDLE.getCode());
         bookMapper.updateByPrimaryKeySelective(book);
+    }
+
+    @Override
+    public List<Book> getRecommendBookList(Long userId) {
+        User user = userMapper.selectByPrimaryKey(userId);
+        BookExample bookExample = new BookExample();
+        bookExample.createCriteria()
+                .andSchoolIdEqualTo(user.getSchoolId())
+                .andBookStatusEqualTo(BookStatusEnum.IDLE.getCode());
+        bookExample.setOrderByClause("id desc");
+        List<Book> books = bookMapper.selectByExample(bookExample);
+        List<Book> result = new ArrayList<>();
+        if (books.size() == 0) {
+            return result;
+        }
+        // 随机推荐 6 个
+        int count = 6;
+        for (int i = 0; i < count; i++) {
+            Book book = books.get(RandomUtils.nextInt(0, books.size()));
+            result.add(book);
+        }
+        return result.stream().distinct().collect(Collectors.toList());
+    }
+
+    @Override
+    public List<Book> getTodayBookList(Long userId) {
+        Calendar calendar = Calendar.getInstance();
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        Calendar calendarFinal = Calendar.getInstance();
+        calendarFinal.set(year, month, day, 0, 0, 0);
+        User user = userMapper.selectByPrimaryKey(userId);
+        BookExample bookExample = new BookExample();
+        bookExample.createCriteria()
+                .andSchoolIdEqualTo(user.getSchoolId())
+                .andGmtCreateGreaterThan(calendarFinal.getTime())
+                .andBookStatusEqualTo(BookStatusEnum.IDLE.getCode());
+        bookExample.setOrderByClause("id desc");
+        List<Book> books = bookMapper.selectByExample(bookExample);
+        if (books.size() == 0) {
+            return new ArrayList<>();
+        }
+        // 要 12 个
+        int count  = 12;
+        return books.subList(0, Math.min(count, books.size()));
     }
 }

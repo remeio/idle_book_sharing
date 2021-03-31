@@ -67,4 +67,19 @@ public interface BookLogic {
      * @param userId /
      */
     void onShelfBook(Long bookId, Long userId);
+
+    /**
+     * 获取推荐书籍列表
+     * @param userId /
+     * @return /
+     */
+    List<Book> getRecommendBookList(Long userId);
+
+
+    /**
+     * 获取推今日上新书籍列表
+     * @param userId /
+     * @return /
+     */
+    List<Book> getTodayBookList(Long userId);
 }

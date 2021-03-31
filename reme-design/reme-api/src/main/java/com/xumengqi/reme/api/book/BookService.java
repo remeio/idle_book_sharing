@@ -113,4 +113,26 @@ public interface BookService {
     @ApiOperation("删除书籍")
     @PostMapping("/deleteBook")
     DeleteBookResponse deleteBook(@ApiParam @Valid @RequestBody DeleteBookRequest request);
+
+
+    /**
+     * 获取推荐书籍列表
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取推荐书籍列表")
+    @PostMapping("/getRecommendBookList")
+    GetRecommendBookListResponse getRecommendBookList(@ApiParam @Valid @RequestBody GetRecommendBookListRequest request);
+
+
+    /**
+     * 获取今日上新
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取今日上新")
+    @PostMapping("/getTodayBookList")
+    GetTodayBookListResponse getTodayBookList(@ApiParam @Valid @RequestBody GetTodayBookListRequest request);
 }

@@ -161,4 +161,20 @@ public class BookServiceImpl implements BookService {
         bookLogic.deleteBook(request.getBookId(), request.getOperatorId());
         return new DeleteBookResponse();
     }
+
+    @Override
+    public GetRecommendBookListResponse getRecommendBookList(@Valid GetRecommendBookListRequest request) {
+        List<Book> books = bookLogic.getRecommendBookList(request.getOperatorId());
+        GetRecommendBookListResponse response = new GetRecommendBookListResponse();
+        response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
+        return response;
+    }
+
+    @Override
+    public GetTodayBookListResponse getTodayBookList(GetTodayBookListRequest request) {
+        List<Book> books = bookLogic.getTodayBookList(request.getOperatorId());
+        GetTodayBookListResponse response = new GetTodayBookListResponse();
+        response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
+        return response;
+    }
 }
