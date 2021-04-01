@@ -13,10 +13,7 @@ import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.common.enums.biz.OperatorTypeEnum;
 import com.xumengqi.reme.common.enums.biz.ShareRecordStatusEnum;
 import com.xumengqi.reme.dao.entity.*;
-import com.xumengqi.reme.dao.mapper.BookMapper;
-import com.xumengqi.reme.dao.mapper.ShareLogMapper;
-import com.xumengqi.reme.dao.mapper.ShareRecordMapper;
-import com.xumengqi.reme.dao.mapper.UserMapper;
+import com.xumengqi.reme.dao.mapper.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,6 +46,9 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
 
     @Autowired
     private ShareRecordExtMapper shareRecordExtMapper;
+
+    @Autowired
+    private MessageMapper messageMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -198,6 +198,26 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
     @Override
     public List<RankVO> getShareRankList(int i) {
         return shareRecordExtMapper.getShareRankList(i);
+    }
+
+    @Override
+    public void sendMessage(Long userId, Long shareRecordId, String messageContent) {
+        isExistShareRecord(shareRecordId);
+        ShareRecord shareRecord = shareRecordMapper.selectByPrimaryKey(shareRecordId);
+        OperatorTypeEnum operatorTypeEnum = null;
+        if (shareRecord.getShareUserId().equals(userId)) {
+            operatorTypeEnum = OperatorTypeEnum.SHARER;
+        } else if (shareRecord.getBorrowUserId().equals(userId)) {
+            operatorTypeEnum = OperatorTypeEnum.BORROWER;
+        } else {
+            BizException.error(ErrorCodeEnum.SYSTEM_ERROR);
+        }
+        Message message = new Message();
+        message.setOperatorType(operatorTypeEnum.getCode());
+        message.setShareRecordId(shareRecordId);
+        message.setMessageContent(messageContent);
+        message.setGmtCreate(new Date());
+        messageMapper.insertSelective(message);
     }
 
     private List<ShareRecordVO> getShareRecordListByUserId(Long userId, boolean isBorrow) {

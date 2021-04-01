@@ -109,4 +109,11 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         response.setRankDTOList(ConvertUtils.toList(rankVOList, RankDTO.class));
         return response;
     }
+
+    @AccessToken
+    @Override
+    public SendMessageResponse sendMessage(@Valid SendMessageRequest request) {
+        shareRecordLogic.sendMessage(request.getOperatorId(), request.getShareRecordId(), request.getMessageContent())
+        return new SendMessageResponse();
+    }
 }

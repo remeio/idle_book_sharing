@@ -121,4 +121,12 @@ public interface ShareRecordLogic {
      * @return /
      */
     List<RankVO> getShareRankList(int i);
+
+    /**
+     * 发送消息
+     * @param userId /
+     * @param shareRecordId /
+     * @param messageContent /
+     */
+    void sendMessage(Long userId, Long shareRecordId, String messageContent);
 }

@@ -116,4 +116,14 @@ public interface ShareRecordService {
     @PostMapping("/getBorrowRankList")
     GetBorrowRankListResponse getBorrowRankList(@ApiParam @Valid @RequestBody GetBorrowRankListRequest request);
 
+    /**
+     * 发送消息
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("发送消息")
+    @PostMapping("/sendMessage")
+    SendMessageResponse sendMessage(@ApiParam @Valid @RequestBody SendMessageRequest request);
+
 }
