@@ -38,9 +38,6 @@ public class ShareRecordServiceImpl implements ShareRecordService {
     @Autowired
     private UserLogic userLogic;
 
-    @Autowired
-    private
-
     @Override
     public ReceiveBookResponse receiveBook(ReceiveBookRequest request) {
         final Long userId = request.getOperatorId();
@@ -120,7 +117,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
     @AccessToken
     @Override
     public SendMessageResponse sendMessage(@Valid SendMessageRequest request) {
-        shareRecordLogic.sendMessage(request.getOperatorId(), request.getShareRecordId(), request.getMessageContent())
+        shareRecordLogic.sendMessage(request.getOperatorId(), request.getShareRecordId(), request.getMessageContent());
         return new SendMessageResponse();
     }
 
