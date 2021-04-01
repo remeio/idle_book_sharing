@@ -220,6 +220,19 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         messageMapper.insertSelective(message);
     }
 
+    @Override
+    public List<Message> getMessageList(Long userId, Long shareRecordId) {
+        isExistShareRecord(shareRecordId);
+        ShareRecord shareRecord = shareRecordMapper.selectByPrimaryKey(shareRecordId);
+        if (!shareRecord.getShareUserId().equals(userId) && !shareRecord.getBorrowUserId().equals(userId)) {
+            BizException.error(ErrorCodeEnum.PERMISSION_DENIED);
+        }
+        MessageExample messageExample = new MessageExample();
+        messageExample.createCriteria().andShareRecordIdEqualTo(shareRecordId);
+        messageExample.setOrderByClause("gmt_create asc");
+        return messageMapper.selectByExample(messageExample);
+    }
+
     private List<ShareRecordVO> getShareRecordListByUserId(Long userId, boolean isBorrow) {
         // 判断用户是否存在
         AssertUtils.asserter().assertNotNull(userMapper.selectByPrimaryKey(userId)).elseThrow(ErrorCodeEnum.USER_NOT_EXIST);

@@ -126,4 +126,15 @@ public interface ShareRecordService {
     @PostMapping("/sendMessage")
     SendMessageResponse sendMessage(@ApiParam @Valid @RequestBody SendMessageRequest request);
 
+
+    /**
+     * 发送消息
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取消息列表")
+    @PostMapping("/getMessageList")
+    GetMessageListResponse getMessageList(@ApiParam @Valid @RequestBody GetMessageListRequest request);
+
 }

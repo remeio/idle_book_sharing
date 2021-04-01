@@ -1,18 +1,22 @@
 package com.xumengqi.reme.as.service.book;
 
 import com.xumengqi.reme.api.book.ShareRecordService;
+import com.xumengqi.reme.api.book.dto.MessageDTO;
 import com.xumengqi.reme.api.book.dto.RankDTO;
 import com.xumengqi.reme.api.book.dto.ShareRecordDTO;
 import com.xumengqi.reme.api.book.request.*;
 import com.xumengqi.reme.api.book.response.*;
 import com.xumengqi.reme.as.logic.book.BookLogic;
 import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
+import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.as.vo.RankVO;
 import com.xumengqi.reme.as.vo.ShareRecordVO;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.annotations.NoAccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.util.ConvertUtils;
+import com.xumengqi.reme.dao.entity.Message;
+import com.xumengqi.reme.dao.entity.ShareRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,7 +36,10 @@ public class ShareRecordServiceImpl implements ShareRecordService {
     private ShareRecordLogic shareRecordLogic;
 
     @Autowired
-    private BookLogic bookLogic;
+    private UserLogic userLogic;
+
+    @Autowired
+    private
 
     @Override
     public ReceiveBookResponse receiveBook(ReceiveBookRequest request) {
@@ -115,5 +122,19 @@ public class ShareRecordServiceImpl implements ShareRecordService {
     public SendMessageResponse sendMessage(@Valid SendMessageRequest request) {
         shareRecordLogic.sendMessage(request.getOperatorId(), request.getShareRecordId(), request.getMessageContent())
         return new SendMessageResponse();
+    }
+
+    @AccessToken
+    @Override
+    public GetMessageListResponse getMessageList(@Valid GetMessageListRequest request) {
+        List<Message> messages = shareRecordLogic.getMessageList(request.getOperatorId(), request.getShareRecordId());
+        ShareRecordVO shareRecordVO = shareRecordLogic.getShareRecord(request.getShareRecordId());
+        String borrowUserFullName = userLogic.getUser(shareRecordVO.getBorrowUserId()).getUserFullName();
+        String shareUserFullName = userLogic.getUser(shareRecordVO.getShareUserId()).getUserFullName();
+        GetMessageListResponse response = new GetMessageListResponse();
+        response.setMessageDTOList(ConvertUtils.toList(messages, MessageDTO.class));
+        response.setBorrowUserFullName(borrowUserFullName);
+        response.setShareUserFullName(shareUserFullName);
+        return response;
     }
 }

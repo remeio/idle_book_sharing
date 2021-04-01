@@ -2,6 +2,7 @@ package com.xumengqi.reme.as.logic.book;
 
 import com.xumengqi.reme.as.vo.RankVO;
 import com.xumengqi.reme.as.vo.ShareRecordVO;
+import com.xumengqi.reme.dao.entity.Message;
 
 import java.util.List;
 
@@ -129,4 +130,12 @@ public interface ShareRecordLogic {
      * @param messageContent /
      */
     void sendMessage(Long userId, Long shareRecordId, String messageContent);
+
+    /**
+     * 获取消息列表
+     * @param userId /
+     * @param shareRecordId /
+     * @return /
+     */
+    List<Message> getMessageList(Long userId, Long shareRecordId);
 }
