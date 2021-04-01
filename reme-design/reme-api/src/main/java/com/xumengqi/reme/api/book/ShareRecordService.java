@@ -94,4 +94,26 @@ public interface ShareRecordService {
     @PostMapping("/getShareRecordListByShareUserId")
     GetShareRecordListByShareUserIdResponse getShareRecordListByShareUserId(@ApiParam @Valid @RequestBody GetShareRecordListByShareUserIdRequest request);
 
+
+    /**
+     * 获取共享排行榜
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取共享排行榜")
+    @PostMapping("/getShareRankList")
+    GetShareRankListResponse getShareRankList(@ApiParam @Valid @RequestBody GetShareRankListRequest request);
+
+
+    /**
+     * 获取借阅排行榜
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取借阅排行榜")
+    @PostMapping("/getBorrowRankList")
+    GetBorrowRankListResponse getBorrowRankList(@ApiParam @Valid @RequestBody GetBorrowRankListRequest request);
+
 }

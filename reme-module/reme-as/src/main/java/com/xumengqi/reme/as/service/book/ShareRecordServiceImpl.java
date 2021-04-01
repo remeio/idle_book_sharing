@@ -1,11 +1,13 @@
 package com.xumengqi.reme.as.service.book;
 
 import com.xumengqi.reme.api.book.ShareRecordService;
+import com.xumengqi.reme.api.book.dto.RankDTO;
 import com.xumengqi.reme.api.book.dto.ShareRecordDTO;
 import com.xumengqi.reme.api.book.request.*;
 import com.xumengqi.reme.api.book.response.*;
 import com.xumengqi.reme.as.logic.book.BookLogic;
 import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
+import com.xumengqi.reme.as.vo.RankVO;
 import com.xumengqi.reme.as.vo.ShareRecordVO;
 import com.xumengqi.reme.base.annotations.AccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
@@ -86,6 +88,22 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         List<ShareRecordVO> shareRecordList = shareRecordLogic.getShareRecordListByShareUserId(request.getOperatorId());
         GetShareRecordListByShareUserIdResponse response = new GetShareRecordListByShareUserIdResponse();
         response.setShareRecordDTOList(ConvertUtils.toList(shareRecordList, ShareRecordDTO.class));
+        return response;
+    }
+
+    @Override
+    public GetShareRankListResponse getShareRankList(@Valid GetShareRankListRequest request) {
+        List<RankVO> rankVOList = shareRecordLogic.getShareRankList(100);
+        GetShareRankListResponse response = new GetShareRankListResponse();
+        response.setRankDTOList(ConvertUtils.toList(rankVOList, RankDTO.class));
+        return response;
+    }
+
+    @Override
+    public GetBorrowRankListResponse getBorrowRankList(@Valid GetBorrowRankListRequest request) {
+        List<RankVO> rankVOList = shareRecordLogic.getBorrowRankList(100);
+        GetBorrowRankListResponse response = new GetBorrowRankListResponse();
+        response.setRankDTOList(ConvertUtils.toList(rankVOList, RankDTO.class));
         return response;
     }
 }

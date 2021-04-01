@@ -47,4 +47,34 @@
                  LEFT JOIN book b ON s.book_id = b.id
         where s.id = #{id}
     </select>
+    <select id="getBorrowRankList" resultType="com.xumengqi.reme.as.vo.RankVO">
+        SELECT s.num,
+               s.user_id,
+               u.user_full_name
+        FROM (
+                 SELECT count(sr.borrow_user_id) AS num,
+                        sr.borrow_user_id        AS user_id
+                 FROM share_record sr
+                 WHERE sr.record_status IN (3, 4)
+                 GROUP BY sr.borrow_user_id
+                 ORDER BY num DESC
+                 LIMIT #{count}
+             ) s
+                 LEFT JOIN `user` u ON u.id = s.user_id
+    </select>
+    <select id="getShareRankList" resultType="com.xumengqi.reme.as.vo.RankVO">
+        SELECT s.num,
+               s.user_id,
+               u.user_full_name
+        FROM (
+                 SELECT count(sr.share_user_id) AS num,
+                        sr.share_user_id        AS user_id
+                 FROM share_record sr
+                 WHERE sr.record_status IN (3, 4)
+                 GROUP BY sr.share_user_id
+                 ORDER BY num DESC
+                 LIMIT #{count}
+             ) s
+                 LEFT JOIN `user` u ON u.id = s.user_id
+    </select>
 </mapper>

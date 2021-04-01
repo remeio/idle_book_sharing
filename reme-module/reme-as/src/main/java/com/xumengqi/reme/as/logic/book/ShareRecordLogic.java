@@ -1,5 +1,6 @@
 package com.xumengqi.reme.as.logic.book;
 
+import com.xumengqi.reme.as.vo.RankVO;
 import com.xumengqi.reme.as.vo.ShareRecordVO;
 
 import java.util.List;
@@ -106,4 +107,18 @@ public interface ShareRecordLogic {
      * @return /
      */
     ShareRecordVO getShareRecord(Long shareRecordId);
+
+    /**
+     * 获取借阅排行榜
+     * @param i 取多少
+     * @return /
+     */
+    List<RankVO> getBorrowRankList(int i);
+
+    /**
+     * 获取共享排行榜
+     * @param i 取多少
+     * @return /
+     */
+    List<RankVO> getShareRankList(int i);
 }

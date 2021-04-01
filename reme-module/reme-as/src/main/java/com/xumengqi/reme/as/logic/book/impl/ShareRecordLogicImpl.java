@@ -3,6 +3,7 @@ package com.xumengqi.reme.as.logic.book.impl;
 import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
 import com.xumengqi.reme.as.logic.deposit.DepositLogic;
 import com.xumengqi.reme.as.mapper.ShareRecordExtMapper;
+import com.xumengqi.reme.as.vo.RankVO;
 import com.xumengqi.reme.as.vo.ShareRecordVO;
 import com.xumengqi.reme.base.BizException;
 import com.xumengqi.reme.base.util.AssertUtils;
@@ -187,6 +188,16 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
     public ShareRecordVO getShareRecord(Long shareRecordId) {
         isExistShareRecord(shareRecordId);
         return shareRecordExtMapper.selectById(shareRecordId);
+    }
+
+    @Override
+    public List<RankVO> getBorrowRankList(int i) {
+        return shareRecordExtMapper.getBorrowRankList(i);
+    }
+
+    @Override
+    public List<RankVO> getShareRankList(int i) {
+        return shareRecordExtMapper.getShareRankList(i);
     }
 
     private List<ShareRecordVO> getShareRecordListByUserId(Long userId, boolean isBorrow) {

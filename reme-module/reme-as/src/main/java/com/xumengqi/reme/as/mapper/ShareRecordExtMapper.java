@@ -1,5 +1,6 @@
 package com.xumengqi.reme.as.mapper;
 
+import com.xumengqi.reme.as.vo.RankVO;
 import com.xumengqi.reme.as.vo.ShareRecordVO;
 import org.apache.ibatis.annotations.Param;
 
@@ -34,4 +35,21 @@ public interface ShareRecordExtMapper {
      * @return /
      */
     ShareRecordVO selectById(@Param("id") Long id);
+
+    /**
+     * 获取借阅排行榜
+     *
+     * @param count 数量
+     * @return /
+     */
+    List<RankVO> getBorrowRankList(@Param("count") Integer count);
+
+
+    /**
+     * 获取共享排行榜
+     *
+     * @param count 数量
+     * @return /
+     */
+    List<RankVO> getShareRankList(@Param("count") Integer count);
 }
