@@ -71,4 +71,15 @@ public interface UserService {
     @ApiOperation("修改用户密码")
     @PostMapping("/resetPassword")
     ResetPasswordResponse resetPassword(@ApiParam @Valid @RequestBody ResetPasswordRequest request);
+
+
+    /**
+     * 反馈
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("反馈")
+    @PostMapping("/feedback")
+    FeedbackResponse feedback(@ApiParam @Valid @RequestBody FeedbackRequest request);
 }

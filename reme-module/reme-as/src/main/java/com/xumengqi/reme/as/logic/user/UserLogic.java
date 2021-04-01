@@ -50,4 +50,12 @@ public interface UserLogic {
      * @param userNewPassword /
      */
     void resetPassword(Long userId, String userPassword, String userNewPassword);
+
+    /**
+     * 反馈
+     * @param userId /
+     * @param feedbackContent /
+     * @param feedbackOrder /
+     */
+    void feedback(Long userId, String feedbackContent, String feedbackOrder);
 }

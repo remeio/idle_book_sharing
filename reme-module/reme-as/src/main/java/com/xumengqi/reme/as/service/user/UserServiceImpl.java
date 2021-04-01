@@ -91,4 +91,11 @@ public class UserServiceImpl implements UserService {
         userLogic.resetPassword(request.getOperatorId(), request.getUserPassword(), request.getUserNewPassword());
         return new ResetPasswordResponse();
     }
+
+    @AccessToken
+    @Override
+    public FeedbackResponse feedback(@Valid FeedbackRequest request) {
+        userLogic.feedback(request.getOperatorId(), request.getFeedbackContent(), request.getFeedbackOrder());
+        return new FeedbackResponse();
+    }
 }

@@ -3,16 +3,15 @@ package com.xumengqi.reme.as.logic.user.impl;
 import com.xumengqi.reme.as.logic.user.UserLogic;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
-import com.xumengqi.reme.dao.entity.School;
-import com.xumengqi.reme.dao.entity.SchoolExample;
-import com.xumengqi.reme.dao.entity.User;
-import com.xumengqi.reme.dao.entity.UserExample;
+import com.xumengqi.reme.dao.entity.*;
+import com.xumengqi.reme.dao.mapper.FeedbackMapper;
 import com.xumengqi.reme.dao.mapper.SchoolMapper;
 import com.xumengqi.reme.dao.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * @author xumengqi
@@ -26,6 +25,9 @@ public class UserLogicImpl implements UserLogic {
 
     @Autowired
     private SchoolMapper schoolMapper;
+
+    @Autowired
+    private FeedbackMapper feedbackMapper;
 
     @Override
     public Long validateUser(String userPhone, String userPassword) {
@@ -82,5 +84,15 @@ public class UserLogicImpl implements UserLogic {
         AssertUtils.asserter().assertEqual(user.getUserPassword(), userPassword).elseThrow(ErrorCodeEnum.THE_CURRENT_PASSWORD_IS_WRONG);
         user.setUserPassword(userNewPassword);
         userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    @Override
+    public void feedback(Long userId, String feedbackContent, String feedbackOrder) {
+        Feedback feedback = new Feedback();
+        feedback.setUserId(userId);
+        feedback.setFeedbackContent(feedbackContent);
+        feedback.setFeedbackOrder(Optional.ofNullable(feedbackOrder).orElse(""));
+        feedback.setGmtCreate(new Date());
+        feedbackMapper.insertSelective(feedback);
     }
 }
