@@ -3,6 +3,7 @@ package com.xumengqi.reme.as.vo;
 import com.xumengqi.reme.base.BaseDTO;
 import com.xumengqi.reme.base.BaseVO;
 import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Service;
 
 /**
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Service;
  * @date 2021/4/1 12:28
  */
 @Getter
-@Service
+@Setter
 public class RankVO extends BaseVO {
     /**
      * 用户ID

@@ -10,6 +10,7 @@ import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
 import com.xumengqi.reme.as.vo.RankVO;
 import com.xumengqi.reme.as.vo.ShareRecordVO;
 import com.xumengqi.reme.base.annotations.AccessToken;
+import com.xumengqi.reme.base.annotations.NoAccessToken;
 import com.xumengqi.reme.base.annotations.SystemLog;
 import com.xumengqi.reme.base.util.ConvertUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,6 +92,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         return response;
     }
 
+    @NoAccessToken
     @Override
     public GetShareRankListResponse getShareRankList(@Valid GetShareRankListRequest request) {
         List<RankVO> rankVOList = shareRecordLogic.getShareRankList(100);
@@ -99,6 +101,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         return response;
     }
 
+    @NoAccessToken
     @Override
     public GetBorrowRankListResponse getBorrowRankList(@Valid GetBorrowRankListRequest request) {
         List<RankVO> rankVOList = shareRecordLogic.getBorrowRankList(100);

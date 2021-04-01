@@ -48,9 +48,9 @@
         where s.id = #{id}
     </select>
     <select id="getBorrowRankList" resultType="com.xumengqi.reme.as.vo.RankVO">
-        SELECT s.num,
-               s.user_id,
-               u.user_full_name
+        SELECT s.num as number,
+               s.user_id as userId,
+               u.user_full_name as userFullName
         FROM (
                  SELECT count(sr.borrow_user_id) AS num,
                         sr.borrow_user_id        AS user_id
@@ -63,9 +63,9 @@
                  LEFT JOIN `user` u ON u.id = s.user_id
     </select>
     <select id="getShareRankList" resultType="com.xumengqi.reme.as.vo.RankVO">
-        SELECT s.num,
-               s.user_id,
-               u.user_full_name
+        SELECT s.num as number,
+               s.user_id as userId,
+               u.user_full_name as userFullName
         FROM (
                  SELECT count(sr.share_user_id) AS num,
                         sr.share_user_id        AS user_id
