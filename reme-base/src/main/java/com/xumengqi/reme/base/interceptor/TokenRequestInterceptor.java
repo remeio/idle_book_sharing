@@ -3,6 +3,7 @@ package com.xumengqi.reme.base.interceptor;
 import com.google.gson.Gson;
 import com.xumengqi.reme.base.BaseResponse;
 import com.xumengqi.reme.base.annotations.AccessToken;
+import com.xumengqi.reme.base.annotations.NoAccessToken;
 import com.xumengqi.reme.base.conf.SystemConfig;
 import com.xumengqi.reme.base.constant.HeaderConstant;
 import com.xumengqi.reme.base.util.HttpServletRequestUtils;
@@ -46,11 +47,15 @@ public class TokenRequestInterceptor  implements HandlerInterceptor {
         if (!HandlerMethod.class.equals(handler.getClass())) {
             return true;
         }
-        // 拦截携带 AccessToken 注解的
+        // 拦截携带 AccessToken 注解的，且不带 NoAccessToken 注解的
         HandlerMethod handlerMethod = (HandlerMethod) handler;
-        boolean isHasAnnotationOnClass = handlerMethod.getBeanType().getAnnotation(AccessToken.class) != null;
-        boolean isHasAnnotationOnMethod = handlerMethod.getMethod().getAnnotation(AccessToken.class) != null;
-        if (!(isHasAnnotationOnClass || isHasAnnotationOnMethod)) {
+        boolean isHasAnnotationOnClassAccessToken = handlerMethod.getBeanType().getAnnotation(AccessToken.class) != null;
+        boolean isHasAnnotationOnMethodAccessToken = handlerMethod.getMethod().getAnnotation(AccessToken.class) != null;
+        boolean hasAccessToken = isHasAnnotationOnClassAccessToken || isHasAnnotationOnMethodAccessToken;
+        boolean isHasAnnotationOnClassNoAccessToken = handlerMethod.getBeanType().getAnnotation(NoAccessToken.class) != null;
+        boolean isHasAnnotationOnMethodNoAccessToken = handlerMethod.getMethod().getAnnotation(NoAccessToken.class) != null;
+        boolean hasNoAccessToken = isHasAnnotationOnClassNoAccessToken || isHasAnnotationOnMethodNoAccessToken;
+        if (hasNoAccessToken || !(hasAccessToken)) {
             // 安全处理
             HttpServletRequestUtils.reflectPutHeader(request, HeaderConstant.AUTHORIZATION, null);
             HttpServletRequestUtils.reflectPutHeader(request, HeaderConstant.OPERATOR_ID, null);
