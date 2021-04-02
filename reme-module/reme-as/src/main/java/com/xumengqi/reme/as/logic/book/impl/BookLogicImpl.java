@@ -172,7 +172,9 @@ public class BookLogicImpl implements BookLogic {
         List<Book> result;
         // 根据书籍名称查询
         BookExample bookExampleName = new BookExample();
-        bookExampleName.createCriteria().andBookNameLike(keyword);
+        bookExampleName.createCriteria()
+                .andBookNameLike("%" + keyword + "%")
+                .andBookStatusEqualTo(BookStatusEnum.IDLE.getCode());
         result = bookMapper.selectByExample(bookExampleName);
         if (result.size() > 0) {
             return result;
@@ -180,14 +182,18 @@ public class BookLogicImpl implements BookLogic {
         // 根据 ISBN 查询
         if (IsbnUtils.isValidIsbn(keyword)) {
             BookExample bookExampleIsbn = new BookExample();
-            bookExampleIsbn.createCriteria().andBookIsbnEqualTo(keyword);
+            bookExampleIsbn.createCriteria()
+                    .andBookIsbnEqualTo(keyword)
+                    .andBookStatusEqualTo(BookStatusEnum.IDLE.getCode());
             return bookMapper.selectByExample(bookExampleName);
         }
         // 根据免押金与否查询
         final String noDeposit = "免押金";
         if (noDeposit.equals(keyword)) {
             BookExample bookExampleDeposit = new BookExample();
-            bookExampleDeposit.createCriteria().andBookDepositEqualTo(0L);
+            bookExampleDeposit.createCriteria()
+                    .andBookDepositEqualTo(0L)
+                    .andBookStatusEqualTo(BookStatusEnum.IDLE.getCode());
             return bookMapper.selectByExample(bookExampleName);
         }
         return result;
