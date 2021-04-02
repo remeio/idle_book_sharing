@@ -185,4 +185,13 @@ public class BookServiceImpl implements BookService {
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
         return response;
     }
+
+    @AccessToken
+    @Override
+    public GetSearchBookListResponse getSearchBookList(@Valid GetSearchBookListRequest request) {
+        List<Book> books = bookLogic.search(request.getKeyword());
+        GetSearchBookListResponse response = new GetSearchBookListResponse();
+        response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
+        return response;
+    }
 }

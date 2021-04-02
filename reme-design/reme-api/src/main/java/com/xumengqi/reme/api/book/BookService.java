@@ -135,4 +135,16 @@ public interface BookService {
     @ApiOperation("获取今日上新")
     @PostMapping("/getTodayBookList")
     GetTodayBookListResponse getTodayBookList(@ApiParam @Valid @RequestBody GetTodayBookListRequest request);
+
+
+    /**
+     * 获取搜索书籍结果
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取搜索书籍结果")
+    @PostMapping("/getSearchBookList")
+    GetSearchBookListResponse getSearchBookList(@ApiParam @Valid @RequestBody GetSearchBookListRequest request);
+
 }

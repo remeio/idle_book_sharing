@@ -82,4 +82,11 @@ public interface BookLogic {
      * @return /
      */
     List<Book> getTodayBookList(Long userId);
+
+    /**
+     * 查询书籍列表
+     * @param keyword /
+     * @return 。
+     */
+    List<Book> search(String keyword);
 }

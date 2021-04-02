@@ -1,6 +1,7 @@
 package com.xumengqi.reme.as.logic.book.impl;
 
 import com.xumengqi.reme.as.logic.book.BookLogic;
+import com.xumengqi.reme.as.util.IsbnUtils;
 import com.xumengqi.reme.base.util.AssertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
@@ -164,5 +165,31 @@ public class BookLogicImpl implements BookLogic {
         // 要 12 个
         int count  = 12;
         return books.subList(0, Math.min(count, books.size()));
+    }
+
+    @Override
+    public List<Book> search(String keyword) {
+        List<Book> result;
+        // 根据书籍名称查询
+        BookExample bookExampleName = new BookExample();
+        bookExampleName.createCriteria().andBookNameLike(keyword);
+        result = bookMapper.selectByExample(bookExampleName);
+        if (result.size() > 0) {
+            return result;
+        }
+        // 根据 ISBN 查询
+        if (IsbnUtils.isValidIsbn(keyword)) {
+            BookExample bookExampleIsbn = new BookExample();
+            bookExampleIsbn.createCriteria().andBookIsbnEqualTo(keyword);
+            return bookMapper.selectByExample(bookExampleName);
+        }
+        // 根据免押金与否查询
+        final String noDeposit = "免押金";
+        if (noDeposit.equals(keyword)) {
+            BookExample bookExampleDeposit = new BookExample();
+            bookExampleDeposit.createCriteria().andBookDepositEqualTo(0L);
+            return bookMapper.selectByExample(bookExampleName);
+        }
+        return result;
     }
 }
