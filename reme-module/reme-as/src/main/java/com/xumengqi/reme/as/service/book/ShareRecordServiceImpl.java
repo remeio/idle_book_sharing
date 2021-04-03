@@ -103,6 +103,7 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         return response;
     }
 
+    @NoAccessToken
     @Override
     public GetBorrowRankListResponse getBorrowRankList(@Valid GetBorrowRankListRequest request) {
         List<RankVO> rankVOList = shareRecordLogic.getBorrowRankList(100);
