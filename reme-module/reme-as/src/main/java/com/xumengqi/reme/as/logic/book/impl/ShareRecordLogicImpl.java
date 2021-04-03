@@ -18,9 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @author xumengqi
@@ -70,6 +68,20 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
             AssertUtils.asserter().assertGreaterThanOrEqualZero(user.getCanUseDeposit() - book.getBookDeposit())
                     .elseThrow(ErrorCodeEnum.CAN_USE_DEPOSIT_NOT_ENOUGH);
         }
+        // 判断近一周有没有违规记录，如果有则不能借阅书籍
+        ShareRecordExample shareRecordExampleError = new ShareRecordExample();
+        Calendar now = Calendar.getInstance();
+        now.setTime(new Date());
+        now.set(Calendar.DATE, now.get(Calendar.DATE) - 7);
+        Date before = now.getTime();
+        shareRecordExampleError.createCriteria()
+                .andBorrowUserIdEqualTo(user.getId())
+                .andRecordStatusIn(new ArrayList<>(Arrays.asList(ShareRecordStatusEnum.OVERDUE_RETURNED.getCode(),
+                        ShareRecordStatusEnum.LOST_OR_DAMAGED.getCode(),
+                        ShareRecordStatusEnum.SERIOUSLY_OVERDUE.getCode())))
+                .andGmtCreateGreaterThan(before);
+        AssertUtils.asserter().assertEqualZero(shareRecordMapper.countByExample(shareRecordExampleError))
+                .elseThrow(ErrorCodeEnum.SHARE_RECORD_HAS_ERROR);
         // 创建共享记录，初始状态为初始化
         ShareRecord shareRecord = new ShareRecord();
         shareRecord.setOrderNo(UUIDUtils.getOrderNo());

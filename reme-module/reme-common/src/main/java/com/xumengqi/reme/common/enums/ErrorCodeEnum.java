@@ -136,6 +136,10 @@ public enum ErrorCodeEnum {
      */
     BOOK_BORROW_AND_SHARE_ON_SAME_TIME(ModuleEnum.SHARE_RECORD, 503, "不能借阅自己所共享的书籍"),
 
+    /**
+     * 近一周有违规记录，不能借阅书籍
+     */
+    SHARE_RECORD_HAS_ERROR(ModuleEnum.SHARE_RECORD, 504, "近一周有违规记录，不能借阅书籍"),
 
     // DEPOSIT
     /**
