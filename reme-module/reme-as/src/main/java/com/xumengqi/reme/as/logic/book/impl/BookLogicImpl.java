@@ -194,7 +194,7 @@ public class BookLogicImpl implements BookLogic {
             bookExampleDeposit.createCriteria()
                     .andBookDepositEqualTo(0L)
                     .andBookStatusEqualTo(BookStatusEnum.IDLE.getCode());
-            return bookMapper.selectByExample(bookExampleName);
+            return bookMapper.selectByExample(bookExampleDeposit);
         }
         return result;
     }
