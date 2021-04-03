@@ -134,8 +134,8 @@ public class BookLogicImpl implements BookLogic {
         if (books.size() == 0) {
             return result;
         }
-        // 随机推荐 6 个
-        int count = 6;
+        // 随机推荐 20 个
+        int count = 20;
         for (int i = 0; i < count; i++) {
             Book book = books.get(RandomUtils.nextInt(0, books.size()));
             result.add(book);
