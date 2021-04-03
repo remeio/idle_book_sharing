@@ -141,6 +141,12 @@ public enum ErrorCodeEnum {
      */
     SHARE_RECORD_HAS_ERROR(ModuleEnum.SHARE_RECORD, 504, "近一周有违规记录，不能借阅书籍"),
 
+
+    /**
+     * 当前状态不能对书籍进行评分
+     */
+    CAN_NOT_SCORE(ModuleEnum.SHARE_RECORD, 505, "当前状态不能对书籍进行评分"),
+
     // DEPOSIT
     /**
      * 可用押金不足

@@ -8,6 +8,7 @@
         <result column="share_user_id" jdbcType="BIGINT" property="shareUserId"/>
         <result column="borrow_user_id" jdbcType="BIGINT" property="borrowUserId"/>
         <result column="record_status" jdbcType="INTEGER" property="recordStatus"/>
+        <result column="score" jdbcType="DOUBLE" property="score"/>
         <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate"/>
         <result column="book_name" jdbcType="VARCHAR" property="bookName"/>
         <result column="book_image_url" jdbcType="VARCHAR" property="bookImageUrl"/>

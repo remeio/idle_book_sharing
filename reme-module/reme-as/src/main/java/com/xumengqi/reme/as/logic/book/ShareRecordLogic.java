@@ -138,4 +138,19 @@ public interface ShareRecordLogic {
      * @return /
      */
     List<Message> getMessageList(Long userId, Long shareRecordId);
+
+    /**
+     * 评分
+     * @param shareRecordId /
+     * @param score /
+     * @param borrowUserId /
+     */
+    void score(Long shareRecordId, Double score, Long borrowUserId);
+
+    /**
+     * 获取书籍评分
+     * @param bookId /
+     * @return /
+     */
+    Double getScoreOfBook(Long bookId);
 }

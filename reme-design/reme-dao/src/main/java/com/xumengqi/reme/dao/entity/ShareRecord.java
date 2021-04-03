@@ -47,6 +47,13 @@ public class ShareRecord implements Serializable {
     private Integer recordStatus;
 
     /**
+     * 评分【1，1.5，2，2.5，3，3.5，4，4.5，5】
+     *
+     * @mbg.generated
+     */
+    private Double score;
+
+    /**
      * 创建时间
      *
      * @mbg.generated
@@ -103,6 +110,14 @@ public class ShareRecord implements Serializable {
         this.recordStatus = recordStatus;
     }
 
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
     public Date getGmtCreate() {
         return gmtCreate;
     }
@@ -123,6 +138,7 @@ public class ShareRecord implements Serializable {
         sb.append(", shareUserId=").append(shareUserId);
         sb.append(", borrowUserId=").append(borrowUserId);
         sb.append(", recordStatus=").append(recordStatus);
+        sb.append(", score=").append(score);
         sb.append(", gmtCreate=").append(gmtCreate);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

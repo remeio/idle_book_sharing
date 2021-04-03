@@ -19,6 +19,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 /**
  * @author xumengqi
@@ -243,6 +245,38 @@ public class ShareRecordLogicImpl implements ShareRecordLogic {
         messageExample.createCriteria().andShareRecordIdEqualTo(shareRecordId);
         messageExample.setOrderByClause("gmt_create asc");
         return messageMapper.selectByExample(messageExample);
+    }
+
+    @Override
+    public void score(Long shareRecordId, Double score, Long borrowUserId) {
+        ShareRecordVO record = getShareRecord(shareRecordId);
+        isBorrowUser(shareRecordId, borrowUserId);
+        // 共享记录状态为 已归还，逾期归还，且尚未评分 才能评分
+        AssertUtils.asserter()
+                .assertTrue(ShareRecordStatusEnum.RETURNED.getCode().equals(record.getRecordStatus()) || ShareRecordStatusEnum.OVERDUE_RETURNED.getCode().equals(record.getRecordStatus()))
+                .assertTrue(record.getScore().equals(Double.parseDouble("0")))
+                .elseThrow(ErrorCodeEnum.CAN_NOT_SCORE);
+        ShareRecord shareRecord = new ShareRecord();
+        shareRecord.setId(shareRecordId);
+        shareRecord.setScore(score);
+        shareRecordMapper.updateByPrimaryKeySelective(shareRecord);
+    }
+
+    @Override
+    public Double getScoreOfBook(Long bookId) {
+        Book book = bookMapper.selectByPrimaryKey(bookId);
+        AssertUtils.asserter().assertNotNull(book).elseThrow(ErrorCodeEnum.BOOK_NOT_EXIST);
+        ShareRecordExample shareRecordExample = new ShareRecordExample();
+        shareRecordExample.createCriteria()
+                .andBookIdEqualTo(bookId)
+                .andScoreGreaterThan(0d);
+        List<ShareRecord> shareRecordList = shareRecordMapper.selectByExample(shareRecordExample);
+        // 总和
+        Double scores = shareRecordList.stream().map(ShareRecord::getScore).reduce((aDouble, aDouble2) -> aDouble + aDouble).orElse(null);
+        // 平均值
+        double score = (scores == null ? 0d : (scores / shareRecordList.size()));
+        // 保留 1 位小数
+        return ((double) Math.round(score * 10)) / 10;
     }
 
     private List<ShareRecordVO> getShareRecordListByUserId(Long userId, boolean isBorrow) {

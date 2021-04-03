@@ -44,6 +44,13 @@ public class ShareRecordDTO extends BaseDTO {
     private Integer recordStatus;
 
     /**
+     * 评分【1，1.5，2，2.5，3，3.5，4，4.5，5】
+     *
+     * @mbg.generated
+     */
+    private Double score;
+
+    /**
      * 创建时间
      */
     private Date gmtCreate;

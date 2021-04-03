@@ -137,4 +137,24 @@ public interface ShareRecordService {
     @PostMapping("/getMessageList")
     GetMessageListResponse getMessageList(@ApiParam @Valid @RequestBody GetMessageListRequest request);
 
+
+    /**
+     * 评分
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("评分")
+    @PostMapping("/score")
+    ScoreResponse score(@ApiParam @Valid @RequestBody ScoreRequest request);
+
+    /**
+     * 获取书籍评分
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("获取书籍评分")
+    @PostMapping("/getScoreOfBook")
+    GetScoreOfBookResponse getScoreOfBook(@ApiParam @Valid @RequestBody GetScoreOfBookRequest request);
 }

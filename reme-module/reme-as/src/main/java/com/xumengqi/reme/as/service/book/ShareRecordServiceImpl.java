@@ -78,7 +78,6 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         return new SeriouslyOverdueHandleBookResponse();
     }
 
-    @AccessToken
     @Override
     public GetShareRecordListByBorrowUserIdResponse getShareRecordListByBorrowUserId(GetShareRecordListByBorrowUserIdRequest request) {
         List<ShareRecordVO> shareRecordList = shareRecordLogic.getShareRecordListByBorrowUserId(request.getOperatorId());
@@ -87,7 +86,6 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         return response;
     }
 
-    @AccessToken
     @Override
     public GetShareRecordListByShareUserIdResponse getShareRecordListByShareUserId(GetShareRecordListByShareUserIdRequest request) {
         List<ShareRecordVO> shareRecordList = shareRecordLogic.getShareRecordListByShareUserId(request.getOperatorId());
@@ -105,7 +103,6 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         return response;
     }
 
-    @NoAccessToken
     @Override
     public GetBorrowRankListResponse getBorrowRankList(@Valid GetBorrowRankListRequest request) {
         List<RankVO> rankVOList = shareRecordLogic.getBorrowRankList(100);
@@ -114,14 +111,12 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         return response;
     }
 
-    @AccessToken
     @Override
     public SendMessageResponse sendMessage(@Valid SendMessageRequest request) {
         shareRecordLogic.sendMessage(request.getOperatorId(), request.getShareRecordId(), request.getMessageContent());
         return new SendMessageResponse();
     }
 
-    @AccessToken
     @Override
     public GetMessageListResponse getMessageList(@Valid GetMessageListRequest request) {
         List<Message> messages = shareRecordLogic.getMessageList(request.getOperatorId(), request.getShareRecordId());
@@ -132,6 +127,21 @@ public class ShareRecordServiceImpl implements ShareRecordService {
         response.setMessageDTOList(ConvertUtils.toList(messages, MessageDTO.class));
         response.setBorrowUserFullName(borrowUserFullName);
         response.setShareUserFullName(shareUserFullName);
+        return response;
+    }
+
+    @Override
+    public ScoreResponse score(@Valid ScoreRequest request) {
+        shareRecordLogic.score(request.getShareRecordId(), request.getScore(), request.getOperatorId());
+        return new ScoreResponse();
+    }
+
+    @NoAccessToken
+    @Override
+    public GetScoreOfBookResponse getScoreOfBook(@Valid GetScoreOfBookRequest request) {
+        Double score = shareRecordLogic.getScoreOfBook(request.getBookId());
+        GetScoreOfBookResponse response = new GetScoreOfBookResponse();
+        response.setScore(score);
         return response;
     }
 }

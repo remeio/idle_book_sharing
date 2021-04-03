@@ -8,6 +8,7 @@
     <result column="share_user_id" jdbcType="BIGINT" property="shareUserId" />
     <result column="borrow_user_id" jdbcType="BIGINT" property="borrowUserId" />
     <result column="record_status" jdbcType="INTEGER" property="recordStatus" />
+    <result column="score" jdbcType="DOUBLE" property="score" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, order_no, book_id, share_user_id, borrow_user_id, record_status, gmt_create
+    id, order_no, book_id, share_user_id, borrow_user_id, record_status, score, gmt_create
   </sql>
   <select id="selectByExample" parameterType="com.xumengqi.reme.dao.entity.ShareRecordExample" resultMap="BaseResultMap">
     select
@@ -106,11 +107,11 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into share_record (order_no, book_id, share_user_id, 
-      borrow_user_id, record_status, gmt_create
-      )
+      borrow_user_id, record_status, score, 
+      gmt_create)
     values (#{orderNo,jdbcType=VARCHAR}, #{bookId,jdbcType=BIGINT}, #{shareUserId,jdbcType=BIGINT}, 
-      #{borrowUserId,jdbcType=BIGINT}, #{recordStatus,jdbcType=INTEGER}, #{gmtCreate,jdbcType=TIMESTAMP}
-      )
+      #{borrowUserId,jdbcType=BIGINT}, #{recordStatus,jdbcType=INTEGER}, #{score,jdbcType=DOUBLE}, 
+      #{gmtCreate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.xumengqi.reme.dao.entity.ShareRecord">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Long">
@@ -133,6 +134,9 @@
       <if test="recordStatus != null">
         record_status,
       </if>
+      <if test="score != null">
+        score,
+      </if>
       <if test="gmtCreate != null">
         gmt_create,
       </if>
@@ -152,6 +156,9 @@
       </if>
       <if test="recordStatus != null">
         #{recordStatus,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=DOUBLE},
       </if>
       <if test="gmtCreate != null">
         #{gmtCreate,jdbcType=TIMESTAMP},
@@ -185,6 +192,9 @@
       <if test="record.recordStatus != null">
         record_status = #{record.recordStatus,jdbcType=INTEGER},
       </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=DOUBLE},
+      </if>
       <if test="record.gmtCreate != null">
         gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       </if>
@@ -201,6 +211,7 @@
       share_user_id = #{record.shareUserId,jdbcType=BIGINT},
       borrow_user_id = #{record.borrowUserId,jdbcType=BIGINT},
       record_status = #{record.recordStatus,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=DOUBLE},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -224,6 +235,9 @@
       <if test="recordStatus != null">
         record_status = #{recordStatus,jdbcType=INTEGER},
       </if>
+      <if test="score != null">
+        score = #{score,jdbcType=DOUBLE},
+      </if>
       <if test="gmtCreate != null">
         gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       </if>
@@ -237,6 +251,7 @@
       share_user_id = #{shareUserId,jdbcType=BIGINT},
       borrow_user_id = #{borrowUserId,jdbcType=BIGINT},
       record_status = #{recordStatus,jdbcType=INTEGER},
+      score = #{score,jdbcType=DOUBLE},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
