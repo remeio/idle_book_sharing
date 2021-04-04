@@ -71,17 +71,19 @@ public interface BookLogic {
     /**
      * 获取推荐书籍列表
      * @param userId /
+     * @param count 推荐的个数
      * @return /
      */
-    List<Book> getRecommendBookList(Long userId);
+    List<Book> getRecommendBookList(Long userId, int count);
 
 
     /**
      * 获取推今日上新书籍列表
      * @param userId /
+     * @param count 个数
      * @return /
      */
-    List<Book> getTodayBookList(Long userId);
+    List<Book> getTodayBookList(Long userId, int count);
 
     /**
      * 查询书籍列表
@@ -89,4 +91,12 @@ public interface BookLogic {
      * @return 。
      */
     List<Book> search(String keyword);
+
+    /**
+     * 为用户推荐书籍
+     * @param userId /
+     * @param count 推荐的个数
+     * @return /
+     */
+    List<Book> recommend(Long userId, int count);
 }

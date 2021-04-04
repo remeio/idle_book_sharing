@@ -1,8 +1,15 @@
 package com.xumengqi.reme.as.logic.book.impl;
 
 import com.xumengqi.reme.as.logic.book.BookLogic;
+import com.xumengqi.reme.as.logic.book.ShareRecordLogic;
+import com.xumengqi.reme.as.mapper.ShareRecordExtMapper;
 import com.xumengqi.reme.as.util.IsbnUtils;
+import com.xumengqi.reme.as.util.recommend.BookSample;
+import com.xumengqi.reme.as.util.recommend.RecommendException;
+import com.xumengqi.reme.as.util.recommend.Recommender;
+import com.xumengqi.reme.as.vo.ShareRecordVO;
 import com.xumengqi.reme.base.util.AssertUtils;
+import com.xumengqi.reme.base.util.ConvertUtils;
 import com.xumengqi.reme.common.enums.ErrorCodeEnum;
 import com.xumengqi.reme.common.enums.biz.BookStatusEnum;
 import com.xumengqi.reme.dao.entity.Book;
@@ -12,13 +19,11 @@ import com.xumengqi.reme.dao.mapper.BookMapper;
 import com.xumengqi.reme.dao.mapper.UserMapper;
 import org.apache.commons.lang3.RandomUtils;
 import org.apache.commons.lang3.time.DateUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -27,11 +32,20 @@ import java.util.stream.Collectors;
  */
 @Component
 public class BookLogicImpl implements BookLogic {
+
+    private static final Logger log = Logger.getLogger(BookLogicImpl.class);
+
     @Autowired
     private BookMapper bookMapper;
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private ShareRecordExtMapper shareRecordExtMapper;
+
+    @Autowired
+    private ShareRecordLogic shareRecordLogic;
 
     @Override
     public void addBook(Book book) {
@@ -122,7 +136,7 @@ public class BookLogicImpl implements BookLogic {
     }
 
     @Override
-    public List<Book> getRecommendBookList(Long userId) {
+    public List<Book> getRecommendBookList(Long userId, int count) {
         User user = userMapper.selectByPrimaryKey(userId);
         BookExample bookExample = new BookExample();
         bookExample.createCriteria()
@@ -134,17 +148,14 @@ public class BookLogicImpl implements BookLogic {
         if (books.size() == 0) {
             return result;
         }
-        // 随机推荐 20 个
-        int count = 20;
-        for (int i = 0; i < count; i++) {
-            Book book = books.get(RandomUtils.nextInt(0, books.size()));
-            result.add(book);
-        }
-        return result.stream().distinct().collect(Collectors.toList());
+        // 随机推荐 count 个
+        Collections.shuffle(books);
+        result.addAll(books.subList(0, Math.min(count, books.size())));
+        return result;
     }
 
     @Override
-    public List<Book> getTodayBookList(Long userId) {
+    public List<Book> getTodayBookList(Long userId, int count) {
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         int month = calendar.get(Calendar.MONTH);
@@ -162,8 +173,7 @@ public class BookLogicImpl implements BookLogic {
         if (books.size() == 0) {
             return new ArrayList<>();
         }
-        // 要 12 个
-        int count  = 12;
+        // 要 count 个
         return books.subList(0, Math.min(count, books.size()));
     }
 
@@ -197,5 +207,26 @@ public class BookLogicImpl implements BookLogic {
             return bookMapper.selectByExample(bookExampleDeposit);
         }
         return result;
+    }
+
+    @Override
+    public List<Book> recommend(Long userId, int count) {
+        List<BookSample> bookExampleList = shareRecordExtMapper.getBookSampleList(userId);
+        List<Book> bookList = new ArrayList<>();
+        try {
+            Set<Long> neighborIds = Recommender.recommend(userId, bookExampleList, 1);
+            // 找到邻居借阅过的书籍
+            neighborIds.forEach(e -> {
+                List<ShareRecordVO> shareRecordVOList = shareRecordLogic.getShareRecordListByBorrowUserId(e);
+                bookList.addAll(ConvertUtils.toList(shareRecordVOList, Book.class));
+            });
+            // 推荐 count 个
+            Collections.shuffle(bookList);
+            return bookList.subList(0, Math.min(bookList.size(), count));
+        } catch (RecommendException e) {
+            log.warn("KNN推荐失败，启用随机推荐", e);
+            // 随机推荐
+            return getRecommendBookList(userId, count);
+        }
     }
 }

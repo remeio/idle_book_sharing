@@ -147,4 +147,15 @@ public interface BookService {
     @PostMapping("/getSearchBookList")
     GetSearchBookListResponse getSearchBookList(@ApiParam @Valid @RequestBody GetSearchBookListRequest request);
 
+
+    /**
+     * 推荐书籍列表
+     *
+     * @param request /
+     * @return /
+     */
+    @ApiOperation("推荐书籍列表")
+    @PostMapping("/recommendBookList")
+    RecommendBookListResponse recommendBookList(@ApiParam @Valid @RequestBody RecommendBookListRequest request);
+
 }

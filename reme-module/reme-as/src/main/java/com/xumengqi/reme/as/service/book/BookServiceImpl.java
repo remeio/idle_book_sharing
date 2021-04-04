@@ -165,7 +165,7 @@ public class BookServiceImpl implements BookService {
     @AccessToken
     @Override
     public GetRecommendBookListResponse getRecommendBookList(@Valid GetRecommendBookListRequest request) {
-        List<Book> books = bookLogic.getRecommendBookList(request.getOperatorId());
+        List<Book> books = bookLogic.getRecommendBookList(request.getOperatorId(), 20);
         if (books.size() % 2 != 0) {
             books.remove(books.size() - 1);
         }
@@ -177,7 +177,7 @@ public class BookServiceImpl implements BookService {
     @AccessToken
     @Override
     public GetTodayBookListResponse getTodayBookList(GetTodayBookListRequest request) {
-        List<Book> books = bookLogic.getTodayBookList(request.getOperatorId());
+        List<Book> books = bookLogic.getTodayBookList(request.getOperatorId(), 8);
         if (books.size() % 2 != 0) {
             books.remove(books.size() - 1);
         }
@@ -191,6 +191,18 @@ public class BookServiceImpl implements BookService {
     public GetSearchBookListResponse getSearchBookList(@Valid GetSearchBookListRequest request) {
         List<Book> books = bookLogic.search(request.getKeyword());
         GetSearchBookListResponse response = new GetSearchBookListResponse();
+        response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
+        return response;
+    }
+
+    @AccessToken
+    @Override
+    public RecommendBookListResponse recommendBookList(@Valid RecommendBookListRequest request) {
+        List<Book> books = bookLogic.recommend(request.getOperatorId(), 6);
+        if (books.size() % 2 != 0) {
+            books.remove(books.size() - 1);
+        }
+        RecommendBookListResponse response = new RecommendBookListResponse();
         response.setBookDTOList(ConvertUtils.toList(books, BookDTO.class));
         return response;
     }

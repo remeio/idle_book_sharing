@@ -49,8 +49,8 @@
         where s.id = #{id}
     </select>
     <select id="getBorrowRankList" resultType="com.xumengqi.reme.as.vo.RankVO">
-        SELECT s.num as number,
-               s.user_id as userId,
+        SELECT s.num            as number,
+               s.user_id        as userId,
                u.user_full_name as userFullName
         FROM (
                  SELECT count(sr.borrow_user_id) AS num,
@@ -64,8 +64,8 @@
                  LEFT JOIN `user` u ON u.id = s.user_id
     </select>
     <select id="getShareRankList" resultType="com.xumengqi.reme.as.vo.RankVO">
-        SELECT s.num as number,
-               s.user_id as userId,
+        SELECT s.num            as number,
+               s.user_id        as userId,
                u.user_full_name as userFullName
         FROM (
                  SELECT count(sr.share_user_id) AS num,
@@ -77,5 +77,26 @@
                  LIMIT #{count}
              ) s
                  LEFT JOIN `user` u ON u.id = s.user_id
+    </select>
+
+    <select id="getBookSampleList" resultType="com.xumengqi.reme.as.util.recommend.BookSample">
+        SELECT count(book_id) as count,
+               a.borrow_user_id as userId,
+               a.book_catalog_id as bookCatalogId
+        FROM (
+                 SELECT s.book_id,
+                        s.borrow_user_id,
+                        b.book_catalog_id
+                 FROM (
+                          SELECT book_id,
+                                 borrow_user_id
+                          FROM `share_record`
+                          WHERE record_status IN (3, 4)) AS s,
+                      book b
+                 WHERE s.book_id = b.id
+                   AND b.school_id = (SELECT u.school_id FROM `user` u WHERE u.id = #{userId})
+             ) a
+        GROUP BY a.borrow_user_id,
+                 a.book_catalog_id
     </select>
 </mapper>
