@@ -114,7 +114,7 @@ public class Recommender {
         Set<Map.Entry<Long, Double>> simDistanceEntrySet = simDistanceMap.entrySet();
         simDistanceEntrySet = simDistanceEntrySet.stream().sorted(Comparator.comparingDouble(Map.Entry::getValue)).collect(Collectors.toCollection(LinkedHashSet::new));
         Set<Map.Entry<Long, Double>> neighbors = new HashSet<>();
-        log.info("allData: " + neighbors);
+        log.info("allData: " + simDistanceEntrySet);
         // 取前 k 个邻居
         if (simDistanceEntrySet.size() <= k) {
             neighbors = simDistanceEntrySet;
@@ -132,6 +132,7 @@ public class Recommender {
         Set<Double> distanceList = neighbors.stream().map(Map.Entry::getValue).collect(Collectors.toSet());
         Iterator<Long> neighborIdIterator = neighborIdList.iterator();
         Iterator<Double> distanceIterator = distanceList.iterator();
+        log.info("推荐结果为：");
         while (neighborIdIterator.hasNext()) {
             log.info("neighborId: " + neighborIdIterator.next() + ", distance: " + distanceIterator.next());
         }
