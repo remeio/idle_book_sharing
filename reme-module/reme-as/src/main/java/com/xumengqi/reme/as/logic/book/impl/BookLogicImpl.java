@@ -218,7 +218,11 @@ public class BookLogicImpl implements BookLogic {
             // 找到邻居借阅过的书籍
             neighborIds.forEach(e -> {
                 List<ShareRecordVO> shareRecordVOList = shareRecordLogic.getShareRecordListByBorrowUserId(e);
-                bookList.addAll(ConvertUtils.toList(shareRecordVOList, Book.class));
+                shareRecordVOList.forEach(sr -> {
+                    Book book = ConvertUtils.toObj(sr, Book.class);
+                    book.setId(sr.getBookId());
+                    bookList.add(book);
+                });
             });
             // 推荐 count 个
             Collections.shuffle(bookList);
